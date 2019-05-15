@@ -1,17 +1,31 @@
 {
-  "name": "",
-  "version": "",
+  "name": "REI Product Wrapper",
+  "version": "0.0.1",
   "description": "",
-  "author": "",
-  "license": "",
+  "author": "Morgan Galvin",
+  "license": "MIT",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
   },
   "dependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "nodemon": "^1.18.10"
+
   }
 }

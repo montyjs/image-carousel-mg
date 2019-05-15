@@ -1,6 +1,6 @@
-# Project Name
+# REI Product Wrapper
 
-> REI Front End Capstone
+> This a clone of the item page on rei.com. This was built with a team during my time at Hack Reactor. We used a SOA and reverse proxy architecture, test driven development, and agile development practices.gi
 
 ## Related Projects
   #### Services
@@ -17,7 +17,7 @@
 
 ## Usage
 
-> Some usage instructions
+1,
 
 ## Requirements
 
