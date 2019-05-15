@@ -1,13 +1,13 @@
 # Project Name
 
-> Project description
+> REI Front End Capstone
 
 ## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  #### Services
+  - https://github.com/montyjs/checkout-tm-service
+  - https://github.com/montyjs/jb-description
+  #### Proxy Server
+  - https://github.com/montyjs/mg-proxy
 
 ## Table of Contents
 
