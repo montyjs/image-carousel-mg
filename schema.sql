@@ -2,7 +2,7 @@ DROP SCHEMA product_schema;
 CREATE SCHEMA product_schema;
 
 CREATE TABLE "images" (
-    "id" INT   NOT NULL,
+    "id" SERIAL   NOT NULL,
     "width" INT   NOT NULL,
     "color" STRING   NOT NULL,
     "orientation" STRING   NOT NULL,
@@ -10,14 +10,14 @@ CREATE TABLE "images" (
 );
 
 CREATE TABLE "product" (
-    "id" INT   NOT NULL,
+    "id" SERIAL   NOT NULL,
     "product_name" STRING   NOT NULL,
     "company_name" STRING   NOT NULL,
     "item_number" INT   NOT NULL,
     "color" STRING   NOT NULL,
     "thumbnail_url" INT   NOT NULL,
-    "price" FLOAT   NOT NULL,
-    "rating" FLOAT   NOT NULL,
+    "price" NUMERIC   NOT NULL,
+    "rating" NUMERIC   NOT NULL,
     "no_ratings" INT   NOT NULL
 );
 
