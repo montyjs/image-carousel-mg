@@ -1,9 +1,10 @@
+/* eslint-disable no-path-concat */
 
 module.exports = {
-  entry: __dirname + '/client',
+  entry: `${__dirname}/client`,
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/public/dist'
+    path: `${__dirname}/public/dist`,
   },
   module: {
     rules: [
@@ -16,16 +17,16 @@ module.exports = {
       }, {
         test: /\.scss$/,
         use: [{
-            loader: "style-loader"
+          loader: 'style-loader',
         }, {
-            loader: "css-loader"
+          loader: 'css-loader',
         }, {
-            loader: "sass-loader",
-            options: {
-                includePaths: ["absolute/path/a", "absolute/path/b"]
-            }
-        }]
-      }
-    ]
-  }
+          loader: 'sass-loader',
+          options: {
+            includePaths: ['absolute/path/a', 'absolute/path/b']
+          },
+        }],
+      },
+    ],
+  },
 };
