@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../public/dist')));
-console.log(path.join(__dirname, '../public/dist'))
 
 app.get('/images', (req, res) => {
   res.sendStatus(200);
