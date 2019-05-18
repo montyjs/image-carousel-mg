@@ -1,4 +1,6 @@
 import React from 'react';
+import MediaWrapper from './media-wrapper';
+import BuyWrapper from './buy-wrapper';
 
 class App extends React.Component {
   // Declare a new state variable, which we'll call "count"
@@ -19,19 +21,11 @@ class App extends React.Component {
   render() {
     return (
       <div id="product-wrapper">
-        <div className="product-media-wrapper">
-          <img src="https://s3-us-west-2.amazonaws.com/fec-rei/kiwi/back_kiwi_tarantulace_kiwigrey_5_8.jpg" alt="tarantulace" />
-        </div>
-        <div className="buy-wrapper">
-          <button type="button" onClick={() => this.fetchProducts()}>
-            <p>
-              Console Log Products
-            </p>
-          </button>
-          <button type="button" onClick={() => this.fetchImages()}>
-            Console Log Images
-          </button>
-        </div>
+        <MediaWrapper />
+        <BuyWrapper
+          fetchImages={this.fetchImages}
+          fetchProducts={this.fetchProducts}
+        />
       </div>
     );
   }
