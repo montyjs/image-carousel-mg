@@ -1,4 +1,23 @@
-body{
-  background: black;
-  color: white;
+#product-wrapper{
+  $outline-border: 3px solid red;
+  $locally-scoped-variable: #3278ae;
+  display: flex;
+  
+  a {
+    color: $locally-scoped-variable;
+  }
+
+  .product-media-wrapper {
+    border: $outline-border;
+    width: 66vw;
+    max-height: 24rem;
+    img {
+      max-height: 100%;
+    }
+  }
+  .buy-wrapper {
+    border: $outline-border;
+    width: 30vw;
+  }
+
 }
