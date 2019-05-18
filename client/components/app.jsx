@@ -1,30 +1,42 @@
 import React from 'react';
 import MediaWrapper from './media-wrapper';
-import BuyWrapper from './buy-wrapper';
+import Checkout from './checkout';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      images: [],
+      products: [],
+    };
+  }
+
   // Declare a new state variable, which we'll call "count"
-  static fetchImages() {
+  fetchImages() {
     return fetch('/images')
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => this.setState({ images: data }))
       .catch(err => console.log(err));
   }
 
-  static fetchProducts() {
+  fetchProducts() {
     return fetch('/products')
       .then(res => res.json())
-      .then(data => console.log(data.rows))
+      .then(data => this.setState({ products: data }))
       .catch(err => console.log(err));
   }
 
   render() {
+    const { images, products } = this.state;
     return (
       <div id="product-wrapper">
-        <MediaWrapper />
-        <BuyWrapper
+        <MediaWrapper
+          images={images}
+        />
+        <Checkout
           fetchImages={this.fetchImages}
           fetchProducts={this.fetchProducts}
+          products={products}
         />
       </div>
     );
