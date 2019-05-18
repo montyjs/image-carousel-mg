@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const db = require('../db/index.js');
+
 const port = process.env.PORT;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,11 +16,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public/dist')));
 
 app.get('/images', (req, res) => {
-  res.sendStatus(200);
+  db.getAllImages((err, results) => {
+    if (err) {
+      return res.json({ error: err });
+    }
+    return res.json({ rows: results });
+  });
 });
 
-app.get('/product-details', (req, res) => {
-  res.sendStatus(200);
+app.get('/products', (req, res) => {
+  db.getAllProducts((err, results) => {
+    if (err) {
+      return res.json({ error: err });
+    }
+    return res.json({ rows: results });
+  });
 });
 
 app.listen(port, (err) => {
