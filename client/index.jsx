@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App.jsx';
 
-const App = () => (
+const Index = () => (
   <div>
     your fancy react app
+    vvvv Usint Hooks vvvv
+    <App />
   </div>
 );
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Index />, document.getElementById('root'));

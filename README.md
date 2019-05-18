@@ -17,7 +17,18 @@
 
 ## Usage
 
-1,
+0. run `npm install` to install all packages.
+1. Seed the DB
+  - Add your postgress superuser username to the environmental variable. 
+    run  `npm config set db_user <YOUR SUPERUSER USERNAME>`
+  - Run the seeding script
+    -run `npm run-script seed`"cross-var psql -f schema.sql -U $npm_config_db_user",
+2. Start webpack
+  -run `npm run-script build:dev`
+3. In another terminal, start express
+  -run `npm run-script start:dev`
+
+
 
 ## Requirements
 

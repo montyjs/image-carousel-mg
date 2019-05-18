@@ -3,11 +3,11 @@
 
 DROP DATABASE product_wrapper;
 CREATE DATABASE product_wrapper; 
-
+\c product_wrapper
 -- DROP SCHEMA product_schema;
 -- CREATE SCHEMA product_schema;
-DROP TABLE images;
-CREATE TABLE images(
+DROP IF EXISTS TABLE images;
+CREATE TABLE images (
     id SERIAL NOT NULL,
     width INT NOT NULL,
     color VARCHAR NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE images(
     url TEXT NOT NULL
 );
 
-DROP TABLE products;
+DROP IF EXISTS TABLE products;
 CREATE TABLE products (
     id SERIAL NOT NULL,
     product_name VARCHAR NOT NULL,
