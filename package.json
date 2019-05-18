@@ -12,7 +12,7 @@
     "start": "node server/index.js",
     "start:dev": "nodemon server/index.js -w server -w database-mysql",
     "seed": "cross-var psql -f schema.sql -U $npm_config_db_user",
-    "test": "jest"
+    "test": "jest --config jest-preset.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
