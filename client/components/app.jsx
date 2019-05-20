@@ -36,9 +36,7 @@ class App extends React.Component {
           images={images}
         />
         <Checkout
-          fetchImages={this.fetchImages}
-          fetchProducts={this.fetchProducts}
-          products={products}
+          products={products[2]}
         />
       </div>
     );
