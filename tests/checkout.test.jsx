@@ -5,20 +5,20 @@ import PropTypes from 'prop-types';
 import Checkout from '../client/components/checkout';
 
 const dummyProduct = {
-  product_name: 'La Sportiva Tarantulace',
-  company_name: 'La Sportiva',
-  item_number: 830932,
+  productName: 'La Sportiva Tarantulace',
+  companyName: 'La Sportiva',
+  itemNumber: 830932,
   color: 'Flame',
-  thumbnail_url: 1,
+  thumbnailUrl: 1,
   price: 80.00,
   rating: 4.3,
-  no_ratings: 166,
+  noRatings: 166,
 };
 
 function MockApp(props) {
   const { product } = props;
   return (
-    <Checkout product={product} />
+    <Checkout {...product} />
   );
 }
 MockApp.propTypes = {

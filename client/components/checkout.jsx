@@ -46,14 +46,14 @@ Checkout.propTypes = {
 };
 
 Checkout.defaultProps = {
-  productName: 'La Sportiva Tarantulace',
-  companyName: 'La Sportiva',
-  itemNumber: 830932,
-  color: 'Flame',
-  thumbnailUrl: 1,
-  price: 80.00,
-  rating: 4.3,
-  noRatings: 166,
+  productName: '',
+  companyName: '',
+  itemNumber: 0,
+  color: '',
+  thumbnailUrl: 0,
+  price: 0,
+  rating: 0,
+  noRatings: 0,
 };
 
 export default Checkout;

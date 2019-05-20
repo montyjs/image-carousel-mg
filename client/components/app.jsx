@@ -13,7 +13,7 @@ class App extends React.Component {
   static fetchProducts() {
     return fetch('/products')
       .then(res => res.json())
-      .then(data => data)
+      .then(data => data.row)
       .catch(err => err);
   }
 
@@ -21,7 +21,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       images: [],
-      products: [],
+      product: {},
     };
   }
 
@@ -29,18 +29,18 @@ class App extends React.Component {
     App.fetchImages()
       .then(data => this.setState({ images: data }));
     App.fetchProducts()
-      .then(data => this.setState({ products: data }));
+      .then(data => this.setState({ product: data }));
   }
 
   render() {
-    const { images, products } = this.state;
+    const { images, product } = this.state;
     return (
       <div id="product-wrapper">
         <MediaWrapper
           images={images}
         />
         <Checkout
-          products={products[82]}
+          {...product}
         />
       </div>
     );

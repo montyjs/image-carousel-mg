@@ -26,7 +26,7 @@ describe('Fetching Images Method', () => {
     expect(typeof App.fetchImages).toBe('function');
   });
 
-  it('should be have a response', () => {
+  it('should have a response', () => {
     fetch.mockResponseOnce(JSON.stringify({ url: 'http://flextrek.co.eu/whipsnake.jpg' }));
 
     App.fetchImages().then((res) => {
@@ -44,7 +44,7 @@ describe('Fetching Products Method', () => {
     expect(typeof App.fetchProducts).toBe('function');
   });
 
-  it('should be have a response', () => {
+  it('should have a response', () => {
     fetch.mockResponseOnce(JSON.stringify({ product_name: 'flextrek whipsnake' }));
 
     App.fetchProducts().then((res) => {

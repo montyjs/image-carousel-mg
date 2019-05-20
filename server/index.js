@@ -25,11 +25,23 @@ app.get('/images', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-  db.getAllProducts((err, results) => {
+  db.getRandomProduct((err, result) => {
     if (err) {
       return res.json({ error: err });
     }
-    return res.json({ rows: results });
+    // there has got to be a better way of doing this.
+    // Could this be destructured/reassigned at the component level?
+    const response = {
+      productName: result.product_name,
+      companyName: result.company_name,
+      itemNumber: result.item_number,
+      color: result.color,
+      thumbnailUrl: result.thumbnail_url,
+      price: result.price,
+      rating: result.rating,
+      noRatings: result.no_ratings,
+    };
+    return res.json({ row: response });
   });
 });
 
