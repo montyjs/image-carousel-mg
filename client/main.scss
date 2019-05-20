@@ -87,6 +87,33 @@
       height: 27px;
       width: auto;
     }
-  }
+    .shoe-size-select{
 
+      .size-chart-tab a{
+        font-weight: 400;
+        font-size: 14px;
+      }
+
+    }
+    .checkout-quantity {
+      .product-quantity-selector {
+        width: 38px;
+        height: 24px;
+      }
+      button{
+        background: #fff;
+        border: none;
+        width: auto;
+        padding: 0;
+      }
+      .quantity-icon {
+        color: #ddd;
+        background: #292b2c;
+        padding: -5px;
+        border: #c5c5c5 solid 1px;
+        border-radius: 50%;
+        font-size: 1.4rem;
+      }
+    }
+  }
 }

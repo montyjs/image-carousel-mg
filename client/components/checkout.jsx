@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ShoeSizeSelect from './shoeSizeSelect';
+import CheckoutQuantity from './checkoutQuantity';
 
 const Checkout = ({
   productName, companyName, itemNumber, color, thumbnailUrl, price, rating, noRatings,
@@ -54,10 +55,9 @@ thru May 27.
       { `Color: ${color.slice(0, 1).toUpperCase() + color.slice(1)}` }
       <img src="https://rei.com/media/4f72b233-00f4-449b-b3c8-c338b526cb05?size=60" className="shoe-thumbnail" alt="shoe-thumbnail" />
     </div>
-    <div>
-      { thumbnailUrl }
-    </div>
     <ShoeSizeSelect shoeSizes={[42, 42.5, 43, 43.5, 44]} />
+    <CheckoutQuantity />
+
   </div>
 );
 
@@ -67,7 +67,7 @@ Checkout.propTypes = {
   itemNumber: PropTypes.number,
   color: PropTypes.string,
   thumbnailUrl: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.string,
   rating: PropTypes.number,
   noRatings: PropTypes.number,
 };
