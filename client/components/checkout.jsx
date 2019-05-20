@@ -57,7 +57,7 @@ thru May 27.
     <div>
       { thumbnailUrl }
     </div>
-    <ShoeSizeSelect />
+    <ShoeSizeSelect shoeSizes={[42, 42.5, 43, 43.5, 44]} />
   </div>
 );
 

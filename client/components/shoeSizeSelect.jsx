@@ -1,18 +1,25 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ShoeSizeSelect = () => (
+const ShoeSizeSelect = ({ shoeSizes }) => (
   <div className="shoe-size-select">
     <label htmlFor="selectSize">Size</label>
-    <select id="selectSize">
-      <option>Select Size</option>
-      <optgroup>
+    <select name="selectSize" id="selectSize">
+      <option>
+      Select Size
+      </option>
+      <optgroup label="Available">
         {' '}
 Available
-        <option>42 Eu</option>
+        {shoeSizes.map(size => <option>{`${size} Eu`}</option>)}
       </optgroup>
     </select>
   </div>
 );
+
+ShoeSizeSelect.propTypes = {
+  shoeSizes: PropTypes.array.isRequired,
+};
 
 export default ShoeSizeSelect;
