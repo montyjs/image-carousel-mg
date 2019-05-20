@@ -5,7 +5,7 @@ const Checkout = ({
   productName, companyName, itemNumber, color, thumbnailUrl, price, rating, noRatings,
 }) => (
   <div className="buy-wrapper">
-    <div brand>
+    <div className="company">
       <a href="https://rei.com">
         { companyName }
       </a>

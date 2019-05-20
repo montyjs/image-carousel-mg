@@ -7,14 +7,14 @@ class App extends React.Component {
     return fetch('/images')
       .then(res => res.json())
       .then(data => data)
-      .catch(err => console.log(err));
+      .catch(err => err);
   }
 
   static fetchProducts() {
     return fetch('/products')
       .then(res => res.json())
       .then(data => data)
-      .catch(err => console.log(err));
+      .catch(err => err);
   }
 
   constructor(props) {
