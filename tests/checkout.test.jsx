@@ -43,5 +43,16 @@ describe('When receiving props', () => {
   it('should destructure the props object', () => {
     expect(wrapper.props()).toHaveProperty('productName');
     expect(wrapper.prop('productName')).toEqual('La Sportiva Tarantulace');
+    expect(wrapper.prop('companyName')).toEqual('La Sportiva');
+    expect(wrapper.prop('itemNumber')).toEqual(830932);
+    expect(wrapper.prop('color')).toEqual('Flame');
+    expect(wrapper.prop('thumbnailUrl')).toEqual(1);
+    expect(wrapper.prop('price')).toEqual(80.00);
+    expect(wrapper.prop('rating')).toEqual(4.3);
+    expect(wrapper.prop('noRatings')).toEqual(166);
+  });
+
+  it('should display the props', () => {
+    expect(wrapper.contains(<h1>La Sportiv Tarantulace</h1>));
   });
 });

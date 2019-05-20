@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 const Checkout = ({
   productName, companyName, itemNumber, color, thumbnailUrl, price, rating, noRatings,
 }) => (
-  <div className="buy-wrapper">
+  <div className="checkout-wrapper">
     <div className="company">
       <a href="https://rei.com">
         { companyName }
       </a>
     </div>
-    <div>
-      { productName }
+    <div className="product-name">
+      <h1>
+        { productName }
+      </h1>
     </div>
     <div>
       { itemNumber }
