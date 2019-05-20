@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ShoeSizeSelect from './shoeSizeSelect';
 
 const Checkout = ({
   productName, companyName, itemNumber, color, thumbnailUrl, price, rating, noRatings,
@@ -56,6 +57,7 @@ thru May 27.
     <div>
       { thumbnailUrl }
     </div>
+    <ShoeSizeSelect />
   </div>
 );
 
