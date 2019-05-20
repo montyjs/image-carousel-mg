@@ -9,6 +9,8 @@ class App extends React.Component {
       images: [],
       products: [],
     };
+    this.fetchProducts = this.fetchProducts.bind(this);
+    this.fetchImages = this.fetchImages.bind(this);
   }
 
   // Declare a new state variable, which we'll call "count"

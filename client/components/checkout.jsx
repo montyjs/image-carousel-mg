@@ -1,11 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const BuyWrapper = props => (
+const Checkout = props => (
   <div className="buy-wrapper">
     <button type="button" onClick={() => props.fetchProducts()}>
-      <p>
       Console Log Products
-      </p>
     </button>
     <button type="button" onClick={() => props.fetchImages()}>
     Console Log Images
@@ -13,4 +12,14 @@ const BuyWrapper = props => (
   </div>
 );
 
-export default BuyWrapper;
+Checkout.propTypes = {
+  fetchProducts: PropTypes.func,
+  fetchImages: PropTypes.func,
+};
+
+Checkout.defaultProps = {
+  fetchProducts: () => console.log('click!'),
+  fetchImages: () => console.log('click!'),
+};
+
+export default Checkout;
