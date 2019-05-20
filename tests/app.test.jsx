@@ -7,7 +7,7 @@ const wrapper = shallow(<App />);
 
 describe('Rendering Tests', () => {
   it('renders without crashing', () => {
-    wrapper;
+    expect(wrapper);
   });
 });
 

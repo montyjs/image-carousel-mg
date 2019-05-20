@@ -5,13 +5,32 @@ const Checkout = ({
   productName, companyName, itemNumber, color, thumbnailUrl, price, rating, noRatings,
 }) => (
   <div className="buy-wrapper">
-    <button type="button" onClick={() => props.fetchProducts()}>
-      Console Log Products
-    </button>
-    <button type="button" onClick={() => props.fetchImages()}>
-    Console Log Images
-    </button>
-    { productName }
+    <div brand>
+      <a href="https://rei.com">
+        { companyName }
+      </a>
+    </div>
+    <div>
+      { productName }
+    </div>
+    <div>
+      { itemNumber }
+    </div>
+    <div>
+      { color }
+    </div>
+    <div>
+      { thumbnailUrl }
+    </div>
+    <div>
+      { price }
+    </div>
+    <div>
+      { rating }
+    </div>
+    <div>
+      { noRatings }
+    </div>
   </div>
 );
 

@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
+import PropTypes from 'prop-types';
 import Checkout from '../client/components/checkout';
 
 const dummyProduct = {
@@ -13,18 +14,34 @@ const dummyProduct = {
   rating: 4.3,
   no_ratings: 166,
 };
-const wrapper = shallow(<Checkout product={dummyProduct} />);
+
+function MockApp(props) {
+  const { product } = props;
+  return (
+    <Checkout product={product} />
+  );
+}
+MockApp.propTypes = {
+  product: PropTypes.object.isRequired,
+};
 
 describe('Rendering Tests', () => {
+  const wrapper = shallow(<Checkout />);
   it('renders without crashing', () => {
-    wrapper;
+    expect(wrapper.exists()).toBe(true);
+  });
+  it('should not be empty', () => {
+    expect(wrapper.find('buy-wrapper')).toBeDefined();
   });
 });
 
 describe('When receiving props', () => {
+  const wrapper = shallow(<MockApp product={dummyProduct} />);
   it('should receive props', () => {
-    console.log(wrapper.props());
-    wrapper.setProps(dummyProduct);
-    expect(wrapper.props()).toHaveProperty(product);
+    expect(wrapper.props);
+  });
+  it('should destructure the props object', () => {
+    expect(wrapper.props()).toHaveProperty('productName');
+    expect(wrapper.prop('productName')).toEqual('La Sportiva Tarantulace');
   });
 });
