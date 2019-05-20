@@ -3,29 +3,33 @@ import MediaWrapper from './media-wrapper';
 import Checkout from './checkout';
 
 class App extends React.Component {
+  static fetchImages() {
+    return fetch('/images')
+      .then(res => res.json())
+      .then(data => data)
+      .catch(err => console.log(err));
+  }
+
+  static fetchProducts() {
+    return fetch('/products')
+      .then(res => res.json())
+      .then(data => data)
+      .catch(err => console.log(err));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       images: [],
       products: [],
     };
-    this.fetchProducts = this.fetchProducts.bind(this);
-    this.fetchImages = this.fetchImages.bind(this);
   }
 
-  // Declare a new state variable, which we'll call "count"
-  fetchImages() {
-    return fetch('/images')
-      .then(res => res.json())
-      .then(data => this.setState({ images: data }))
-      .catch(err => console.log(err));
-  }
-
-  fetchProducts() {
-    return fetch('/products')
-      .then(res => res.json())
-      .then(data => this.setState({ products: data }))
-      .catch(err => console.log(err));
+  componentDidMount() {
+    App.fetchImages()
+      .then(data => this.setState({ images: data }));
+    App.fetchProducts()
+      .then(data => this.setState({ products: data }));
   }
 
   render() {
@@ -36,7 +40,7 @@ class App extends React.Component {
           images={images}
         />
         <Checkout
-          products={products[2]}
+          products={products[82]}
         />
       </div>
     );
