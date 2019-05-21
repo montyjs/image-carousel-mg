@@ -19,7 +19,7 @@ const ShoeSizeSelect = ({ shoeSizes }) => (
       <optgroup label="Available">
         {' '}
 Available
-        {shoeSizes.map(size => <option>{`${size} Eu`}</option>)}
+        {shoeSizes.map(size => <option value={size}>{`${size} Eu`}</option>)}
       </optgroup>
     </select>
   </div>

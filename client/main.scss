@@ -91,25 +91,41 @@
     .color-wrapper {
       color: #292b2c;
       font-size: 14px;
+      .thumbnail-wrapper{
+
+        border: 1px solid #4eaaff;
+        border-radius: 5px;
+        max-height: 3.7rem;
+        max-width: 3.4rem;
+        padding: 0px 2px;
+      }
+      img {
+        width: auto;
+        max-height: 100%;
+        max-width: 100%;
+      }
     }
     .user-selection-row {
       display: flex;
       justify-content: space-around;
+      align-items: flex-end;
     }
-    .shoe-thumbnail {
-      height: 27px;
-      width: auto;
-    }
+
     .shoe-size-select{
       .select-labels {
         display: flex;
         justify-content: space-between;
+      }
+      label {
+        font-size: 14px;
       }
       .size-chart-tab a{
         font-weight: 400;
         font-size: 14px;
       }
       select {
+        color: #2e2e2e;
+        height: 40px;
         font-size: 16px;
         border-radius: 2px;
         width: 100%;
@@ -134,6 +150,54 @@
         border: #c5c5c5 solid 1px;
         border-radius: 50%;
         font-size: 1.4rem;
+      }
+    }
+
+    .shipping-options {
+
+      // Hides the radio buttons
+      .radio {
+        input[type=radio] {
+          opacity: 0;
+        }
+        input[type=radio]+label {
+          display: block;
+          color: inherit;
+          position: relative;
+          cursor: pointer;
+        }
+        //appends a 'button' container before the label
+        input[type=radio]+label::before{
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top: .4rem;
+          left: -1.2rem;
+          height: 8px;
+          width: 8px;
+          border: .2rem solid #fff;
+          border-radius: 50%;
+          box-shadow: 0 0 0 0.125rem #222;
+          vertical-align: -.2rem;
+        }
+        //
+        label::after {
+          background: black;
+          display: inline-block;
+          height: 8px;
+          width: 8px;
+          border-radius: 50%;
+          position: absolute;
+          left: -1rem;
+          top: .6rem;
+        }
+        input[type=radio] + label::after {
+          content: none;
+        }
+        //give the selected button a filling
+        input[type=radio]:checked+label::after {
+          content: '';
+        }
       }
     }
 

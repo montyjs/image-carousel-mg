@@ -2,21 +2,22 @@
 import React from 'react';
 
 const ShippingOptions = () => (
-  <div>
-    <form>
-      {' '}
-      <input id="ship" type="radio" />
-      <label htmlFor="ship">Ship to address</label>
-      <br />
-      <input id="pickup" type="radio" />
-      <label htmlFor="pickup">
-      Pick up in store - Free
+  <div className="shipping-options">
+    <div className="radio">
+      <input id="ship" type="radio" name="ship-opt" value="ship" checked="checked" />
+      <label htmlFor="ship">
+      Ship to address
       </label>
-      <br />
-      <a href="https://www.rei.com/map/store">
+    </div>
+    <div className="radio">
+      <input id="pickup" type="radio" name="ship-opt" value="pickup" />
+      <label htmlFor="pickup">
+        Pick up in store - Free
+      </label>
+    </div>
+    <a href="https://www.rei.com/map/store">
       Find a store near you
-      </a>
-    </form>
+    </a>
   </div>
 );
 
