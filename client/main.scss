@@ -124,5 +124,43 @@
         font-size: 1.4rem;
       }
     }
+    .buy {
+      button {
+        cursor: pointer;
+        border-radius: 2px;
+        font-size: 16px;
+      }
+      .primary-checkout-btn {
+        background: #426c90;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        width: 100%;
+
+      }
+      .primary-checkout-btn:hover {
+        background: #2b455c;
+      }
+      .secondary-btns {
+        display: flex;
+        justify-content: space-between;
+        margin-top: .5rem;
+        button {
+          background: #fff;      
+          border: 1px solid #c5c5c5;
+          padding: 12px 0;
+          width: 100%;
+        }
+        button:nth-child(1) {
+          margin-right: 1rem;
+        }
+        button:nth-child(2) {
+          margin-left: 1rem;
+        }
+        button:hover {
+          background: #f4f4f4;
+        }
+      }
+    }
   }
 }

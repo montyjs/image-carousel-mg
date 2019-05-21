@@ -2,16 +2,21 @@
 import React from 'react';
 
 const BuyButtons = () => (
-  <div>
+  <div className="buy">
     <button className="primary-checkout-btn" type="button">
-    Add to cart
+      <span>
+      Add to cart
+      </span>
     </button>
-    <button className="secondary-checkout-btn" type="button">
-    Add to wish list
-    </button>
-    <button className="secondary-checkout-btn" type="button">
-    Add to cart
-    </button>
+    <div className="secondary-btns">
+      <button type="button">
+      Add to wish list
+      </button>
+      <button type="button">
+      Add to cart
+      </button>
+    </div>
+    <a href="#">REI return policy</a>
   </div>
 );
 
