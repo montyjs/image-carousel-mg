@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ShoeSizeSelect from './checkoutSubComponents/shoeSizeSelect';
 import CheckoutQuantity from './checkoutSubComponents/checkoutQuantity';
 import ShippingOptions from './checkoutSubComponents/shippingOptions';
-import AddToCart from './checkoutSubComponents/AddToCart';
+import BuyButtons from './checkoutSubComponents/buyButtons';
 
 const Checkout = ({
   productName, companyName, itemNumber, color, price, rating, noRatings, shoeSizes,
@@ -61,7 +61,7 @@ thru May 27.
     <CheckoutQuantity />
     <hr />
     <ShippingOptions />
-    <AddToCart />
+    <BuyButtons />
   </div>
 );
 
