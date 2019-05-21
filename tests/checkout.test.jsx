@@ -10,8 +10,8 @@ const dummyProduct = {
   itemNumber: 830932,
   color: 'Flame',
   thumbnailUrl: 1,
-  price: 80.00,
-  rating: 4.3,
+  price: '80.00',
+  rating: '4.3',
   noRatings: 166,
 };
 
@@ -47,8 +47,8 @@ describe('When receiving props', () => {
     expect(wrapper.prop('itemNumber')).toEqual(830932);
     expect(wrapper.prop('color')).toEqual('Flame');
     expect(wrapper.prop('thumbnailUrl')).toEqual(1);
-    expect(wrapper.prop('price')).toEqual(80.00);
-    expect(wrapper.prop('rating')).toEqual(4.3);
+    expect(wrapper.prop('price')).toEqual('80.00');
+    expect(wrapper.prop('rating')).toEqual('4.3');
     expect(wrapper.prop('noRatings')).toEqual(166);
   });
 
