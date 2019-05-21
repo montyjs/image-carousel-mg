@@ -22,6 +22,7 @@ class App extends React.Component {
     this.state = {
       images: [],
       product: {},
+      size: null,
     };
   }
 
@@ -34,6 +35,13 @@ class App extends React.Component {
         const { product } = this.state;
         document.title = product.productName;
       });
+  }
+
+  handleShoeSizeSelect(e) {
+    console.log(e);
+    this.setState({
+      size: 42,
+    });
   }
 
   render() {

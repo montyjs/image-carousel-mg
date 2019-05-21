@@ -1,29 +1,10 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import PropTypes from 'prop-types';
 import Checkout from '../client/components/checkout';
+import MockApp from './mockApp';
 
-const dummyProduct = {
-  productName: 'La Sportiva Tarantulace',
-  companyName: 'La Sportiva',
-  itemNumber: 830932,
-  color: 'Flame',
-  thumbnailUrl: 1,
-  price: '80.00',
-  rating: '4.3',
-  noRatings: 166,
-};
-
-function MockApp(props) {
-  const { product } = props;
-  return (
-    <Checkout {...product} />
-  );
-}
-MockApp.propTypes = {
-  product: PropTypes.object.isRequired,
-};
 
 describe('Rendering Tests', () => {
   const wrapper = shallow(<Checkout />);
@@ -36,7 +17,7 @@ describe('Rendering Tests', () => {
 });
 
 describe('When receiving props', () => {
-  const wrapper = shallow(<MockApp product={dummyProduct} />);
+  const wrapper = shallow(<MockApp />);
   it('should receive props', () => {
     expect(wrapper.props);
   });
@@ -52,7 +33,41 @@ describe('When receiving props', () => {
     expect(wrapper.prop('noRatings')).toEqual(166);
   });
 
+  // Shoe Size Select
   it('should display the props', () => {
     expect(wrapper.contains(<h1>La Sportiv Tarantulace</h1>));
   });
 });
+
+describe('Shoe Size Select', () => {
+  // Should accept shoe size array from props
+  const shallowWrap = shallow(<MockApp />);
+  const mountWrap = mount(<MockApp />);
+  it('should receive shoe sizes', () => {
+    expect(shallowWrap.props()).toHaveProperty('shoeSizes');
+    expect(shallowWrap.props('shoeSizes').shoeSizes).toHaveLength(4);
+  });
+  // Should render shoe size array
+  it('should render shoe size options', () => {
+    expect(shallowWrap.contains(<option value="42" key="42eu">42 Eu</option>));
+  });
+  it('should update state when a size is selected', () => {
+    expect(mountWrap);
+  });
+});
+// Should update state when size is selected */
+// Quantity Incrementer
+// Should increment when increment button is clicked
+// Should decrement when decrement button is clicked
+// Users should be able to type a number into the field
+// Should not be able to have less than 1 quantity
+// Should update state when value is changed
+// Shipping / Pick Up Radio Button
+// Users can select pick up option
+// Users can select ship option
+// Users cannot select both options
+// Users cannot select neither option
+// Should update state when new option is selected
+// Checkout
+// Users can checkout when shoe size
+// Users cannot checkout when shoe size is not selected

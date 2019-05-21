@@ -12,14 +12,14 @@ const ShoeSizeSelect = ({ shoeSizes }) => (
         </a>
       </span>
     </div>
-    <select name="selectSize" id="selectSize">
+    <select name="selectSize" id="selectSize" onChange={() => {}}>
       <option>
       Select Size
       </option>
       <optgroup label="Available">
         {' '}
 Available
-        {shoeSizes.map(size => <option value={size}>{`${size} Eu`}</option>)}
+        {shoeSizes.map(size => <option value={size} key={`${size}eu`}>{`${size} Eu`}</option>)}
       </optgroup>
     </select>
   </div>

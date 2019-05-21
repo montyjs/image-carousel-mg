@@ -4,13 +4,26 @@ import React from 'react';
 const ShippingOptions = () => (
   <div className="shipping-options">
     <div className="radio">
-      <input id="ship" type="radio" name="ship-opt" value="ship" checked="checked" />
+      <input
+        id="ship"
+        type="radio"
+        name="ship-opt"
+        value="ship"
+        checked="checked"
+        onChange={() => {}}
+      />
       <label htmlFor="ship">
       Ship to address
       </label>
     </div>
     <div className="radio">
-      <input id="pickup" type="radio" name="ship-opt" value="pickup" />
+      <input
+        id="pickup"
+        type="radio"
+        name="ship-opt"
+        value="pickup"
+        onChange={() => {}}
+      />
       <label htmlFor="pickup">
         Pick up in store - Free
       </label>

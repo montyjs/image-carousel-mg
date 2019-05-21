@@ -2,7 +2,7 @@
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Domine&display=swap');
 
-  $outline-border: 3px solid red;
+  $outline-border: 3px solid #77778d;
   $interactive-font: #3278ae;
 
   display: flex;
@@ -180,7 +180,7 @@
           box-shadow: 0 0 0 0.125rem #222;
           vertical-align: -.2rem;
         }
-        //
+        // what a 'checked' button will look like
         label::after {
           background: black;
           display: inline-block;
@@ -191,12 +191,17 @@
           left: -1rem;
           top: .6rem;
         }
+        // when not selected, show nothing
         input[type=radio] + label::after {
           content: none;
         }
-        //give the selected button a filling
+        // when selected, show above styling
         input[type=radio]:checked+label::after {
           content: '';
+        }
+        // accessibility
+        .checkbox input[type=radio]:focus + label::before {
+          outline: rgb(59, 153, 252) auto 5px;
         }
       }
     }

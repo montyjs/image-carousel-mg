@@ -45,11 +45,11 @@ const Checkout = ({
       <p className="price-messaging">
         <b>Members save 20%</b>
         {' '}
-on one eligible full-price item with code
+        on one eligible full-price item with code
         {' '}
         <b>ANNV19</b>
         {' '}
-thru May 27.
+        thru May 27.
         {' '}
         <span className="details-link">Details</span>
       </p>
