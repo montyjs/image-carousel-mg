@@ -92,15 +92,27 @@
       color: #292b2c;
       font-size: 14px;
     }
+    .user-selection-row {
+      display: flex;
+      justify-content: space-around;
+    }
     .shoe-thumbnail {
       height: 27px;
       width: auto;
     }
     .shoe-size-select{
-
+      .select-labels {
+        display: flex;
+        justify-content: space-between;
+      }
       .size-chart-tab a{
         font-weight: 400;
         font-size: 14px;
+      }
+      select {
+        font-size: 16px;
+        border-radius: 2px;
+        width: 100%;
       }
 
     }
@@ -124,7 +136,9 @@
         font-size: 1.4rem;
       }
     }
+
     .buy {
+      text-align: center;
       button {
         cursor: pointer;
         border-radius: 2px;
@@ -160,6 +174,11 @@
         button:hover {
           background: #f4f4f4;
         }
+      }
+      a {
+        display: block;
+        font-weight: 400;
+        margin: 20px 10px;
       }
     }
   }
