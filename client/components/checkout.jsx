@@ -4,7 +4,7 @@ import ShoeSizeSelect from './shoeSizeSelect';
 import CheckoutQuantity from './checkoutQuantity';
 
 const Checkout = ({
-  productName, companyName, itemNumber, color, thumbnailUrl, price, rating, noRatings,
+  productName, companyName, itemNumber, color, price, rating, noRatings, shoeSizes,
 }) => (
   <div className="checkout-wrapper">
     <div className="company">
@@ -55,7 +55,7 @@ thru May 27.
       { `Color: ${color.slice(0, 1).toUpperCase() + color.slice(1)}` }
       <img src="https://rei.com/media/4f72b233-00f4-449b-b3c8-c338b526cb05?size=60" className="shoe-thumbnail" alt="shoe-thumbnail" />
     </div>
-    <ShoeSizeSelect shoeSizes={[42, 42.5, 43, 43.5, 44]} />
+    <ShoeSizeSelect shoeSizes={shoeSizes} />
     <CheckoutQuantity />
 
   </div>
@@ -66,10 +66,10 @@ Checkout.propTypes = {
   companyName: PropTypes.string,
   itemNumber: PropTypes.number,
   color: PropTypes.string,
-  thumbnailUrl: PropTypes.string,
   price: PropTypes.string,
-  rating: PropTypes.number,
+  rating: PropTypes.string,
   noRatings: PropTypes.number,
+  shoeSizes: PropTypes.array,
 };
 
 Checkout.defaultProps = {
@@ -77,10 +77,10 @@ Checkout.defaultProps = {
   companyName: '',
   itemNumber: 0,
   color: '',
-  thumbnailUrl: 0,
-  price: 0,
-  rating: 0,
+  price: '80.00',
+  rating: '5',
   noRatings: 0,
+  shoeSizes: [42, 42, 42],
 };
 
 export default Checkout;

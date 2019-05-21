@@ -5,7 +5,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'product_wrapper',
-  password: 'rei',
+  password: process.env.DB_PW,
   port: '5432',
 });
 
@@ -26,10 +26,20 @@ const getRandomProduct = (cb) => {
     if (err) {
       return cb(err, null);
     }
-    console.log(result.rows[0]);
-    return cb(null, result.rows[0]);
+    const shoeSizeQueryString = 'SELECT * FROM shoe_size;';
+    pool.query(shoeSizeQueryString, (err, sizes) => {
+      if (err) {
+        return cb(err, null);
+      }
+      const response = {
+        shoe_sizes: sizes.rows,
+        ...result.rows[0],
+      };
+      return cb(null, response);
+    });
   });
 };
+
 
 module.exports = {
   pool,
