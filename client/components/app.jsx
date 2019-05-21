@@ -29,7 +29,11 @@ class App extends React.Component {
     App.fetchImages()
       .then(data => this.setState({ images: data }));
     App.fetchProducts()
-      .then(data => this.setState({ product: data }));
+      .then(data => this.setState({ product: data }))
+      .then(() => {
+        const { product } = this.state;
+        document.title = product.productName;
+      });
   }
 
   render() {
