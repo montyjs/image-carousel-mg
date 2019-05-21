@@ -23,6 +23,15 @@
     text-decoration: underline;
   }
 
+  hr {
+    height: 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    margin: 24px 0;
+  }
+
     /*****************
      ** LEFT COLUMN **
     ******************/

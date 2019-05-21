@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShoeSizeSelect from './shoeSizeSelect';
-import CheckoutQuantity from './checkoutQuantity';
+import ShoeSizeSelect from './checkoutSubComponents/shoeSizeSelect';
+import CheckoutQuantity from './checkoutSubComponents/checkoutQuantity';
+import ShippingOptions from './checkoutSubComponents/shippingOptions';
+import AddToCart from './checkoutSubComponents/AddToCart';
 
 const Checkout = ({
   productName, companyName, itemNumber, color, price, rating, noRatings, shoeSizes,
@@ -57,7 +59,9 @@ thru May 27.
     </div>
     <ShoeSizeSelect shoeSizes={shoeSizes} />
     <CheckoutQuantity />
-
+    <hr />
+    <ShippingOptions />
+    <AddToCart />
   </div>
 );
 
