@@ -30,6 +30,7 @@ class App extends React.Component {
         rating: '5',
         noRatings: 0,
         shoeSizes: [],
+        activeColor: 'flame',
       },
       size: null,
       quantity: 1,
