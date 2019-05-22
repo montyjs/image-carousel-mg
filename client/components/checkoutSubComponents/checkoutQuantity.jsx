@@ -1,12 +1,13 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const CheckoutQuantity = () => (
+const CheckoutQuantity = ({ click, input, quantity }) => (
   <div className="checkout-quantity">
     <button
       type="button"
-      data-val="decrement"
-      onClick={() => {}}
+      value="dec"
+      onClick={click}
     >
       <i className="fas fa-minus-circle quantity-icon" />
     </button>
@@ -19,18 +20,23 @@ const CheckoutQuantity = () => (
       maxLength="4"
       required="required"
       className="product-quantity-selector"
-      value="1"
-      onChange={() => {}}
+      value={quantity}
+      onChange={input}
     />
     <button
       type="button"
-      data-val="increment"
-      onClick={() => {}}
+      value="inc"
+      onClick={click}
     >
       <i className="fas fa-plus-circle quantity-icon" />
     </button>
   </div>
 );
 
+CheckoutQuantity.propTypes = {
+  click: PropTypes.func.isRequired,
+  input: PropTypes.func.isRequired,
+  quantity: PropTypes.number.isRequired,
+};
 
 export default CheckoutQuantity;

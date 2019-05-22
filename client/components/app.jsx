@@ -23,8 +23,11 @@ class App extends React.Component {
       images: [],
       product: {},
       size: null,
+      quantity: 1,
     };
     this.handleShoeSizeSelect = this.handleShoeSizeSelect.bind(this);
+    this.handleQuantityClick = this.handleQuantityClick.bind(this);
+    this.handleQuantityInput = this.handleQuantityInput.bind(this);
   }
 
   componentDidMount() {
@@ -45,10 +48,35 @@ class App extends React.Component {
     });
   }
 
+  handleQuantityClick(e) {
+    const val = e.target.value === 'inc' ? 1 : -1;
+    console.log(val);
+    const { quantity } = this.state;
+    if (quantity + val === 0) {
+      return false;
+    }
+    this.setState({
+      quantity: quantity + val,
+    });
+  }
+
+  handleQuantityInput(e) {
+    const input = e.target.value;
+    console.log(input);
+    if (val < 1) {
+      return false;
+    }
+    this.setState({
+      quantity: input,
+    });
+  }
+
   render() {
-    const { images, product } = this.state;
+    const { images, product, quantity } = this.state;
     const handlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,
+      handleQuantityClick: this.handleQuantityClick,
+      handleQuantityInput: this.handleQuantityInput,
     };
     return (
       <div id="product-wrapper">
@@ -58,6 +86,7 @@ class App extends React.Component {
         <Checkout
           {...product}
           handlers={handlers}
+          quantity={quantity}
         />
       </div>
     );
