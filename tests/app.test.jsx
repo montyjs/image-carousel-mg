@@ -48,7 +48,8 @@ describe('Fetching Products Method', () => {
     fetch.mockResponseOnce(JSON.stringify({ product_name: 'flextrek whipsnake' }));
 
     App.fetchProducts().then((res) => {
-      expect(res.product_name).toEqual('flextrek whipsnake');
-    });
+      expect(res.productName).toEqual('flextrek whipsnake');
+    })
+      .catch(err => err);
   });
 });

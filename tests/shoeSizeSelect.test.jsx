@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import ShoeSizeSelect from '../client/components/checkoutSubComponents/shoeSizeSelect';
 import MockApp from './mockApp';
 
 describe('Shoe Size Select', () => {
   it('should receive shoe sizes', () => {
-    const wrap = shallow(<MockApp />);
-    expect(wrap.props()).toHaveProperty('shoeSizes');
-    expect(wrap.props('shoeSizes').shoeSizes).toHaveLength(4);
+    const wrap = mount(<MockApp />);
+    expect(wrap.find('ShoeSizeSelect').props()).toHaveProperty('shoeSizes');
+    expect(wrap.find('ShoeSizeSelect').props('shoeSizes').shoeSizes).toHaveLength(4);
   });
 
   it('should render shoe size options', () => {

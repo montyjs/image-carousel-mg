@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import Checkout from '../client/components/checkout';
 
@@ -25,17 +26,20 @@ class MockApp extends React.Component {
     };
   }
 
+  notMockFn() {
+    return console.log('SPYDARS TALKING TO CATS');
+  }
+
   render() {
-    const notMockFn = () => console.log('stupid science witch cant make i more smarter');
     const handlers = {
-      shoeSizeSelect: notMockFn,
-      handleQuantityClick: notMockFn,
-      handleQuantityInput: notMockFn,
+      shoeSizeSelect: this.notMockFn,
+      handleQuantityClick: this.notMockFn,
+      handleQuantityInput: this.notMockFn,
     };
     const { product, quantity } = this.state;
     return (
       <Checkout
-        {...product}
+        product={product}
         handlers={handlers}
         quantity={quantity}
       />

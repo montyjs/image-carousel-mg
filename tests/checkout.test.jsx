@@ -1,39 +1,13 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Checkout from '../client/components/checkout';
 import MockApp from './mockApp';
 
 describe('Rendering Tests', () => {
-  const wrapper = shallow(<Checkout />);
+  const wrap = shallow(<Checkout />);
   it('renders without crashing', () => {
-    expect(wrapper.exists()).toBe(true);
-  });
-  it('should not be empty', () => {
-    expect(wrapper.find('buy-wrapper')).toBeDefined();
-  });
-});
-
-describe('When receiving props', () => {
-  const wrapper = shallow(<MockApp />);
-  it('should receive props', () => {
-    expect(wrapper.props);
-  });
-  it('should destructure the props object', () => {
-    expect(wrapper.props()).toHaveProperty('productName');
-    expect(wrapper.prop('productName')).toEqual('La Sportiva Tarantulace');
-    expect(wrapper.prop('companyName')).toEqual('La Sportiva');
-    expect(wrapper.prop('itemNumber')).toEqual(830932);
-    expect(wrapper.prop('color')).toEqual('Flame');
-    expect(wrapper.prop('thumbnailUrl')).toEqual(1);
-    expect(wrapper.prop('price')).toEqual('80.00');
-    expect(wrapper.prop('rating')).toEqual('4.3');
-    expect(wrapper.prop('noRatings')).toEqual(166);
-  });
-
-  // Shoe Size Select
-  it('should display the props', () => {
-    expect(wrapper.contains(<h1>La Sportiv Tarantulace</h1>));
+    expect(wrap.exists()).toBe(true);
   });
 });
 

@@ -19,10 +19,16 @@ const dummyProduct = {
 describe('Product Info receiving props from Checkout', () => {
   const Mock = props => (<ProductInfo {...props.product} />);
   const wrap = shallow(<Mock product={dummyProduct} />);
+
+  it('renders without crashing', () => {
+    expect(wrap.exists()).toBe(true);
+  });
+
   it('should receive props', () => {
     wrap.update();
     expect(wrap.props);
   });
+
   it('should destructure the props object', () => {
     wrap.update();
     expect(wrap.prop('productName')).toEqual('La Sportiva Tarantulace');
