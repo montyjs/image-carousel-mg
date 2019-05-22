@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProductInfo = ({
-  productName, companyName, itemNumber, color, price, rating, noRatings,
+  productName, companyName, itemNumber, price, rating, noRatings,
 }) => (
   <div>
 
@@ -53,26 +53,13 @@ const ProductInfo = ({
 );
 
 ProductInfo.propTypes = {
-  productName: PropTypes.string,
-  companyName: PropTypes.string,
-  itemNumber: PropTypes.number,
-  color: PropTypes.string,
-  price: PropTypes.string,
-  rating: PropTypes.string,
-  noRatings: PropTypes.number,
-  shoeSizes: PropTypes.array,
+  productName: PropTypes.string.isRequired,
+  companyName: PropTypes.string.isRequired,
+  itemNumber: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+  noRatings: PropTypes.number.isRequired,
 };
 
-
-ProductInfo.defaultProps = {
-  productName: '',
-  companyName: '',
-  itemNumber: 0,
-  color: '',
-  price: '80.00',
-  rating: '5',
-  noRatings: 0,
-  shoeSizes: [],
-};
 
 export default ProductInfo;

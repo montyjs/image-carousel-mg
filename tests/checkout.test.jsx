@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import PropTypes from 'prop-types';
 import Checkout from '../client/components/checkout';
 import MockApp from './mockApp';
 

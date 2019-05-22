@@ -9,7 +9,6 @@ import BuyButtons from './checkoutSubComponents/buyButtons';
 
 const Checkout = ({ handlers, product, quantity }) => (
   <div className="checkout-wrapper">
-    {console.log(product)}
     <ProductInfo {...product} />
     <ColorSelect color={product.color} />
     <div className="user-selection-row">
@@ -32,7 +31,7 @@ const Checkout = ({ handlers, product, quantity }) => (
 Checkout.propTypes = {
   product: PropTypes.object,
   handlers: PropTypes.object,
-  quantity: PropTypes.number.isRequired,
+  quantity: PropTypes.number,
 };
 
 Checkout.defaultProps = {
@@ -49,6 +48,7 @@ Checkout.defaultProps = {
   handlers: {
     shoeSizeSelect: () => {},
   },
+  quantity: 1,
 };
 
 export default Checkout;
