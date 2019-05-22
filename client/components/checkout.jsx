@@ -47,6 +47,8 @@ Checkout.defaultProps = {
   },
   handlers: {
     shoeSizeSelect: () => {},
+    handleQuantityClick: () => {},
+    handleQuantityInput: () => {},
   },
   quantity: 1,
 };
