@@ -4,6 +4,14 @@ import { mount, shallow } from 'enzyme';
 import ShoeSizeSelect from '../client/components/checkoutSubComponents/shoeSizeSelect';
 import MockApp from './mockApp';
 
+
+describe('rendering', () => {
+  it('renders without crashing', () => {
+    const wrap = mount(<MockApp />);
+    expect(wrap.exists()).toBe(true);
+  });
+});
+
 describe('Shoe Size Select', () => {
   it('should receive shoe sizes', () => {
     const wrap = mount(<MockApp />);

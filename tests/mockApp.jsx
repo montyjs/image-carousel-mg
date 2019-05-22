@@ -35,6 +35,7 @@ class MockApp extends React.Component {
       shoeSizeSelect: this.notMockFn,
       handleQuantityClick: this.notMockFn,
       handleQuantityInput: this.notMockFn,
+      handleShippingInput: this.notMockFn,
     };
     const { product, quantity } = this.state;
     return (

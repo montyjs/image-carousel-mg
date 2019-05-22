@@ -3,6 +3,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CheckoutQuantity from '../client/components/checkoutSubComponents/checkoutQuantity';
 
+describe('rendering', () => {
+  const wrap = shallow(<CheckoutQuantity
+    quantity={1}
+    click={() => {}}
+    input={() => {}}
+  />);
+  it('renders without crashing', () => {
+    expect(wrap.exists()).toBe(true);
+  });
+});
+
 describe('Increment and decrement buttons', () => {
   const mockFn = jest.fn();
   const wrap = shallow(<CheckoutQuantity
@@ -10,10 +21,6 @@ describe('Increment and decrement buttons', () => {
     click={mockFn}
     input={() => {}}
   />);
-
-  it('renders without crashing', () => {
-    expect(wrap.exists()).toBe(true);
-  });
 
   it('should have an increment button', () => {
     expect(wrap.find('button').filterWhere(item => item.prop('name') === 'increment')).toHaveLength(1);

@@ -15,13 +15,16 @@ const dummyProduct = {
   shoeSizes: [42, 43, 44, 45],
 };
 
+describe('rendering', () => {
+  it('renders without crashing', () => {
+    const wrap = shallow(<ProductInfo {...dummyProduct} />);
+    expect(wrap.exists()).toBe(true);
+  });
+});
+
 describe('Product Info receiving props from Checkout', () => {
   const Mock = props => (<ProductInfo {...props.product} />);
   const wrap = shallow(<Mock product={dummyProduct} />);
-
-  it('renders without crashing', () => {
-    expect(wrap.exists()).toBe(true);
-  });
 
   it('should receive props', () => {
     wrap.update();
