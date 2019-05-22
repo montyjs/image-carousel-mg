@@ -21,20 +21,23 @@ class MockApp extends React.Component {
       images: [],
       product: dummyProduct,
       size: null,
+      quantity: 1,
     };
   }
 
   render() {
-    const notMockFn = () => console.log('stupid science bitch cant make i more smarter');
-    const mock = notMockFn;
+    const notMockFn = () => console.log('stupid science witch cant make i more smarter');
     const handlers = {
-      shoeSizeSelect: mock,
+      shoeSizeSelect: notMockFn,
+      handleQuantityClick: notMockFn,
+      handleQuantityInput: notMockFn,
     };
-    const { product } = this.state;
+    const { product, quantity } = this.state;
     return (
       <Checkout
         {...product}
         handlers={handlers}
+        quantity={quantity}
       />
     );
   }

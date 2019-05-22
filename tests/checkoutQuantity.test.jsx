@@ -4,8 +4,13 @@ import { shallow } from 'enzyme';
 import CheckoutQuantity from '../client/components/checkoutSubComponents/checkoutQuantity';
 
 describe('Increment and decrement buttons', () => {
+  const wrapper = shallow(<CheckoutQuantity
+    quantity={1}
+    click={() => {}}
+    input={() => {}}
+  />);
   it('should have an increment button', () => {
-    expect();
+    expect(wrapper.find('button').filterWhere(item => item.prop('name') === 'increment')).toHaveLength(1);
   });
 
   it('should have a decrement button', () => {

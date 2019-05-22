@@ -21,7 +21,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       images: [],
-      product: {},
+      product: {
+        productName: '',
+        companyName: '',
+        itemNumber: 0,
+        color: '',
+        price: '80.00',
+        rating: '5',
+        noRatings: 0,
+        shoeSizes: [],
+      },
       size: null,
       quantity: 1,
     };
@@ -50,7 +59,6 @@ class App extends React.Component {
 
   handleQuantityClick(e) {
     const val = e.target.dataset.val === 'inc' ? 1 : -1;
-    console.log();
     const { quantity } = this.state;
     if (quantity + val === 0) {
       return false;
@@ -83,7 +91,7 @@ class App extends React.Component {
           images={images}
         />
         <Checkout
-          {...product}
+          product={product}
           handlers={handlers}
           quantity={quantity}
         />
