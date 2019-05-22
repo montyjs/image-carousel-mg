@@ -49,8 +49,8 @@ class App extends React.Component {
   }
 
   handleQuantityClick(e) {
-    const val = e.target.value === 'inc' ? 1 : -1;
-    console.log(val);
+    const val = e.target.dataset.val === 'inc' ? 1 : -1;
+    console.log();
     const { quantity } = this.state;
     if (quantity + val === 0) {
       return false;
@@ -61,9 +61,8 @@ class App extends React.Component {
   }
 
   handleQuantityInput(e) {
-    const input = e.target.value;
-    console.log(input);
-    if (val < 1) {
+    const input = Number(e.target.value);
+    if (input < 1) {
       return false;
     }
     this.setState({

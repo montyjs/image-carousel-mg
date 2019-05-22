@@ -9,7 +9,7 @@ const CheckoutQuantity = ({ click, input, quantity }) => (
       value="dec"
       onClick={click}
     >
-      <i className="fas fa-minus-circle quantity-icon" />
+      <i className="fas fa-minus-circle quantity-icon" data-val="dec" />
     </button>
     <input
       name="quantity"
@@ -28,7 +28,7 @@ const CheckoutQuantity = ({ click, input, quantity }) => (
       value="inc"
       onClick={click}
     >
-      <i className="fas fa-plus-circle quantity-icon" />
+      <i className="fas fa-plus-circle quantity-icon" data-val="inc" />
     </button>
   </div>
 );
