@@ -3,8 +3,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import PropTypes from 'prop-types';
 import Checkout from '../client/components/checkout';
-import MockApp from './mockApp';
-
+import ShoeSizeSelect from '../client/components/checkoutSubComponents/shoeSizeSelect';
 
 describe('Rendering Tests', () => {
   const wrapper = shallow(<Checkout />);
@@ -15,6 +14,44 @@ describe('Rendering Tests', () => {
     expect(wrapper.find('buy-wrapper')).toBeDefined();
   });
 });
+
+const dummyProduct = {
+  productName: 'La Sportiva Tarantulace',
+  companyName: 'La Sportiva',
+  itemNumber: 830932,
+  color: 'Flame',
+  thumbnailUrl: 1,
+  price: '80.00',
+  rating: '4.3',
+  noRatings: 166,
+  shoeSizes: [42, 43, 44, 45],
+};
+
+class MockApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      images: [],
+      product: dummyProduct,
+      size: null,
+    };
+  }
+
+  render() {
+    const notMockFn = () => console.log('stupid science bitch cant make i more smarter');
+    const mock = notMockFn;
+    const handlers = {
+      shoeSizeSelect: mock,
+    };
+    const { product } = this.state;
+    return (
+      <Checkout
+        {...product}
+        handlers={handlers}
+      />
+    );
+  }
+}
 
 describe('When receiving props', () => {
   const wrapper = shallow(<MockApp />);
@@ -40,22 +77,28 @@ describe('When receiving props', () => {
 });
 
 describe('Shoe Size Select', () => {
-  // Should accept shoe size array from props
-  const shallowWrap = shallow(<MockApp />);
-  const mountWrap = mount(<MockApp />);
   it('should receive shoe sizes', () => {
-    expect(shallowWrap.props()).toHaveProperty('shoeSizes');
-    expect(shallowWrap.props('shoeSizes').shoeSizes).toHaveLength(4);
+    const wrap = shallow(<MockApp />);
+    expect(wrap.props()).toHaveProperty('shoeSizes');
+    expect(wrap.props('shoeSizes').shoeSizes).toHaveLength(4);
   });
-  // Should render shoe size array
+
   it('should render shoe size options', () => {
-    expect(shallowWrap.contains(<option value="42" key="42eu">42 Eu</option>));
+    const wrap = shallow(<MockApp />);
+    expect(wrap.contains(<option value="42" key="42eu">42 Eu</option>));
   });
-  it('should update state when a size is selected', () => {
-    expect(mountWrap);
+
+  it('should call a function onChange', () => {
+    const mockFn = jest.fn();
+    const wrap = shallow(<ShoeSizeSelect
+      handler={mockFn}
+      shoeSizes={dummyProduct.shoeSizes}
+    />);
+    wrap.find('select').simulate('change');
+    expect(mockFn).toHaveBeenCalled();
   });
 });
-// Should update state when size is selected */
+
 // Quantity Incrementer
 // Should increment when increment button is clicked
 // Should decrement when decrement button is clicked

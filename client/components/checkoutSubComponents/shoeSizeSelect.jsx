@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ShoeSizeSelect = ({ shoeSizes }) => (
+const ShoeSizeSelect = ({ handler, shoeSizes }) => (
   <div className="shoe-size-select">
     <div className="select-labels">
       <label htmlFor="selectSize">Size</label>
@@ -12,13 +12,13 @@ const ShoeSizeSelect = ({ shoeSizes }) => (
         </a>
       </span>
     </div>
-    <select name="selectSize" id="selectSize" onChange={() => {}}>
+    <select name="selectSize" id="selectSize" onChange={handler}>
       <option>
       Select Size
       </option>
       <optgroup label="Available">
         {' '}
-Available
+        Available
         {shoeSizes.map(size => <option value={size} key={`${size}eu`}>{`${size} Eu`}</option>)}
       </optgroup>
     </select>

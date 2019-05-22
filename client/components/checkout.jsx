@@ -7,7 +7,7 @@ import ShippingOptions from './checkoutSubComponents/shippingOptions';
 import BuyButtons from './checkoutSubComponents/buyButtons';
 
 const Checkout = ({
-  productName, companyName, itemNumber, color, price, rating, noRatings, shoeSizes,
+  handlers, productName, companyName, itemNumber, color, price, rating, noRatings, shoeSizes,
 }) => (
   <div className="checkout-wrapper">
     <div className="company">
@@ -37,7 +37,6 @@ const Checkout = ({
     <div className="message-wrapper">
       <button type="button" className="product-shipping-button">
         <span>
-          {/* The non-solid truck is not included in the free version of font-awesome */}
           <i className="fas fa-truck" />
         </span>
         This item ships for FREE!
@@ -56,7 +55,10 @@ const Checkout = ({
     </div>
     <ColorSelect color={color} />
     <div className="user-selection-row">
-      <ShoeSizeSelect shoeSizes={shoeSizes} />
+      <ShoeSizeSelect
+        shoeSizes={shoeSizes}
+        handler={handlers.shoeSizeSelect}
+      />
       <CheckoutQuantity />
     </div>
     <hr />
@@ -74,6 +76,7 @@ Checkout.propTypes = {
   rating: PropTypes.string,
   noRatings: PropTypes.number,
   shoeSizes: PropTypes.array,
+  handlers: PropTypes.object,
 };
 
 Checkout.defaultProps = {
@@ -84,7 +87,10 @@ Checkout.defaultProps = {
   price: '80.00',
   rating: '5',
   noRatings: 0,
-  shoeSizes: [42, 42, 42],
+  shoeSizes: [],
+  handlers: {
+    shoeSizeSelect: () => {},
+  },
 };
 
 export default Checkout;

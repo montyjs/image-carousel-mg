@@ -195,6 +195,7 @@
         input[type=radio] + label::after {
           content: none;
         }
+        
         // when selected, show above styling
         input[type=radio]:checked+label::after {
           content: '';

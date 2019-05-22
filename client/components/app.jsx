@@ -24,6 +24,7 @@ class App extends React.Component {
       product: {},
       size: null,
     };
+    this.handleShoeSizeSelect = this.handleShoeSizeSelect.bind(this);
   }
 
   componentDidMount() {
@@ -38,14 +39,17 @@ class App extends React.Component {
   }
 
   handleShoeSizeSelect(e) {
-    console.log(e);
+    const shoeSize = e.target.value;
     this.setState({
-      size: 42,
+      size: shoeSize,
     });
   }
 
   render() {
     const { images, product } = this.state;
+    const handlers = {
+      shoeSizeSelect: this.handleShoeSizeSelect,
+    };
     return (
       <div id="product-wrapper">
         <MediaWrapper
@@ -53,6 +57,7 @@ class App extends React.Component {
         />
         <Checkout
           {...product}
+          handlers={handlers}
         />
       </div>
     );
