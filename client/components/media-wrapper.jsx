@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from './imageSubComponents/carousel';
 
-const MediaWrapper = ({ activeImage, images, clickHandler }) => (
+const MediaWrapper = ({ active, images, clickHandler }) => (
   <div className="product-media-wrapper">
     <div className="jumbo-wrapper">
-      <img src={activeImage.url} alt={`${activeImage.color} from the ${activeImage.orientation}`} />
+      <img src={active.url} alt={`${active.color} from the ${active.orientation}`} />
     </div>
     <Carousel images={images} handler={clickHandler} />
   </div>
@@ -15,7 +15,7 @@ export default MediaWrapper;
 
 MediaWrapper.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object),
-  activeImage: PropTypes.shape({
+  active: PropTypes.shape({
     color: PropTypes.string,
     id: PropTypes.number,
     orientation: PropTypes.string,
@@ -27,7 +27,7 @@ MediaWrapper.propTypes = {
 
 MediaWrapper.defaultProps = {
   images: [],
-  activeImage: {
+  active: {
     color: 'flame',
     id: 21,
     orientation: 'angle',

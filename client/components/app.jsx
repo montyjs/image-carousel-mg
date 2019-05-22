@@ -61,10 +61,10 @@ class App extends React.Component {
   }
 
   handleImageClick(e) {
-    this.setState({
-      activeImage: this.state.images[0],
-    });
-    return console.log(e);
+    const { dataset } = e.target;
+    const { images } = this.state;
+    const fullImg = images.find(img => img.color === dataset.color && img.orientation === dataset.orientation && img.size === 'full');
+    return this.setState({ activeImage: fullImg });
   }
 
   handleShoeSizeSelect(e) {
