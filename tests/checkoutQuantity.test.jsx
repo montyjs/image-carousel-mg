@@ -4,11 +4,13 @@ import { shallow } from 'enzyme';
 import CheckoutQuantity from '../client/components/checkoutSubComponents/checkoutQuantity';
 
 describe('Increment and decrement buttons', () => {
+  const mockFn = jest.fn();
   const wrap = shallow(<CheckoutQuantity
     quantity={1}
-    click={() => {}}
+    click={mockFn}
     input={() => {}}
   />);
+
   it('renders without crashing', () => {
     expect(wrap.exists()).toBe(true);
   });
@@ -18,32 +20,39 @@ describe('Increment and decrement buttons', () => {
   });
 
   it('should have a decrement button', () => {
-    expect();
+    expect(wrap.find('button').filterWhere(item => item.prop('name') === 'decrement')).toHaveLength(1);
+  });
+
+  it('should call a function when decrement is clicked', () => {
+    wrap.find('button').at(0).simulate('click');
+    expect(mockFn).toHaveBeenCalled();
+  });
+
+  it('should call a function when increment is clicked', () => {
+    wrap.find('button').at(1).simulate('click');
+    expect(mockFn).toHaveBeenCalled();
   });
 });
 
 describe('Input field', () => {
+  const mockFn = jest.fn(e => wrap.setProps({ quantity: e.value }));
+  const wrap = shallow(<CheckoutQuantity
+    quantity={1}
+    click={() => {}}
+    input={mockFn}
+  />);
+
   it('should have an input field', () => {
-    expect();
+    expect(wrap.find('input')).toHaveLength(1);
   });
 
-  it('should only accept whole integers', () => {
-    expect();
+  it('should call a function onChange', () => {
+    wrap.find('input').simulate('change', { value: 1 });
+    expect(mockFn).toHaveBeenCalled();
   });
 
-  it('should not accept values less than 1', () => {
-    expect();
+  it('should update the input value when input is given', () => {
+    wrap.find('input').simulate('change', { value: 2 });
+    expect(wrap.find('input').props('').value).toBe(2);
   });
-});
-
-describe('Checkout quantity events', () => {
-  // it('should call a function onChange', () => {
-  //   const mockFn = jest.fn();
-  //   const wrap = shallow(<ShoeSizeSelect
-  //     handler={mockFn}
-  //     shoeSizes={[1, 2, 3, 4]}
-  //   />);
-  //   wrap.find('select').simulate('change');
-  //   expect(mockFn).toHaveBeenCalled();
-  // });
 });
