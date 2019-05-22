@@ -21,6 +21,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       images: [],
+      activeImage: {},
+      activeColor: 'flame',
       product: {
         productName: '',
         companyName: '',
@@ -36,6 +38,7 @@ class App extends React.Component {
       quantity: 1,
       shippingOption: 'ship',
     };
+    this.handleImageClick = this.handleImageClick.bind(this);
     this.handleShoeSizeSelect = this.handleShoeSizeSelect.bind(this);
     this.handleQuantityClick = this.handleQuantityClick.bind(this);
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
@@ -44,13 +47,24 @@ class App extends React.Component {
 
   componentDidMount() {
     App.fetchImages()
-      .then(data => this.setState({ images: data }));
+      .then(data => this.setState({
+        images: data.rows,
+        activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
+      }));
+
     App.fetchProducts()
       .then(data => this.setState({ product: data }))
       .then(() => {
         const { product } = this.state;
         document.title = product.productName;
       });
+  }
+
+  handleImageClick(e) {
+    this.setState({
+      activeImage: this.state.images[0],
+    });
+    return console.log(e);
   }
 
   handleShoeSizeSelect(e) {
@@ -66,7 +80,7 @@ class App extends React.Component {
     if (quantity + val === 0) {
       return false;
     }
-    this.setState({
+    return this.setState({
       quantity: quantity + val,
     });
   }
@@ -76,7 +90,7 @@ class App extends React.Component {
     if (input < 1) {
       return false;
     }
-    this.setState({
+    return this.setState({
       quantity: input,
     });
   }
@@ -89,7 +103,7 @@ class App extends React.Component {
 
   render() {
     const {
-      images, product, quantity, shippingOption,
+      images, activeColor, activeImage, product, quantity, shippingOption,
     } = this.state;
     const handlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,
@@ -100,7 +114,9 @@ class App extends React.Component {
     return (
       <div id="product-wrapper">
         <MediaWrapper
-          images={images}
+          images={images.filter(img => img.color === activeColor && img.size === 'thumb')}
+          active={activeImage}
+          clickHandler={this.handleImageClick}
         />
         <Checkout
           product={product}
