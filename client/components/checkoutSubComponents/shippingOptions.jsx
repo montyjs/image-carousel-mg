@@ -1,7 +1,8 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const ShippingOptions = () => (
+const ShippingOptions = ({ handler, option }) => (
   <div className="shipping-options">
     <div className="radio">
       <input
@@ -9,8 +10,8 @@ const ShippingOptions = () => (
         type="radio"
         name="ship-opt"
         value="ship"
-        checked="checked"
-        onChange={() => {}}
+        checked={option === 'ship'}
+        onChange={handler}
       />
       <label htmlFor="ship">
       Ship to address
@@ -22,7 +23,8 @@ const ShippingOptions = () => (
         type="radio"
         name="ship-opt"
         value="pickup"
-        onChange={() => {}}
+        checked={option === 'pickup'}
+        onChange={handler}
       />
       <label htmlFor="pickup">
         Pick up in store - Free
@@ -33,6 +35,11 @@ const ShippingOptions = () => (
     </a>
   </div>
 );
+
+ShippingOptions.propTypes = {
+  handler: PropTypes.func.isRequired,
+  option: PropTypes.string.isRequired,
+};
 
 
 export default ShippingOptions;

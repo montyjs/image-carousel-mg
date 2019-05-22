@@ -7,7 +7,9 @@ import CheckoutQuantity from './checkoutSubComponents/checkoutQuantity';
 import ShippingOptions from './checkoutSubComponents/shippingOptions';
 import BuyButtons from './checkoutSubComponents/buyButtons';
 
-const Checkout = ({ handlers, product, quantity }) => (
+const Checkout = ({
+  handlers, product, quantity, shippingOption,
+}) => (
   <div className="checkout-wrapper">
     <ProductInfo {...product} />
     <ColorSelect color={product.color} />
@@ -23,7 +25,7 @@ const Checkout = ({ handlers, product, quantity }) => (
       />
     </div>
     <hr />
-    <ShippingOptions />
+    <ShippingOptions handler={handlers.handleShippingInput} option={shippingOption} />
     <BuyButtons />
   </div>
 );
@@ -32,6 +34,7 @@ Checkout.propTypes = {
   product: PropTypes.object,
   handlers: PropTypes.object,
   quantity: PropTypes.number,
+  shippingOption: PropTypes.string,
 };
 
 Checkout.defaultProps = {
@@ -49,8 +52,10 @@ Checkout.defaultProps = {
     shoeSizeSelect: () => {},
     handleQuantityClick: () => {},
     handleQuantityInput: () => {},
+    handleShippingInput: () => {},
   },
   quantity: 1,
+  shippingOption: 'ship',
 };
 
 export default Checkout;

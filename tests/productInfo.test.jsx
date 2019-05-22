@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import MockApp from './mockApp';
 import ProductInfo from '../client/components/checkoutSubComponents/productInfo';
 
 const dummyProduct = {

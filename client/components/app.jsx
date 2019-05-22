@@ -33,10 +33,12 @@ class App extends React.Component {
       },
       size: null,
       quantity: 1,
+      shippingOption: 'ship',
     };
     this.handleShoeSizeSelect = this.handleShoeSizeSelect.bind(this);
     this.handleQuantityClick = this.handleQuantityClick.bind(this);
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
+    this.handleShippingInput = this.handleShippingInput.bind(this);
   }
 
   componentDidMount() {
@@ -78,12 +80,21 @@ class App extends React.Component {
     });
   }
 
+  handleShippingInput(e) {
+    this.setState({
+      shippingOption: e.target.value,
+    });
+  }
+
   render() {
-    const { images, product, quantity } = this.state;
+    const {
+      images, product, quantity, shippingOption,
+    } = this.state;
     const handlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,
       handleQuantityClick: this.handleQuantityClick,
       handleQuantityInput: this.handleQuantityInput,
+      handleShippingInput: this.handleShippingInput,
     };
     return (
       <div id="product-wrapper">
@@ -94,6 +105,7 @@ class App extends React.Component {
           product={product}
           handlers={handlers}
           quantity={quantity}
+          shippingOption={shippingOption}
         />
       </div>
     );
