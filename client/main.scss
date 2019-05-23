@@ -1,12 +1,40 @@
 #product-wrapper{
-  $outline-border: 3px solid red;
-  $locally-scoped-variable: #3278ae;
+  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Domine&display=swap');
+
+  $outline-border: 3px solid #77778d;
+  $interactive-font: #3278ae;
+
   display: flex;
+
+  font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #292b2c;
   
-  a {
-    color: $locally-scoped-variable;
+  a, .product-shipping-button{
+    color: $interactive-font;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 
+  hr {
+    height: 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    margin: 24px 0;
+  }
+
+    /*****************
+     ** LEFT COLUMN **
+    ******************/
   .product-media-wrapper {
     border: $outline-border;
     width: 66vw;
@@ -15,9 +43,213 @@
       max-height: 100%;
     }
   }
-  .buy-wrapper {
-    border: $outline-border;
-    width: 30vw;
-  }
 
+    /*******************
+     ** RIGHT COLUMN **
+    ******************/
+  .checkout-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: $outline-border;
+    padding: .8rem 30px;
+    width: 30vw;
+    h1 {
+      margin: 0 0 5px 0;
+    }
+    .product-name h1 {
+      font-size: 28px;
+      line-height: 1.3;
+      font-family: Domine;
+    }
+    .product-current-price{
+      font-family: Domine;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .product-info-row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .message-wrapper {
+      margin: 24px 0;
+    }
+    .product-shipping-button {
+      background: #fff;
+      border: none;
+      font-size: 1em;
+    }
+
+    .price-messaging {
+      color: #C00
+    }
+    .details-link {
+      font-weight: bold;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .color-wrapper {
+      color: #292b2c;
+      font-size: 14px;
+      .thumbnail-wrapper{
+
+        border: 1px solid #4eaaff;
+        border-radius: 5px;
+        max-height: 3.7rem;
+        max-width: 3.4rem;
+        padding: 0px 2px;
+      }
+      img {
+        width: auto;
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+    .user-selection-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+
+    .shoe-size-select{
+      .select-labels {
+        display: flex;
+        justify-content: space-between;
+      }
+      label {
+        font-size: 14px;
+      }
+      .size-chart-tab a{
+        font-weight: 400;
+        font-size: 14px;
+      }
+      select {
+        color: #2e2e2e;
+        height: 40px;
+        font-size: 16px;
+        border-radius: 2px;
+        width: 100%;
+      }
+
+    }
+    .checkout-quantity {
+      .product-quantity-selector {
+        width: 38px;
+        height: 24px;
+      }
+      button{
+        background: #fff;
+        border: none;
+        width: auto;
+        padding: 0;
+      }
+      .quantity-icon {
+        color: #ddd;
+        background: #292b2c;
+        padding: -5px;
+        border: #c5c5c5 solid 1px;
+        border-radius: 50%;
+        font-size: 1.4rem;
+      }
+    }
+
+    .shipping-options {
+
+      // Hides the radio buttons
+      .radio {
+        input[type=radio] {
+          opacity: 0;
+        }
+        input[type=radio]+label {
+          display: block;
+          color: inherit;
+          position: relative;
+          cursor: pointer;
+        }
+        //appends a 'button' container before the label
+        input[type=radio]+label::before{
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top: .4rem;
+          left: -1.2rem;
+          height: 8px;
+          width: 8px;
+          border: .2rem solid #fff;
+          border-radius: 50%;
+          box-shadow: 0 0 0 0.125rem #222;
+          vertical-align: -.2rem;
+        }
+        // what a 'checked' button will look like
+        label::after {
+          background: black;
+          display: inline-block;
+          height: 8px;
+          width: 8px;
+          border-radius: 50%;
+          position: absolute;
+          left: -1rem;
+          top: .6rem;
+        }
+        // when not selected, show nothing
+        input[type=radio] + label::after {
+          content: none;
+        }
+        
+        // when selected, show above styling
+        input[type=radio]:checked+label::after {
+          content: '';
+        }
+        // accessibility
+        .checkbox input[type=radio]:focus + label::before {
+          outline: rgb(59, 153, 252) auto 5px;
+        }
+      }
+    }
+
+    .buy {
+      text-align: center;
+      button {
+        cursor: pointer;
+        border-radius: 2px;
+        font-size: 16px;
+      }
+      .primary-checkout-btn {
+        background: #426c90;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        width: 100%;
+
+      }
+      .primary-checkout-btn:hover {
+        background: #2b455c;
+      }
+      .secondary-btns {
+        display: flex;
+        justify-content: space-between;
+        margin-top: .5rem;
+        button {
+          background: #fff;      
+          border: 1px solid #c5c5c5;
+          padding: 12px 0;
+          width: 100%;
+        }
+        button:nth-child(1) {
+          margin-right: 1rem;
+        }
+        button:nth-child(2) {
+          margin-left: 1rem;
+        }
+        button:hover {
+          background: #f4f4f4;
+        }
+      }
+      a {
+        display: block;
+        font-weight: 400;
+        margin: 20px 10px;
+      }
+    }
+  }
 }
