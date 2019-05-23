@@ -119,10 +119,10 @@
         background: linear-gradient(to left,#fff 0,#fff 70%,rgba(255,255,255,0) 100%);
       }
     }
-    .zoom-cursor {
-      display: relative;
+    #zoom-cursor {
       height: 50vh;
       width: 20vw;
+      display: none;
       position: absolute;
       top: 20vh;
       left: 59vw;

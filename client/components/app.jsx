@@ -104,6 +104,7 @@ class App extends React.Component {
         y,
       },
     });
+    document.getElementById('zoom-cursor').style.display = 'block';
   }
 
   // Checkout handlers

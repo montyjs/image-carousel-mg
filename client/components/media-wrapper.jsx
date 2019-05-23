@@ -6,22 +6,27 @@ import ZoomCursor from './imageSubComponents/zoomCursor';
 
 const MediaWrapper = ({
   active, images, handlers, carouselPosition, mousePosition,
-}) => (
-  <div className="product-media-wrapper">
-    <div className="jumbo-wrapper">
-      <img
-        src={active.url}
-        alt={`${active.color} from the ${active.orientation}`}
-        onMouseEnter={handlers.handleZoom}
-        onMouseMove={handlers.handleZoom}
-        onFocus={handlers.handleZoom}
-      />
+}) => {
+  const hideZoomCursor = () => document.getElementById('zoom-cursor').style.display = 'none';
+  return (
+    <div className="product-media-wrapper">
+      <div className="jumbo-wrapper">
+        <img
+          src={active.url}
+          alt={`${active.color} from the ${active.orientation}`}
+          onMouseEnter={handlers.handleZoom}
+          onMouseMove={handlers.handleZoom}
+          onMouseOut={hideZoomCursor}
+          onBlur={hideZoomCursor}
+          onFocus={handlers.handleZoom}
+        />
+      </div>
+      <Carousel images={images} pos={carouselPosition} handlers={handlers} />
+      <ProductInfo {...active} count={images.length} />
+      <ZoomCursor {...active} mousePosition={mousePosition} />
     </div>
-    <Carousel images={images} pos={carouselPosition} handlers={handlers} />
-    <ProductInfo {...active} count={images.length} />
-    <ZoomCursor {...active} mousePosition={mousePosition} />
-  </div>
-);
+  );
+};
 
 
 MediaWrapper.propTypes = {
