@@ -51,17 +51,38 @@
       }
     }
     .carousel {
+      position: relative;
       width: 100%;
       display: flex;
-      overflow-x: scroll;
+      align-items: center;
+      justify-content: center; 
+      padding-top: 1.3rem;
       .carousel-item{
         max-height: 100px;
         width: 10em;
-        background: honeydew;
         img{
           max-height: 100%;
           max-width: 100%;
         }
+      }
+      button {
+        display: block;
+        width: 3.2rem;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 0;
+        text-align: center;
+        border: none;
+        z-index: 1;
+      }
+      .left{
+        left: 0;
+        background: linear-gradient(to right,#fff 0,#fff 30%,rgba(255,255,255,0) 100%)
+      }
+      .right{
+        right: 0;
+        background: linear-gradient(to left,#fff 0,#fff 70%,rgba(255,255,255,0) 100%);
       }
     }
   }
@@ -115,12 +136,18 @@
       font-size: 14px;
       width: 150px;
       .icon{
-
-        border: 1px solid #4eaaff;
-        border-radius: 5px;
-        max-height: 3.7rem;
-        max-width: 3.4rem;
+        height: 3.2rem;
+        width: 3.4rem;
         padding: 0px 2px;
+      }
+      .active{
+        height: 3.2rem;
+        width: 3.4rem;
+        z-index: 1;
+        border: 1px solid #4eaaff;
+        position: fixed;
+        border-radius: 5px;
+        background: rgba(78, 170, 255, 0.4);
       }
       img {
         width: auto;

@@ -46,6 +46,8 @@ class App extends React.Component {
     this.handleColorSelect = this.handleColorSelect.bind(this);
   }
 
+  // componentWillUpdate()
+
   componentDidMount() {
     App.fetchImages()
       .then(data => this.setState({
@@ -77,7 +79,10 @@ class App extends React.Component {
 
   handleColorSelect(e) {
     const color = e.target.alt.split(' ')[0];
+    const { images } = this.state;
+    const newActiveImg = images.find(img => img.color === color && img.size === 'full');
     this.setState({
+      activeImage: newActiveImg,
       activeColor: color,
     });
   }

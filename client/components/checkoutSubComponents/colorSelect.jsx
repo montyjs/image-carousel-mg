@@ -10,13 +10,14 @@ const ColorSelect = ({ color, images, handler }) => (
     <div className="row">
       {images.map((img, i) => (
         <div
-          className={img.color === color ? 'active icon' : 'icon'}
+          className={img.color === color ? 'icon' : 'icon'}
           role="button"
           tabIndex={i}
           onClick={handler}
           onKeyPress={() => {}}
           key={`${img.id}icon`}
         >
+          {img.color === color ? <div className="active" /> : null}
           <img src={img.url} alt={`${img.color} color`} value={color} />
         </div>
       ))}
