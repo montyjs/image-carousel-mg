@@ -2,16 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from './imageSubComponents/carousel';
 import ProductInfo from './imageSubComponents/imageInfo';
+import ZoomCursor from './imageSubComponents/zoomCursor';
 
 const MediaWrapper = ({
   active, images, handlers, carouselPosition,
 }) => (
   <div className="product-media-wrapper">
     <div className="jumbo-wrapper">
-      <img src={active.url} alt={`${active.color} from the ${active.orientation}`} />
+      <img
+        src={active.url}
+        alt={`${active.color} from the ${active.orientation}`}
+        onMouseEnter={handlers.handleZoom}
+        onMouseMove={handlers.handleZoom}
+        onFocus={handlers.handleZoom}
+      />
     </div>
     <Carousel images={images} pos={carouselPosition} handlers={handlers} />
     <ProductInfo {...active} count={images.length} />
+    <ZoomCursor {...active} />
   </div>
 );
 

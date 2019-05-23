@@ -7,6 +7,7 @@
 
   display: flex;
 
+  position:relative;
   font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -88,6 +89,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         margin: 4px;
+        cursor: pointer;
         div > * {
           pointer-events: none;
         }
@@ -115,6 +117,25 @@
       .right{
         right: 0;
         background: linear-gradient(to left,#fff 0,#fff 70%,rgba(255,255,255,0) 100%);
+      }
+    }
+    .zoom-cursor {
+      display: relative;
+      height: 50vh;
+      width: 20vw;
+      position: absolute;
+      top: 20vh;
+      left: 59vw;
+      overflow: hidden;
+      border: 1px solid #292b2c;
+      z-index: 2;
+      background: #fff;
+      img {
+        display: block;
+        position: absolute;
+        top: 20px;
+        height: 900px;
+        width: auto;
       }
     }
   }

@@ -42,6 +42,7 @@ class App extends React.Component {
     };
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleCarouselPos = this.handleCarouselPos.bind(this);
+    this.handleZoom = this.handleZoom.bind(this);
     this.handleShoeSizeSelect = this.handleShoeSizeSelect.bind(this);
     this.handleQuantityClick = this.handleQuantityClick.bind(this);
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
@@ -87,10 +88,16 @@ class App extends React.Component {
     const fullImg = images.find(img => img.color === dataset.color && img.orientation === dataset.orientation && img.size === 'full');
     // index is used by the imageInfo component. Example: 'Image {index} of 10'
     fullImg.index = Number(dataset.index);
-    console.log(dataset);
     return this.setState({ activeImage: fullImg });
   }
 
+  handleZoom(e) {
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left; // x position within the element.
+    const y = e.clientY - rect.top; // y position within the element.
+    this;
+    console.log(x, y);
+  }
 
   // Checkout handlers
   handleShoeSizeSelect(e) {
@@ -151,6 +158,7 @@ class App extends React.Component {
     const mediaHandlers = {
       handleImageClick: this.handleImageClick,
       handleCarouselPos: this.handleCarouselPos,
+      handleZoom: this.handleZoom,
     };
 
     return (
