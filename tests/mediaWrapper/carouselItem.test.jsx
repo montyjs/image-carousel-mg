@@ -11,9 +11,22 @@ const mockImage = {
   url: 'https://s3-us-west-2.amazonaws.com/fec-rei/flame-thumb/inuse_3_thumb.jpg',
 };
 
-describe('rendering', () => {
+describe('Rendering', () => {
   it('renders without crashing', () => {
     const wrap = shallow(<Item {...mockImage} handler={() => {}} />);
     expect(wrap.exists()).toBe(true);
+  });
+  it('should have an image', () => {
+    const wrap = shallow(<Item {...mockImage} handler={() => {}} />);
+    expect(wrap.find('img')).toHaveLength(1);
+  });
+});
+
+describe('On Click Events', () => {
+  it('should call a function when clicked', () => {
+    const mockFn = jest.fn();
+    const wrap = shallow(<Item {...mockImage} handler={mockFn} />);
+    wrap.simulate('click');
+    expect(mockFn).toHaveBeenCalled();
   });
 });
