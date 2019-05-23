@@ -15,8 +15,9 @@ const ColorSelect = ({ color, images, handler }) => (
           tabIndex={i}
           onClick={handler}
           onKeyPress={() => {}}
+          key={`${img.id}icon`}
         >
-          <img src={img.url} alt={`${img.color} color`} />
+          <img src={img.url} alt={`${img.color} color`} value={color} />
         </div>
       ))}
     </div>
@@ -26,13 +27,7 @@ const ColorSelect = ({ color, images, handler }) => (
 
 ColorSelect.propTypes = {
   color: PropTypes.string.isRequired,
-  images: PropTypes.shape({
-    color: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    orientation: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    handler: PropTypes.func.isRequired,
-  }).isRequired,
+  images: PropTypes.arrayOf(PropTypes.object).isRequired,
   handler: PropTypes.func.isRequired,
 };
 

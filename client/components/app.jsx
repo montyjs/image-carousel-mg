@@ -76,7 +76,7 @@ class App extends React.Component {
   }
 
   handleColorSelect(e) {
-    const color = e.target.value;
+    const color = e.target.alt.split(' ')[0];
     this.setState({
       activeColor: color,
     });
