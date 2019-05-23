@@ -78,13 +78,16 @@ class App extends React.Component {
     }
   }
 
-  // This picks the color out of the carousel and makes it the active image
+  // This picks the image out of the carousel and makes it the active image
   handleImageClick(e) {
-    const { dataset } = e.target;
+    // Users can click the image itself or the DIV but only the IMG has the dataset attributes.
+    // So, if a user clicks the div, we specify the dataset of the child
+    const { dataset } = e.target.tagName === 'DIV' ? e.target.children[0] : e.target;
     const { images } = this.state;
     const fullImg = images.find(img => img.color === dataset.color && img.orientation === dataset.orientation && img.size === 'full');
     // index is used by the imageInfo component. Example: 'Image {index} of 10'
-    fullImg.index = dataset.index;
+    fullImg.index = Number(dataset.index);
+    console.log(dataset);
     return this.setState({ activeImage: fullImg });
   }
 

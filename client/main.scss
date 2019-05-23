@@ -88,10 +88,13 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         margin: 4px;
+        div > * {
+          pointer-events: none;
+        }
         img{
           max-height: 76px;
           max-width: 110px;
-          padding: 2px;
+          padding: 4px;
         }
       }
       button {

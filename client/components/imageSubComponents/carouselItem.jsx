@@ -5,7 +5,13 @@ const Item = ({
   color, id, orientation, url, index, handler,
 }) => (
   <div className="carousel-item" onClick={handler} onKeyPress={handler} role="button" tabIndex={id}>
-    <img src={url} data-color={color} data-index={index} data-orientation={orientation} alt={`${color} ${orientation}`} />
+    <img
+      src={url}
+      data-color={color}
+      data-index={index}
+      data-orientation={orientation}
+      alt={`${color} ${orientation}`}
+    />
   </div>
 );
 
