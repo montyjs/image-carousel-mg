@@ -61,9 +61,16 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: center; 
+      justify-content: flex-start; 
       padding-top: 1.3rem;
-      overflow: hidden;
+      padding-bottom: 10px;
+      .row {
+        overflow-x: scroll;
+        display: flex;
+      }
+      .row::-webkit-scrollbar {
+        display:none;
+      }
       .carousel-item{
         display: flex;
         align-items: center;

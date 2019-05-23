@@ -7,7 +7,9 @@ const Carousel = ({ images, handler }) => (
     <button type="button" className="left">
       <span className="left-arrow">&lt;</span>
     </button>
-    {images.map((img, i) => <Item {...img} handler={handler} index={i} key={`thumb-${img.id}`} />)}
+    <div className="row">
+      {images.map((img, i) => <Item {...img} handler={handler} index={i} key={`thumb-${img.id}`} />)}
+    </div>
     <button type="button" className="right">
       <span className="right-arrow">&gt;</span>
     </button>
