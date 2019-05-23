@@ -2,18 +2,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ColorSelect = ({ color }) => (
+const ColorSelect = ({ color, images, handler }) => (
   <div className="color-wrapper">
     <p>
       { `Color: ${color.slice(0, 1).toUpperCase() + color.slice(1)}` }
     </p>
     <div className="row">
-      <div className="thumbnail-wrapper" role="button" tabIndex="0" onClick={() => {}} onKeyPress={() => {}}>
-        <img src="https://rei.com/media/4f72b233-00f4-449b-b3c8-c338b526cb05?size=60" alt="flame color" />
-      </div>
-      <div className="thumbnail-wrapper" role="button" tabIndex="1" onClick={() => {}} onKeyPress={() => {}}>
-        <img src="https://www.rei.com/media/f85ca8b1-5e82-44d6-97c1-cf38c88154b0" alt="kiwi color" />
-      </div>
+      {images.map((img, i) => (
+        <div
+          className={img.color === color ? 'active icon' : 'icon'}
+          role="button"
+          tabIndex={i}
+          onClick={handler}
+          onKeyPress={() => {}}
+        >
+          <img src={img.url} alt={`${img.color} color`} />
+        </div>
+      ))}
     </div>
   </div>
 );
@@ -21,6 +26,14 @@ const ColorSelect = ({ color }) => (
 
 ColorSelect.propTypes = {
   color: PropTypes.string.isRequired,
+  images: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    orientation: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    handler: PropTypes.func.isRequired,
+  }).isRequired,
+  handler: PropTypes.func.isRequired,
 };
 
 export default ColorSelect;
