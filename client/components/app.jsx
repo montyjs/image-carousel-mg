@@ -116,7 +116,9 @@ class App extends React.Component {
   }
 
   handleColorSelect(e) {
-    const color = e.target.alt.split(' ')[0];
+    // see note in HandleImageClick
+    const node = e.target.tagName === 'DIV' ? e.target.children[0] : e.target;
+    const color = node.alt.split(' ')[0];
     const { images } = this.state;
     const newActiveImg = images.find(img => img.color === color && img.size === 'full');
     this.setState({

@@ -7,7 +7,7 @@ import ZoomCursor from './imageSubComponents/zoomCursor';
 const MediaWrapper = ({
   active, images, handlers, carouselPosition, mousePosition,
 }) => {
-  const hideZoomCursor = () => document.getElementById('zoom-cursor').style.display = 'none';
+  const hideZoomCursor = () => { document.getElementById('zoom-cursor').style.display = 'none'; };
   return (
     <div className="product-media-wrapper">
       <div className="jumbo-wrapper">
