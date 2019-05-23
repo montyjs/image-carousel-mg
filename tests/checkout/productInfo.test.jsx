@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProductInfo from '../client/components/checkoutSubComponents/productInfo';
+import ProductInfo from '../../client/components/checkoutSubComponents/productInfo';
 
 const dummyProduct = {
   productName: 'La Sportiva Tarantulace',

@@ -8,10 +8,10 @@ const ColorSelect = ({ color }) => (
       { `Color: ${color.slice(0, 1).toUpperCase() + color.slice(1)}` }
     </p>
     <div className="row">
-      <div className="thumbnail-wrapper">
+      <div className="thumbnail-wrapper" role="button" tabIndex="0" onClick={() => {}} onKeyPress={() => {}}>
         <img src="https://rei.com/media/4f72b233-00f4-449b-b3c8-c338b526cb05?size=60" alt="flame color" />
       </div>
-      <div className="thumbnail-wrapper">
+      <div className="thumbnail-wrapper" role="button" tabIndex="1" onClick={() => {}} onKeyPress={() => {}}>
         <img src="https://www.rei.com/media/f85ca8b1-5e82-44d6-97c1-cf38c88154b0" alt="kiwi color" />
       </div>
     </div>
