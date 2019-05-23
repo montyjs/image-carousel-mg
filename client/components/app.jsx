@@ -1,6 +1,7 @@
 import React from 'react';
 import MediaWrapper from './media-wrapper';
 import Checkout from './checkout';
+import Carousel from './imageSubComponents/carousel';
 
 class App extends React.Component {
   static fetchImages() {
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.state = {
       images: [],
       activeImage: {},
+      carouselPosition: 0,
       activeColor: 'flame',
       product: {
         productName: '',
@@ -39,6 +41,7 @@ class App extends React.Component {
       shippingOption: 'ship',
     };
     this.handleImageClick = this.handleImageClick.bind(this);
+    this.handleCarouselPos = this.handleCarouselPos.bind(this);
     this.handleShoeSizeSelect = this.handleShoeSizeSelect.bind(this);
     this.handleQuantityClick = this.handleQuantityClick.bind(this);
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
@@ -63,6 +66,18 @@ class App extends React.Component {
       });
   }
 
+  handleCarouselPos(e) {
+    const { carouselPosition } = this.state;
+    const carouselWidth = e.target.parentNode.parentNode.offsetWidth + 120; // 120 is the width of an image container
+    const newPosition = e.target.value === 'inc' ? carouselPosition + 400 : carouselPosition - 400;
+
+    if (newPosition < 1 && newPosition > -carouselWidth) {
+      this.setState({
+        carouselPosition: newPosition,
+      });
+    }
+  }
+
   // This picks the color out of the carousel and makes it the active image
   handleImageClick(e) {
     const { dataset } = e.target;
@@ -73,6 +88,8 @@ class App extends React.Component {
     return this.setState({ activeImage: fullImg });
   }
 
+
+  // Checkout handlers
   handleShoeSizeSelect(e) {
     const shoeSize = e.target.value;
     this.setState({
@@ -119,25 +136,31 @@ class App extends React.Component {
 
   render() {
     const {
-      images, activeColor, activeImage, product, quantity, shippingOption,
+      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition,
     } = this.state;
-    const handlers = {
+    const checkoutHandlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,
       handleQuantityClick: this.handleQuantityClick,
       handleQuantityInput: this.handleQuantityInput,
       handleShippingInput: this.handleShippingInput,
       handleColorSelect: this.handleColorSelect,
     };
+    const mediaHandlers = {
+      handleImageClick: this.handleImageClick,
+      handleCarouselPos: this.handleCarouselPos,
+    };
+
     return (
       <div id="product-wrapper">
         <MediaWrapper
           images={images.filter(img => img.color === activeColor && img.size === 'thumb')}
           active={activeImage}
-          clickHandler={this.handleImageClick}
+          handlers={mediaHandlers}
+          carouselPosition={carouselPosition}
         />
         <Checkout
           product={product}
-          handlers={handlers}
+          handlers={checkoutHandlers}
           quantity={quantity}
           images={images.filter(img => img.size === 'select')}
           shippingOption={shippingOption}

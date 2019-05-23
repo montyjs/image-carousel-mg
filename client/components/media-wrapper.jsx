@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Carousel from './imageSubComponents/carousel';
 import ProductInfo from './imageSubComponents/imageInfo';
 
-const MediaWrapper = ({ active, images, clickHandler }) => (
+const MediaWrapper = ({
+  active, images, handlers, carouselPosition,
+}) => (
   <div className="product-media-wrapper">
     <div className="jumbo-wrapper">
       <img src={active.url} alt={`${active.color} from the ${active.orientation}`} />
     </div>
-    <Carousel images={images} handler={clickHandler} />
+    <Carousel images={images} pos={carouselPosition} handlers={handlers} />
     <ProductInfo {...active} count={images.length} />
   </div>
 );
