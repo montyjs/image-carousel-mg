@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 const ImageInfo = ({
   color, index, orientation, count,
 }) => {
-  const orientPruned = `${orientation.slice(0, 1).toUpperCase()}${orientation.slice(1)}`;
+  const orientPruned = `${orientation.slice(0, 1).toUpperCase()}${orientation.slice(1).replace(/[^a-z]/gi, '')}`;
   return (
     <div className="row product-info">
       <p>
-        {`Image ${index} of ${count} `}
+        {`Image ${Number(index) + 1} of ${count} `}
         <span>
           {`${orientPruned} view (${color})`}
         </span>
