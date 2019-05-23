@@ -63,10 +63,13 @@ class App extends React.Component {
       });
   }
 
+  // This picks the color out of the carousel and makes it the active image
   handleImageClick(e) {
     const { dataset } = e.target;
     const { images } = this.state;
     const fullImg = images.find(img => img.color === dataset.color && img.orientation === dataset.orientation && img.size === 'full');
+    // index is used by the imageInfo component. Example: 'Image {index} of 10'
+    fullImg.index = dataset.index;
     return this.setState({ activeImage: fullImg });
   }
 
