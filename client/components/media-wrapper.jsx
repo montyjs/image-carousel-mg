@@ -5,7 +5,7 @@ import ProductInfo from './imageSubComponents/imageInfo';
 import ZoomCursor from './imageSubComponents/zoomCursor';
 
 const MediaWrapper = ({
-  active, images, handlers, carouselPosition,
+  active, images, handlers, carouselPosition, mousePosition,
 }) => (
   <div className="product-media-wrapper">
     <div className="jumbo-wrapper">
@@ -19,7 +19,7 @@ const MediaWrapper = ({
     </div>
     <Carousel images={images} pos={carouselPosition} handlers={handlers} />
     <ProductInfo {...active} count={images.length} />
-    <ZoomCursor {...active} />
+    <ZoomCursor {...active} mousePosition={mousePosition} />
   </div>
 );
 
@@ -33,7 +33,15 @@ MediaWrapper.propTypes = {
     size: PropTypes.string,
     url: PropTypes.string,
   }),
-  clickHandler: PropTypes.func,
+  mousePosition: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+  }),
+  handlers: PropTypes.shape({
+    handleImageClick: PropTypes.func,
+    handleCarouselPos: PropTypes.func,
+    handleZoom: PropTypes.func,
+  }),
 };
 
 MediaWrapper.defaultProps = {
@@ -45,7 +53,15 @@ MediaWrapper.defaultProps = {
     size: 'full',
     url: 'https://s3-us-west-2.amazonaws.com/fec-rei/flame/angle_full.jpg',
   },
-  clickHandler: () => {},
+  mousePosition: {
+    x: 0,
+    y: 0,
+  },
+  handlers: {
+    handleImageClick: () => {},
+    handleCarouselPos: () => {},
+    handleZoom: () => {},
+  },
 };
 
 export default MediaWrapper;

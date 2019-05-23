@@ -1,7 +1,6 @@
 import React from 'react';
 import MediaWrapper from './media-wrapper';
 import Checkout from './checkout';
-import Carousel from './imageSubComponents/carousel';
 
 class App extends React.Component {
   static fetchImages() {
@@ -35,6 +34,10 @@ class App extends React.Component {
         noRatings: 0,
         shoeSizes: [],
         activeColor: 'flame',
+      },
+      mousePosition: {
+        x: 0,
+        y: 0,
       },
       size: null,
       quantity: 1,
@@ -93,10 +96,14 @@ class App extends React.Component {
 
   handleZoom(e) {
     const rect = e.target.getBoundingClientRect();
-    const x = e.clientX - rect.left; // x position within the element.
-    const y = e.clientY - rect.top; // y position within the element.
-    this;
-    console.log(x, y);
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    this.setState({
+      mousePosition: {
+        x,
+        y,
+      },
+    });
   }
 
   // Checkout handlers
@@ -146,7 +153,7 @@ class App extends React.Component {
 
   render() {
     const {
-      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition,
+      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition, mousePosition,
     } = this.state;
     const checkoutHandlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,
@@ -168,6 +175,7 @@ class App extends React.Component {
           active={activeImage}
           handlers={mediaHandlers}
           carouselPosition={carouselPosition}
+          mousePosition={mousePosition}
         />
         <Checkout
           product={product}
