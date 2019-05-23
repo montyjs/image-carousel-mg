@@ -16,6 +16,7 @@ describe('Rendering', () => {
     const wrap = shallow(<MediaWrapper />);
     expect(wrap.exists()).toBe(true);
   });
+
   it('should render an image', () => {
     const wrap = shallow(<MediaWrapper activeImage={mockImage} />);
     expect(wrap.find('img')).toHaveLength(1);

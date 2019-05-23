@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from './imageSubComponents/carousel';
+import ProductInfo from './imageSubComponents/productInfo';
 
 const MediaWrapper = ({ active, images, clickHandler }) => (
   <div className="product-media-wrapper">
@@ -8,10 +9,10 @@ const MediaWrapper = ({ active, images, clickHandler }) => (
       <img src={active.url} alt={`${active.color} from the ${active.orientation}`} />
     </div>
     <Carousel images={images} handler={clickHandler} />
+    <ProductInfo {...active} />
   </div>
 );
 
-export default MediaWrapper;
 
 MediaWrapper.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object),
@@ -36,3 +37,5 @@ MediaWrapper.defaultProps = {
   },
   clickHandler: () => {},
 };
+
+export default MediaWrapper;
