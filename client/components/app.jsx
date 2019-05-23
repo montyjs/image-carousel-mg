@@ -43,6 +43,7 @@ class App extends React.Component {
     this.handleQuantityClick = this.handleQuantityClick.bind(this);
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
     this.handleShippingInput = this.handleShippingInput.bind(this);
+    this.handleColorSelect = this.handleColorSelect.bind(this);
   }
 
   componentDidMount() {
@@ -71,6 +72,13 @@ class App extends React.Component {
     const shoeSize = e.target.value;
     this.setState({
       size: shoeSize,
+    });
+  }
+
+  handleColorSelect(e) {
+    const color = e.target.value;
+    this.setState({
+      activeColor: color,
     });
   }
 
@@ -110,6 +118,7 @@ class App extends React.Component {
       handleQuantityClick: this.handleQuantityClick,
       handleQuantityInput: this.handleQuantityInput,
       handleShippingInput: this.handleShippingInput,
+      handleColorSelect: this.handleColorSelect,
     };
     return (
       <div id="product-wrapper">
@@ -122,7 +131,9 @@ class App extends React.Component {
           product={product}
           handlers={handlers}
           quantity={quantity}
+          images={images.filter(img => img.size === 'select')}
           shippingOption={shippingOption}
+          activeColor={activeColor}
         />
       </div>
     );
