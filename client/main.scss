@@ -98,6 +98,9 @@
       .row::-webkit-scrollbar {
         display:none;
       }
+      div .active{
+        border-color: #4eaaff;
+      }
       .carousel-item{
         display: flex;
         align-items: center;
@@ -108,6 +111,7 @@
         border-radius: 5px;
         margin: 4px;
         cursor: pointer;
+
         div > * {
           pointer-events: none;
         }

@@ -15,7 +15,7 @@ const MediaWrapper = ({
       mousePosition={mousePosition}
       hover={hover}
     />
-    <Carousel images={images} pos={carouselPosition} handlers={handlers} />
+    <Carousel activeOrient={active.orientation} images={images} pos={carouselPosition} handlers={handlers} />
     <ProductInfo {...active} count={images.length} />
     <ZoomCursor {...active} mousePosition={mousePosition} hover={hover} />
   </div>

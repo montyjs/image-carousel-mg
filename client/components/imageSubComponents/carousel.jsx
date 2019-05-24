@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Item from './carouselItem';
 
-const Carousel = ({ images, handlers, pos }) => (
+const Carousel = ({
+  images, handlers, pos, activeOrient,
+}) => (
   <div className="carousel">
     <button
       type="button"
@@ -17,6 +19,7 @@ const Carousel = ({ images, handlers, pos }) => (
       {images.map((img, i) => (
         <Item
           {...img}
+          active={activeOrient === img.orientation}
           handler={handlers.handleImageClick}
           index={i}
           key={`thumb-${img.id}`}
@@ -43,6 +46,7 @@ Carousel.propTypes = {
     handleZoom: PropTypes.func,
   }).isRequired,
   pos: PropTypes.number,
+  activeOrient: PropTypes.string,
 };
 Carousel.defaultProps = {
   pos: 0,
