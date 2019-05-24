@@ -42,6 +42,7 @@ class App extends React.Component {
       size: null,
       quantity: 1,
       shippingOption: 'ship',
+      hover: false,
     };
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleCarouselPos = this.handleCarouselPos.bind(this);
@@ -51,9 +52,8 @@ class App extends React.Component {
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
     this.handleShippingInput = this.handleShippingInput.bind(this);
     this.handleColorSelect = this.handleColorSelect.bind(this);
+    this.updateHover = this.updateHover.bind(this);
   }
-
-  // componentWillUpdate()
 
   componentDidMount() {
     App.fetchImages()
@@ -96,9 +96,9 @@ class App extends React.Component {
 
   handleZoom(e) {
     const rect = e.target.getBoundingClientRect();
-    console.log(rect);
-    const x = (e.clientX - rect.left) * 1.6;
-    const y = (e.clientY - rect.top) * 1.6;
+    console.log(e.type);
+    const x = (e.clientX - rect.left) * 2 - 160;
+    const y = (e.clientY - rect.top) * 2 - 240;
     this.setState({
       mousePosition: {
         x,
@@ -106,6 +106,12 @@ class App extends React.Component {
       },
     });
     document.getElementById('zoom-cursor').style.display = 'block';
+  }
+
+  updateHover(e) {
+    this.setState({
+      hover: e.type !== 'mouseout',
+    });
   }
 
   // Checkout handlers
@@ -157,7 +163,7 @@ class App extends React.Component {
 
   render() {
     const {
-      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition, mousePosition,
+      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition, mousePosition, hover,
     } = this.state;
     const checkoutHandlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,
@@ -170,6 +176,7 @@ class App extends React.Component {
       handleImageClick: this.handleImageClick,
       handleCarouselPos: this.handleCarouselPos,
       handleZoom: this.handleZoom,
+      updateHover: this.updateHover,
     };
 
     return (
@@ -180,6 +187,7 @@ class App extends React.Component {
           handlers={mediaHandlers}
           carouselPosition={carouselPosition}
           mousePosition={mousePosition}
+          hover={hover}
         />
         <Checkout
           product={product}
