@@ -132,10 +132,11 @@
       background: #fff;
       img {
         display: block;
-        position: absolute;
-        top: 20px;
-        height: 900px;
-        width: auto;
+        position: relative;
+        max-height: 480px;
+        max-width: 540px;
+        transform: scale(2);
+        transform-origin: top left;
       }
     }
   }

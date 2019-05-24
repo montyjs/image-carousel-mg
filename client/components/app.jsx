@@ -96,8 +96,9 @@ class App extends React.Component {
 
   handleZoom(e) {
     const rect = e.target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    console.log(rect);
+    const x = (e.clientX - rect.left) * 1.6;
+    const y = (e.clientY - rect.top) * 1.6;
     this.setState({
       mousePosition: {
         x,
