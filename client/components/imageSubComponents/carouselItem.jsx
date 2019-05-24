@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 const Item = ({
   color, id, orientation, url, index, handler, active,
 }) => (
-  <div className={active ? 'carousel-item active' : 'carousel-item'} onClick={handler} onKeyPress={handler} role="button" tabIndex={id}>
+  <div
+    className={active ? 'carousel-item active' : 'carousel-item'}
+    onClick={handler}
+    onKeyPress={handler}
+    role="button"
+    tabIndex={id}
+  >
     <img
       src={url}
       data-color={color}
