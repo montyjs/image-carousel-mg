@@ -8,7 +8,7 @@ const ZoomCursor = ({ url, mousePosition }) => {
     top: -mousePosition.y,
   };
   return (
-    <div id="zoom-cursor">
+    <div id="zoom-cursor" style={{ display: 'none' }}>
       <img src={url} style={styles} alt="zoom cursor!" />
     </div>
   );

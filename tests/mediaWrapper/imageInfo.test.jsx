@@ -9,7 +9,6 @@ const mockImage = {
   orientation: 'inuse_3',
   count: 6,
 };
-// color, index, orientation, count,
 
 describe('Rendering', () => {
   it('renders without crashing', () => {
@@ -25,11 +24,8 @@ describe('Rendering', () => {
 describe('Display Props', () => {
   const wrap = shallow(<ImageInfo {...mockImage} />);
   it('should not render the index + 1 (no zero index)', () => {
-    expect(wrap.contains(<p>
-Image 1 of 6
-{' '}
-<span>Inuse view (flame)</span>
-</p>)).toBe(true);
+    // eslint-disable-next-line react/jsx-one-expression-per-line
+    expect(wrap.contains(<p>Image 1 of 6 <span>Inuse view (flame)</span></p>)).toBe(true);
   });
   it('does not display underscores or numbers and capitalize the first letter of the orientation', () => {
     expect(wrap.contains(<span>Inuse view (flame)</span>)).toBe(true);
