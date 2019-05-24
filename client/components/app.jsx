@@ -38,6 +38,8 @@ class App extends React.Component {
       mousePosition: {
         x: 0,
         y: 0,
+        imgWidth: 0,
+        imgHeight: 0,
       },
       size: null,
       quantity: 1,
@@ -72,7 +74,8 @@ class App extends React.Component {
 
   handleCarouselPos(e) {
     const { carouselPosition } = this.state;
-    const carouselWidth = e.target.parentNode.parentNode.offsetWidth + 120; // 120 is the width of an image container
+    // 120 is the width of an image container
+    const carouselWidth = e.target.parentNode.parentNode.offsetWidth + 120;
     const newPosition = e.target.value === 'inc' ? carouselPosition + 400 : carouselPosition - 400;
 
     if (newPosition < 1 && newPosition > -carouselWidth) {
@@ -96,13 +99,14 @@ class App extends React.Component {
 
   handleZoom(e) {
     const rect = e.target.getBoundingClientRect();
-    console.log(e.type);
-    const x = (e.clientX - rect.left) * 2 - 160;
-    const y = (e.clientY - rect.top) * 2 - 240;
+    const x = (e.clientX - rect.left); //* 2 - 160;
+    const y = (e.clientY - rect.top); //* 2 - 240;
     this.setState({
       mousePosition: {
         x,
         y,
+        imgWidth: rect.width,
+        imgHeight: rect.height,
       },
     });
     document.getElementById('zoom-cursor').style.display = 'block';
@@ -163,7 +167,8 @@ class App extends React.Component {
 
   render() {
     const {
-      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition, mousePosition, hover,
+      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition,
+      mousePosition, hover,
     } = this.state;
     const checkoutHandlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,

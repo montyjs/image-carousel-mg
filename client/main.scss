@@ -50,6 +50,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      .hover-wrapper {
+        position: absolute;
+      }
       img {
         max-height: 100%;
         max-width: 100%;

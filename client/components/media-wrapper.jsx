@@ -34,6 +34,8 @@ MediaWrapper.propTypes = {
   mousePosition: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
+    imgWidth: PropTypes.number,
+    imgHeight: PropTypes.number,
   }),
   handlers: PropTypes.shape({
     handleImageClick: PropTypes.func,
@@ -56,6 +58,8 @@ MediaWrapper.defaultProps = {
   mousePosition: {
     x: 0,
     y: 0,
+    imgWidth: 0,
+    imgHeight: 0,
   },
   handlers: {
     handleImageClick: () => {},

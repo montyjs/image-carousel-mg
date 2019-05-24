@@ -5,13 +5,18 @@ import PropTypes from 'prop-types';
 const JumboImage = ({
   url, color, orientation, handlers, mousePosition, hover,
 }) => {
-  const hideZoomCursor = () => { document.getElementById('zoom-cursor').style.display = 'none'; };
+  const hoverStyles = {
+    display: hover ? 'block' : 'none',
+    left: mousePosition.x + 790 - mousePosition.imgWidth,
+    top: mousePosition.y + 480 - mousePosition.imgHeight,
+  };
   return (
     <div className="jumbo-wrapper">
-      <div style={{ display: hover ? 'block' : 'none' }}>
-        HOOVER DAMN
+      <div className="hover-wrapper" style={hoverStyles}>
+        X
       </div>
       <img
+        id="jumbo"
         src={url}
         alt={`${color} from the ${orientation}`}
         onMouseEnter={handlers.updateHover}
@@ -20,14 +25,18 @@ const JumboImage = ({
         onBlur={handlers.updateHover}
         onFocus={handlers.handleZoom}
       />
-    </div>);
+    </div>
+  );
 };
 
 JumboImage.propTypes = {
   url: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   orientation: PropTypes.string.isRequired,
-  handler: PropTypes.func.isRequired,
+  handlers: PropTypes.shape({
+    updateHover: PropTypes.func,
+    handleZoom: PropTypes.func,
+  }).isRequired,
   mousePosition: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
