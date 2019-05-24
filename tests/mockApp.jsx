@@ -14,15 +14,22 @@ const dummyProduct = {
   shoeSizes: [42, 43, 44, 45],
 };
 
-
 class MockApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [],
+      images: [dummyProduct, dummyProduct],
       product: dummyProduct,
       size: null,
       quantity: 1,
+      activeImage: dummyProduct,
+      carouselPosition: 0,
+      mousePosition: {
+        x: 0,
+        y: 0,
+      },
+      activeColor: 'flame',
+      shippingOption: 'ship',
     };
   }
 
@@ -31,21 +38,41 @@ class MockApp extends React.Component {
   }
 
   render() {
-    const handlers = {
+    const checkoutHandlers = {
       shoeSizeSelect: this.notMockFn,
       handleQuantityClick: this.notMockFn,
       handleQuantityInput: this.notMockFn,
       handleShippingInput: this.notMockFn,
+      handleColorSelect: this.notMockFn,
     };
-    const { product, quantity } = this.state;
+    const mediaHandlers = {
+      handleImageClick: this.notMockFn,
+      handleCarouselPos: this.notMockFn,
+      handleZoom: this.notMockFn,
+    };
+
+    const {
+      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition, mousePosition,
+    } = this.state;
     return (
-      <Checkout
-        product={product}
-        handlers={handlers}
-        quantity={quantity}
-      />
+      <div>
+        {/* <MediaWrapper
+          images={images.filter(img => img.color === activeColor && img.size === 'thumb')}
+          active={activeImage}
+          handlers={mediaHandlers}
+          carouselPosition={carouselPosition}
+          mousePosition={mousePosition}
+        /> */}
+        <Checkout
+          product={product}
+          handlers={checkoutHandlers}
+          quantity={quantity}
+          images={images.filter(img => img.size === 'select')}
+          shippingOption={shippingOption}
+          activeColor={activeColor}
+        />
+      </div>
     );
   }
 }
-
 export default MockApp;

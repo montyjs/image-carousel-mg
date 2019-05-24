@@ -55,21 +55,22 @@ Checkout.propTypes = {
   }),
   quantity: PropTypes.number,
   shippingOption: PropTypes.string,
-  activeColor: PropTypes.string.isRequired,
+  activeColor: PropTypes.string,
   images: PropTypes.arrayOf(PropTypes.object),
 };
 
 Checkout.defaultProps = {
   product: {
-    productName: '',
-    companyName: '',
+    productName: 'Tarantulace',
+    companyName: 'La Sportiva',
     itemNumber: 0,
-    color: '',
+    color: 'Flame',
     price: '0.00',
     rating: '0',
     noRatings: 0,
-    shoeSizes: [],
+    shoeSizes: ['0', '1', '2'],
   },
+  activeColor: 'flame',
   handlers: {
     shoeSizeSelect: () => {},
     handleQuantityClick: () => {},

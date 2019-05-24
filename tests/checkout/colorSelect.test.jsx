@@ -1,40 +1,28 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import MockApp from '../mockApp';
 import ColorSelect from '../../client/components/checkoutSubComponents/colorSelect';
 
-// const MockParent = () => {
-// }
+const dummyProduct = {
+  productName: 'La Sportiva Tarantulace',
+  companyName: 'La Sportiva',
+  itemNumber: 830932,
+  color: 'Flame',
+  thumbnailUrl: 1,
+  price: '80.00',
+  rating: '4.3',
+  noRatings: 166,
+  shoeSizes: [42, 43, 44, 45],
+};
 
 describe('rendering', () => {
   it('renders without crashing', () => {
-    const wrap = shallow(<ColorSelect />);
-    expect(wrap.exists()).toBe(true);
-  });
-  it('renders image buttons', () => {
-
-  });
-});
-
-describe('Shoe Size Select', () => {
-  it('should receive shoe sizes', () => {
-    const wrap = mount(<MockApp />);
-    expect(wrap.find('ShoeSizeSelect').props()).toHaveProperty('shoeSizes');
-    expect(wrap.find('ShoeSizeSelect').props('shoeSizes').shoeSizes).toHaveLength(4);
-  });
-
-  it('should render shoe size options', () => {
-    const wrap = shallow(<MockApp />);
-    expect(wrap.contains(<option value="42" key="42eu">42 Eu</option>));
-  });
-
-  it('should call a function onChange', () => {
-    const mockFn = jest.fn();
-    const wrap = shallow(<ShoeSizeSelect
-      handler={mockFn}
-      shoeSizes={[1, 2, 3, 4]}
+    const wrap = shallow(<ColorSelect
+      color="red"
+      handler={() => {}}
+      images={[dummyProduct, dummyProduct]}
     />);
-    wrap.find('select').simulate('change');
-    expect(mockFn).toHaveBeenCalled();
+    expect(wrap.exists()).toBe(true);
   });
 });
