@@ -47,6 +47,7 @@ MediaWrapper.propTypes = {
     handleCarouselPos: PropTypes.func,
     handleZoom: PropTypes.func,
   }),
+  carouselPosition: PropTypes.number,
 };
 
 MediaWrapper.defaultProps = {
@@ -67,6 +68,7 @@ MediaWrapper.defaultProps = {
     handleCarouselPos: () => {},
     handleZoom: () => {},
   },
+  carouselPosition: 0,
 };
 
 export default MediaWrapper;

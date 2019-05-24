@@ -11,7 +11,7 @@ const dummyProduct = {
   price: '80.00',
   rating: '4.3',
   noRatings: 166,
-  shoeSizes: [42, 43, 44, 45],
+  shoeSizes: ['42', '43', '44', '45'],
 };
 
 class MockApp extends React.Component {

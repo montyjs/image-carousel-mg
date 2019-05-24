@@ -37,8 +37,15 @@ const Carousel = ({ images, handlers, pos }) => (
 
 Carousel.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handlers: PropTypes.arrayOf(PropTypes.func).isRequired,
-  pos: PropTypes.number.isRequired,
+  handlers: PropTypes.shape({
+    handleImageClick: PropTypes.func,
+    handleCarouselPos: PropTypes.func,
+    handleZoom: PropTypes.func,
+  }).isRequired,
+  pos: PropTypes.number,
+};
+Carousel.defaultProps = {
+  pos: 0,
 };
 
 export default Carousel;

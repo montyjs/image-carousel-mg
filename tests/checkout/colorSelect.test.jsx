@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import MockApp from '../mockApp';
+import { shallow } from 'enzyme';
 import ColorSelect from '../../client/components/checkoutSubComponents/colorSelect';
 
 const dummyProduct = {

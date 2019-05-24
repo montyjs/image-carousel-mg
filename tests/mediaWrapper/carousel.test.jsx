@@ -24,11 +24,19 @@ const handlers = {
 
 describe('Rendering', () => {
   it('renders without crashing', () => {
-    const wrap = shallow(<Carousel images={mockImages} handlers={handlers} />);
+    const wrap = shallow(<Carousel
+      images={mockImages}
+      handlers={handlers}
+      carouselPosition={0}
+    />);
     expect(wrap.exists()).toBe(true);
   });
   it('should render two thumbnails', () => {
-    const wrap = mount(<Carousel images={mockImages} handlers={handlers} />);
+    const wrap = mount(<Carousel
+      images={mockImages}
+      handlers={handlers}
+      carouselPosition={0}
+    />);
     expect(wrap.find('img')).toHaveLength(2);
   });
 });

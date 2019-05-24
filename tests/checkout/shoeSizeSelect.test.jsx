@@ -28,7 +28,7 @@ describe('Shoe Size Select', () => {
     const mockFn = jest.fn();
     const wrap = shallow(<ShoeSizeSelect
       handler={mockFn}
-      shoeSizes={[1, 2, 3, 4]}
+      shoeSizes={['1', '2', '3', '4']}
     />);
     wrap.find('select').simulate('change');
     expect(mockFn).toHaveBeenCalled();
