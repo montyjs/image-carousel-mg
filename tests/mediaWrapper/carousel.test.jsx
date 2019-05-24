@@ -16,6 +16,7 @@ const mockImages = [{
   size: 'thumb',
   url: 'https://s3-us-west-2.amazonaws.com/fec-rei/flame-thumb/inuse_3_thumb.jpg',
 }];
+
 const handlers = (func = () => {}) => ({
   handleImageClick: func,
   handleCarouselPos: func,
@@ -31,6 +32,7 @@ describe('Rendering', () => {
     />);
     expect(wrap.exists()).toBe(true);
   });
+
   it('should render two thumbnails', () => {
     const wrap = mount(<Carousel
       images={mockImages}
