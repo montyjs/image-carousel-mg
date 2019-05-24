@@ -51,9 +51,17 @@
       align-items: center;
       justify-content: center;
       .hover-wrapper {
+        display: block;
         position: absolute;
+        height: 15rem;
+        width: 10rem;
+        transform: scale(0.9);
+        border: 1px solid #ddd;
+        pointer-events: none;
+        outline: rgba(255,255,255,.59) solid 150rem,
       }
       img {
+        cursor: none;
         max-height: 100%;
         max-width: 100%;
       }
