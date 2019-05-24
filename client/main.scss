@@ -7,12 +7,13 @@
 
   display: flex;
 
+  position:relative;
   font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
   color: #292b2c;
-  
+  padding: 8.5vh 10vw;
   a, .product-shipping-button{
     color: $interactive-font;
     font-weight: 700;
@@ -31,16 +32,111 @@
     border-right: 0;
     margin: 24px 0;
   }
+  //TODO: refactor other divs to use this class
+  .row{
+    display: flex;
+    justify-content: space-around
+  }
 
     /*****************
      ** LEFT COLUMN **
     ******************/
   .product-media-wrapper {
-    border: $outline-border;
-    width: 66vw;
-    max-height: 24rem;
-    img {
-      max-height: 100%;
+    width: 66%;
+    max-height: 30rem;
+    background: #fff;
+    .jumbo-wrapper {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+    .product-info {
+      font-size: 14px;
+      span {
+        color: #767676;
+      }
+    }
+    .carousel {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; 
+      padding-top: 1.3rem;
+      padding-bottom: 10px;
+      overflow: hidden;
+      .row {
+        left: -270px;
+        overflow-x: scroll;
+        display: inline-flex;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .row::-webkit-scrollbar {
+        display:none;
+      }
+      .carousel-item{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 80px;
+        width: 114px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 4px;
+        cursor: pointer;
+        div > * {
+          pointer-events: none;
+        }
+        img{
+          max-height: 76px;
+          max-width: 110px;
+          padding: 4px;
+        }
+      }
+      button {
+        display: block;
+        width: 3.2rem;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 0;
+        text-align: center;
+        border: none;
+        z-index: 1;
+      }
+      .left{
+        left: 0;
+        background: linear-gradient(to right,#fff 0,#fff 30%,rgba(255,255,255,0) 100%)
+      }
+      .right{
+        right: 0;
+        background: linear-gradient(to left,#fff 0,#fff 70%,rgba(255,255,255,0) 100%);
+      }
+    }
+    #zoom-cursor {
+      height: 30rem;
+      width: 20rem;
+      position: absolute;
+      top: 20vh;
+      left: 59vw;
+      overflow: hidden;
+      border: 1px solid #292b2c;
+      z-index: 2;
+      background: #fff;
+      img {
+        display: block;
+        position: relative;
+        max-height: 480px;
+        max-width: 540px;
+        transform: scale(2);
+        transform-origin: top left;
+      }
     }
   }
 
@@ -51,9 +147,10 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border: $outline-border;
     padding: .8rem 30px;
-    width: 30vw;
+    width: 34%;
+    background: #fff;
+
     h1 {
       margin: 0 0 5px 0;
     }
@@ -91,13 +188,23 @@
     .color-wrapper {
       color: #292b2c;
       font-size: 14px;
-      .thumbnail-wrapper{
-
-        border: 1px solid #4eaaff;
-        border-radius: 5px;
-        max-height: 3.7rem;
-        max-width: 3.4rem;
+      width: 150px;
+      .icon{
+        height: 3.2rem;
+        width: 3.4rem;
         padding: 0px 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .active{
+        height: 3.2rem;
+        width: 3.4rem;
+        z-index: 1;
+        border: 1px solid #4eaaff;
+        position: absolute;
+        border-radius: 5px;
+        background: rgba(78, 170, 255, 0.4);
       }
       img {
         width: auto;

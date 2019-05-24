@@ -2,13 +2,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ColorSelect = ({ color }) => (
+const ColorSelect = ({ color, images, handler }) => (
   <div className="color-wrapper">
     <p>
       { `Color: ${color.slice(0, 1).toUpperCase() + color.slice(1)}` }
     </p>
-    <div className="thumbnail-wrapper">
-      <img src="https://rei.com/media/4f72b233-00f4-449b-b3c8-c338b526cb05?size=60" alt="shoe-thumbnail" />
+    <div className="row">
+      {images.map((img, i) => (
+        <div
+          className={img.color === color ? 'icon' : 'icon'}
+          role="button"
+          tabIndex={i}
+          onClick={handler}
+          onKeyPress={() => {}}
+          key={`${img.id}icon`}
+        >
+          {img.color === color ? <div className="active" /> : null}
+          <img src={img.url} alt={`${img.color} color`} value={color} />
+        </div>
+      ))}
     </div>
   </div>
 );
@@ -16,6 +28,8 @@ const ColorSelect = ({ color }) => (
 
 ColorSelect.propTypes = {
   color: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handler: PropTypes.func.isRequired,
 };
 
 export default ColorSelect;

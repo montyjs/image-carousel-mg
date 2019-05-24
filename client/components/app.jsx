@@ -21,6 +21,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       images: [],
+      activeImage: {},
+      carouselPosition: 0,
+      activeColor: 'flame',
       product: {
         productName: '',
         companyName: '',
@@ -30,20 +33,35 @@ class App extends React.Component {
         rating: '5',
         noRatings: 0,
         shoeSizes: [],
+        activeColor: 'flame',
+      },
+      mousePosition: {
+        x: 0,
+        y: 0,
       },
       size: null,
       quantity: 1,
       shippingOption: 'ship',
     };
+    this.handleImageClick = this.handleImageClick.bind(this);
+    this.handleCarouselPos = this.handleCarouselPos.bind(this);
+    this.handleZoom = this.handleZoom.bind(this);
     this.handleShoeSizeSelect = this.handleShoeSizeSelect.bind(this);
     this.handleQuantityClick = this.handleQuantityClick.bind(this);
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
     this.handleShippingInput = this.handleShippingInput.bind(this);
+    this.handleColorSelect = this.handleColorSelect.bind(this);
   }
+
+  // componentWillUpdate()
 
   componentDidMount() {
     App.fetchImages()
-      .then(data => this.setState({ images: data }));
+      .then(data => this.setState({
+        images: data.rows,
+        activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
+      }));
+
     App.fetchProducts()
       .then(data => this.setState({ product: data }))
       .then(() => {
@@ -52,10 +70,61 @@ class App extends React.Component {
       });
   }
 
+  handleCarouselPos(e) {
+    const { carouselPosition } = this.state;
+    const carouselWidth = e.target.parentNode.parentNode.offsetWidth + 120; // 120 is the width of an image container
+    const newPosition = e.target.value === 'inc' ? carouselPosition + 400 : carouselPosition - 400;
+
+    if (newPosition < 1 && newPosition > -carouselWidth) {
+      this.setState({
+        carouselPosition: newPosition,
+      });
+    }
+  }
+
+  // This picks the image out of the carousel and makes it the active image
+  handleImageClick(e) {
+    // Users can click the image itself or the DIV but only the IMG has the dataset attributes.
+    // So, if a user clicks the div, we specify the dataset of the child
+    const { dataset } = e.target.tagName === 'DIV' ? e.target.children[0] : e.target;
+    const { images } = this.state;
+    const fullImg = images.find(img => img.color === dataset.color && img.orientation === dataset.orientation && img.size === 'full');
+    // index is used by the imageInfo component. Example: 'Image {index} of 10'
+    fullImg.index = Number(dataset.index);
+    return this.setState({ activeImage: fullImg });
+  }
+
+  handleZoom(e) {
+    const rect = e.target.getBoundingClientRect();
+    console.log(rect);
+    const x = (e.clientX - rect.left) * 1.6;
+    const y = (e.clientY - rect.top) * 1.6;
+    this.setState({
+      mousePosition: {
+        x,
+        y,
+      },
+    });
+    document.getElementById('zoom-cursor').style.display = 'block';
+  }
+
+  // Checkout handlers
   handleShoeSizeSelect(e) {
     const shoeSize = e.target.value;
     this.setState({
       size: shoeSize,
+    });
+  }
+
+  handleColorSelect(e) {
+    // see note in HandleImageClick
+    const node = e.target.tagName === 'DIV' ? e.target.children[0] : e.target;
+    const color = node.alt.split(' ')[0];
+    const { images } = this.state;
+    const newActiveImg = images.find(img => img.color === color && img.size === 'full');
+    this.setState({
+      activeImage: newActiveImg,
+      activeColor: color,
     });
   }
 
@@ -65,7 +134,7 @@ class App extends React.Component {
     if (quantity + val === 0) {
       return false;
     }
-    this.setState({
+    return this.setState({
       quantity: quantity + val,
     });
   }
@@ -75,7 +144,7 @@ class App extends React.Component {
     if (input < 1) {
       return false;
     }
-    this.setState({
+    return this.setState({
       quantity: input,
     });
   }
@@ -88,24 +157,37 @@ class App extends React.Component {
 
   render() {
     const {
-      images, product, quantity, shippingOption,
+      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition, mousePosition,
     } = this.state;
-    const handlers = {
+    const checkoutHandlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,
       handleQuantityClick: this.handleQuantityClick,
       handleQuantityInput: this.handleQuantityInput,
       handleShippingInput: this.handleShippingInput,
+      handleColorSelect: this.handleColorSelect,
     };
+    const mediaHandlers = {
+      handleImageClick: this.handleImageClick,
+      handleCarouselPos: this.handleCarouselPos,
+      handleZoom: this.handleZoom,
+    };
+
     return (
       <div id="product-wrapper">
         <MediaWrapper
-          images={images}
+          images={images.filter(img => img.color === activeColor && img.size === 'thumb')}
+          active={activeImage}
+          handlers={mediaHandlers}
+          carouselPosition={carouselPosition}
+          mousePosition={mousePosition}
         />
         <Checkout
           product={product}
-          handlers={handlers}
+          handlers={checkoutHandlers}
           quantity={quantity}
+          images={images.filter(img => img.size === 'select')}
           shippingOption={shippingOption}
+          activeColor={activeColor}
         />
       </div>
     );

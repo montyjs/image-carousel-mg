@@ -1,6 +1,6 @@
 # REI Product Wrapper
 
-> This a clone of the item page on rei.com. This was built with a team during my time at Hack Reactor. We used a SOA and reverse proxy architecture, test driven development, and agile development practices.gi
+> This a clone of the item page on rei.com. This was built with a team during my time at Hack Reactor. We used a SOA and reverse proxy architecture, test driven development, and agile development practices.
 
 ## Related Projects
   #### Services
@@ -17,15 +17,22 @@
 
 ## Usage
 
-0. run `npm install` to install all packages.
-1. Seed the DB
+1. run `npm install` to install all packages.
+2. Add a .env file to the root directory
+  - in the .env file include the following
+  ```
+    PORT=3030
+    user='<YOUR POSTGRES SUPERUSER USERNAME>'
+    DB_PW='<PASSWORD ASSOCIATED WITH THAT SUPERUSER>'
+  ```
+3. Seed the DB
   - Add your postgress superuser username to the environmental variable. 
     run  `npm config set db_user <YOUR SUPERUSER USERNAME>`
   - Run the seeding script
     -run `npm run-script seed`"cross-var psql -f schema.sql -U $npm_config_db_user",
-2. Start webpack
+4. Start webpack
   -run `npm run-script build:dev`
-3. In another terminal, start express
+5. In another terminal, start express
   -run `npm run-script start:dev`
 
 

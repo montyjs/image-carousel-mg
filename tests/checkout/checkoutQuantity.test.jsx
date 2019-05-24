@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import CheckoutQuantity from '../client/components/checkoutSubComponents/checkoutQuantity';
+import CheckoutQuantity from '../../client/components/checkoutSubComponents/checkoutQuantity';
 
 describe('rendering', () => {
   const wrap = shallow(<CheckoutQuantity
