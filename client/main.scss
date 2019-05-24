@@ -45,20 +45,25 @@
     width: 66%;
     max-height: 30rem;
     background: #fff;
+    display: block;
+    z-index: 2;
     .jumbo-wrapper {
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #fff;
+      z-index: 1;
       .hover-wrapper {
-        display: block;
+        display: block; 
         position: absolute;
         height: 15rem;
         width: 10rem;
         transform: scale(0.9);
         border: 1px solid #ddd;
         pointer-events: none;
-        outline: rgba(255,255,255,.59) solid 150rem,
+        outline: rgba(255,255,255,.59) solid 150rem;
+        z-index: 0;
       }
       img {
         cursor: none;
@@ -74,6 +79,7 @@
     }
     .carousel {
       position: relative;
+      background: #fff;
       width: 100%;
       display: flex;
       align-items: center;
@@ -81,6 +87,7 @@
       padding-top: 1.3rem;
       padding-bottom: 10px;
       overflow: hidden;
+      z-index: 1;
       .row {
         left: -270px;
         overflow-x: scroll;

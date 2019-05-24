@@ -12,9 +12,7 @@ const JumboImage = ({
   };
   return (
     <div className="jumbo-wrapper">
-      <div className="hover-wrapper" style={hoverStyles}>
-        X
-      </div>
+      <div className="hover-wrapper" style={hoverStyles} />
       <img
         id="jumbo"
         src={url}
