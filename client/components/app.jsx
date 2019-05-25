@@ -1,6 +1,7 @@
 import React from 'react';
 import MediaWrapper from './media-wrapper';
 import Checkout from './checkout';
+import Spinner from './spinner';
 
 class App extends React.Component {
   static fetchImages() {
@@ -21,7 +22,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       images: [],
-      activeImage: {},
+      activeImage: undefined, // {},
       carouselPosition: 0,
       activeColor: 'flame',
       product: {
@@ -185,7 +186,13 @@ class App extends React.Component {
       handleZoom: this.handleZoom,
       updateHover: this.updateHover,
     };
-
+    if (activeImage !== undefined) {
+      return (
+        <div id="product-wrapper">
+          <Spinner />
+        </div>
+      );
+    }
     return (
       <div id="product-wrapper">
         <MediaWrapper
