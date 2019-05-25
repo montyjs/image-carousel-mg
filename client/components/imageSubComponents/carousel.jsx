@@ -8,7 +8,7 @@ const Carousel = ({
   <div className="carousel">
     <button
       type="button"
-      className="left"
+      className={pos === 0 ? 'left hidden' : 'left'}
       onClick={handlers.handleCarouselPos}
       value="inc"
     >
