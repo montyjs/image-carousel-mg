@@ -9,9 +9,10 @@ const CheckoutQuantity = ({ click, input, quantity }) => (
       <button
         type="button"
         name="decrement"
+        data-val="dec"
         onClick={click}
       >
-        <i className="fas fa-minus" />
+        <i onClick={click} className="fas fa-minus" />
       </button>
       <input
         name="quantity"
@@ -27,6 +28,7 @@ const CheckoutQuantity = ({ click, input, quantity }) => (
       />
       <button
         type="button"
+        data-val="inc"
         name="increment"
         onClick={click}
       >

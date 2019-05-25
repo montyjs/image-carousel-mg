@@ -139,8 +139,10 @@ class App extends React.Component {
   }
 
   handleQuantityClick(e) {
+    e.target = e.target.tagName === 'BUTTON' ? e.target : e.target.parentNode;
     const val = e.target.dataset.val === 'inc' ? 1 : -1;
     const { quantity } = this.state;
+    console.log(e.target.dataset);
     if (quantity + val === 0) {
       return false;
     }
