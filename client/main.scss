@@ -266,6 +266,7 @@ body{
 
     }
     .checkout-quantity {
+      text-align: center;
       p{
         font-size: 14px;
         margin: 0;
@@ -273,10 +274,6 @@ body{
       }
       .row{
         align-items: center;
-      }
-      .product-quantity-selector {
-        width: 38px;
-        height: 24px;
       }
       button{
         -webkit-appearance: none;
@@ -286,8 +283,18 @@ body{
         width: 1.4rem !important;
         padding: 5px;
         font-size: 10px;
-        text-align: center;
         cursor: pointer;
+      }
+      input {
+        height: 28px !important;
+        width: 38px;
+        padding: 5px;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 16px;
+        border-radius: 2px;
+        border: 1px solid #c5c5c5;
+        margin: 4px;
       }
 
     }
