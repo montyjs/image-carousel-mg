@@ -19,7 +19,7 @@ const ProductInfo = ({
     </div>
     <div className="product-info-row">
       <div className="stars">
-        <ReviewStars />
+        <ReviewStars rating={rating} />
       </div>
       <div className="no-ratings">
         { `${rating}(${noRatings})` }
