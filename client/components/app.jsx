@@ -101,12 +101,13 @@ class App extends React.Component {
     const rect = e.target.getBoundingClientRect();
     const x = (e.clientX - rect.left); //* 2 - 160;
     const y = (e.clientY - rect.top); //* 2 - 240;
+    console.log(e.pageY);
     this.setState({
       mousePosition: {
         x,
         y,
-        imgWidth: rect.width,
-        imgHeight: rect.height,
+        absX: e.pageX,
+        absY: e.pageY,
       },
     });
     document.getElementById('zoom-cursor').style.display = 'block';
