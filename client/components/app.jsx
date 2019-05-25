@@ -38,8 +38,8 @@ class App extends React.Component {
       mousePosition: {
         x: 0,
         y: 0,
-        imgWidth: 0,
-        imgHeight: 0,
+        absX: 0,
+        absY: 0,
       },
       size: null,
       quantity: 1,

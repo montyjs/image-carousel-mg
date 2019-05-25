@@ -7,8 +7,8 @@ const JumboImage = ({
 }) => {
   const hoverStyles = {
     display: hover ? 'block' : 'none',
-    left: mousePosition.absX,
-    top: mousePosition.absY,
+    left: mousePosition.absX - 80,
+    top: mousePosition.absY - 120,
   };
   return (
     <div className="jumbo-wrapper">

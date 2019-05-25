@@ -1,3 +1,7 @@
+body{
+  margin: 0;
+}
+
 #product-wrapper{
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Domine&display=swap');
@@ -7,7 +11,7 @@
 
   display: flex;
 
-  position:relative;
+  position: relative;
   font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -59,7 +63,7 @@
         position: absolute;
         height: 15rem;
         width: 10rem;
-        transform: scale(0.9);
+        transform: scale(1);
         border: 1px solid #ddd;
         pointer-events: none;
         outline: rgba(255,255,255,.59) solid 150rem;
