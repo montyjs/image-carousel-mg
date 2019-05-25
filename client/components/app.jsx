@@ -59,11 +59,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // The set timeout simulates real-world loading times so the spinner can do its things.
+    // To get rid of the spinner, change 1500 to 0
     App.fetchImages()
-      .then(data => this.setState({
-        images: data.rows,
-        activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
-      }));
+      .then(data => setTimeout(() => {
+        this.setState({
+          images: data.rows,
+          activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
+        });
+      }, 1500));
 
     App.fetchProducts()
       .then(data => this.setState({ product: data }))
@@ -186,7 +190,7 @@ class App extends React.Component {
       handleZoom: this.handleZoom,
       updateHover: this.updateHover,
     };
-    if (activeImage !== undefined) {
+    if (activeImage === undefined) {
       return (
         <div id="product-wrapper">
           <Spinner />

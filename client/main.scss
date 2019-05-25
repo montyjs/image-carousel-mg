@@ -17,17 +17,12 @@ body{
   line-height: 24px;
   font-weight: 400;
   color: #292b2c;
-  padding: 8.5vh 10vw;
+  padding: 5vh 10vw;
 
   .spinner {
-    display: -webkit-flex;
-    display: -ms-flexbox;
+    margin-top: -20vh;
     display: flex;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
     align-items: center;
     position: relative;
     width: 100%;
