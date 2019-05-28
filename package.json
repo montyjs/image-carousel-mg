@@ -11,7 +11,7 @@
     "build:dev": "webpack -d --watch",
     "start": "node server/index.js",
     "start:dev": "nodemon server/index.js -w server -w database-mysql",
-    "seed": "cross-var psql -f schema.sql -U $npm_config_db_user",
+    "seed": "psql -f schema.sql -U <YOUR USERNAME HERE>",
     "test": "jest --config jest-preset.js"
   },
   "dependencies": {
