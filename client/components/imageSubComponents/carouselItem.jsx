@@ -2,9 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Item = ({
-  color, id, orientation, url, index, handler,
+  color, id, orientation, url, index, handler, active,
 }) => (
-  <div className="carousel-item" onClick={handler} onKeyPress={handler} role="button" tabIndex={id}>
+  <div
+    className={active ? 'carousel-item active' : 'carousel-item'}
+    onClick={handler}
+    onKeyPress={handler}
+    role="button"
+    tabIndex={id}
+  >
     <img
       src={url}
       data-color={color}
@@ -24,4 +30,5 @@ Item.propTypes = {
   url: PropTypes.string.isRequired,
   handler: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
+  active: PropTypes.bool.isRequired,
 };

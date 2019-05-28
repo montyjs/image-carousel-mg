@@ -1,6 +1,7 @@
 import React from 'react';
 import MediaWrapper from './media-wrapper';
 import Checkout from './checkout';
+import Spinner from './spinner';
 
 class App extends React.Component {
   static fetchImages() {
@@ -21,7 +22,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       images: [],
-      activeImage: {},
+      activeImage: undefined, // {},
       carouselPosition: 0,
       activeColor: 'flame',
       product: {
@@ -38,10 +39,13 @@ class App extends React.Component {
       mousePosition: {
         x: 0,
         y: 0,
+        absX: 0,
+        absY: 0,
       },
       size: null,
       quantity: 1,
       shippingOption: 'ship',
+      hover: false,
     };
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleCarouselPos = this.handleCarouselPos.bind(this);
@@ -51,16 +55,19 @@ class App extends React.Component {
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
     this.handleShippingInput = this.handleShippingInput.bind(this);
     this.handleColorSelect = this.handleColorSelect.bind(this);
+    this.updateHover = this.updateHover.bind(this);
   }
 
-  // componentWillUpdate()
-
   componentDidMount() {
+    // The set timeout simulates real-world loading times so the spinner can do its things.
+    // To get rid of the spinner, change 1500 to 0
     App.fetchImages()
-      .then(data => this.setState({
-        images: data.rows,
-        activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
-      }));
+      .then(data => setTimeout(() => {
+        this.setState({
+          images: data.rows,
+          activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
+        });
+      }, 1500));
 
     App.fetchProducts()
       .then(data => this.setState({ product: data }))
@@ -72,7 +79,8 @@ class App extends React.Component {
 
   handleCarouselPos(e) {
     const { carouselPosition } = this.state;
-    const carouselWidth = e.target.parentNode.parentNode.offsetWidth + 120; // 120 is the width of an image container
+    // 120 is the width of an image container
+    const carouselWidth = e.target.parentNode.parentNode.offsetWidth + 120;
     const newPosition = e.target.value === 'inc' ? carouselPosition + 400 : carouselPosition - 400;
 
     if (newPosition < 1 && newPosition > -carouselWidth) {
@@ -96,16 +104,23 @@ class App extends React.Component {
 
   handleZoom(e) {
     const rect = e.target.getBoundingClientRect();
-    console.log(rect);
-    const x = (e.clientX - rect.left) * 1.6;
-    const y = (e.clientY - rect.top) * 1.6;
+    const x = (e.clientX - rect.left); //* 2 - 160;
+    const y = (e.clientY - rect.top); //* 2 - 240;
     this.setState({
       mousePosition: {
         x,
         y,
+        absX: e.pageX,
+        absY: e.pageY,
       },
     });
     document.getElementById('zoom-cursor').style.display = 'block';
+  }
+
+  updateHover(e) {
+    this.setState({
+      hover: e.type !== 'mouseout',
+    });
   }
 
   // Checkout handlers
@@ -129,8 +144,10 @@ class App extends React.Component {
   }
 
   handleQuantityClick(e) {
+    e.target = e.target.tagName === 'BUTTON' ? e.target : e.target.parentNode;
     const val = e.target.dataset.val === 'inc' ? 1 : -1;
     const { quantity } = this.state;
+    console.log(e.target.dataset);
     if (quantity + val === 0) {
       return false;
     }
@@ -157,7 +174,8 @@ class App extends React.Component {
 
   render() {
     const {
-      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition, mousePosition,
+      images, activeColor, activeImage, product, quantity, shippingOption, carouselPosition,
+      mousePosition, hover,
     } = this.state;
     const checkoutHandlers = {
       shoeSizeSelect: this.handleShoeSizeSelect,
@@ -170,8 +188,15 @@ class App extends React.Component {
       handleImageClick: this.handleImageClick,
       handleCarouselPos: this.handleCarouselPos,
       handleZoom: this.handleZoom,
+      updateHover: this.updateHover,
     };
-
+    if (activeImage === undefined) {
+      return (
+        <div id="product-wrapper">
+          <Spinner />
+        </div>
+      );
+    }
     return (
       <div id="product-wrapper">
         <MediaWrapper
@@ -180,6 +205,7 @@ class App extends React.Component {
           handlers={mediaHandlers}
           carouselPosition={carouselPosition}
           mousePosition={mousePosition}
+          hover={hover}
         />
         <Checkout
           product={product}

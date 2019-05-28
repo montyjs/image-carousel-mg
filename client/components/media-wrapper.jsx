@@ -3,30 +3,28 @@ import PropTypes from 'prop-types';
 import Carousel from './imageSubComponents/carousel';
 import ProductInfo from './imageSubComponents/imageInfo';
 import ZoomCursor from './imageSubComponents/zoomCursor';
+import JumboImage from './imageSubComponents/jumboImage';
 
 const MediaWrapper = ({
-  active, images, handlers, carouselPosition, mousePosition,
-}) => {
-  const hideZoomCursor = () => { document.getElementById('zoom-cursor').style.display = 'none'; };
-  return (
-    <div className="product-media-wrapper">
-      <div className="jumbo-wrapper">
-        <img
-          src={active.url}
-          alt={`${active.color} from the ${active.orientation}`}
-          onMouseEnter={handlers.handleZoom}
-          onMouseMove={handlers.handleZoom}
-          onMouseOut={hideZoomCursor}
-          onBlur={hideZoomCursor}
-          onFocus={handlers.handleZoom}
-        />
-      </div>
-      <Carousel images={images} pos={carouselPosition} handlers={handlers} />
-      <ProductInfo {...active} count={images.length} />
-      <ZoomCursor {...active} mousePosition={mousePosition} />
-    </div>
-  );
-};
+  active, images, handlers, carouselPosition, mousePosition, hover,
+}) => (
+  <div className="product-media-wrapper">
+    <JumboImage
+      {...active}
+      handlers={handlers}
+      mousePosition={mousePosition}
+      hover={hover}
+    />
+    <Carousel
+      activeOrient={active.orientation}
+      images={images}
+      pos={carouselPosition}
+      handlers={handlers}
+    />
+    <ProductInfo {...active} count={images.length} />
+    <ZoomCursor {...active} mousePosition={mousePosition} hover={hover} />
+  </div>
+);
 
 
 MediaWrapper.propTypes = {
@@ -41,6 +39,8 @@ MediaWrapper.propTypes = {
   mousePosition: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
+    absX: PropTypes.number,
+    absY: PropTypes.number,
   }),
   handlers: PropTypes.shape({
     handleImageClick: PropTypes.func,
@@ -48,6 +48,7 @@ MediaWrapper.propTypes = {
     handleZoom: PropTypes.func,
   }),
   carouselPosition: PropTypes.number,
+  hover: PropTypes.bool,
 };
 
 MediaWrapper.defaultProps = {
@@ -62,6 +63,8 @@ MediaWrapper.defaultProps = {
   mousePosition: {
     x: 0,
     y: 0,
+    absX: 0,
+    absY: 0,
   },
   handlers: {
     handleImageClick: () => {},
@@ -69,6 +72,7 @@ MediaWrapper.defaultProps = {
     handleZoom: () => {},
   },
   carouselPosition: 0,
+  hover: false,
 };
 
 export default MediaWrapper;

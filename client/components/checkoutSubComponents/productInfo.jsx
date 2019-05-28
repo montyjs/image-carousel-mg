@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReviewStars from './reviewStars';
 
 const ProductInfo = ({
   productName, companyName, itemNumber, price, rating, noRatings,
@@ -18,7 +19,7 @@ const ProductInfo = ({
     </div>
     <div className="product-info-row">
       <div className="stars">
-  add some starz
+        <ReviewStars rating={rating} />
       </div>
       <div className="no-ratings">
         { `${rating}(${noRatings})` }

@@ -26,10 +26,8 @@
     DB_PW='<PASSWORD ASSOCIATED WITH THAT SUPERUSER>'
   ```
 3. Seed the DB
-  - Add your postgress superuser username to the environmental variable. 
-    run  `npm config set db_user <YOUR SUPERUSER USERNAME>`
-  - Run the seeding script
-    -run `npm run-script seed`"cross-var psql -f schema.sql -U $npm_config_db_user",
+  - in package.json, under the seed script, change <YOUR USERNAME HERE> to... your username!
+  - Then run the  the seeding script with `npm run-script seed`,
 4. Start webpack
   -run `npm run-script build:dev`
 5. In another terminal, start express

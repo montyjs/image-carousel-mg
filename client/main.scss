@@ -1,3 +1,7 @@
+body{
+  margin: 0;
+}
+
 #product-wrapper{
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Domine&display=swap');
@@ -7,13 +11,14 @@
 
   display: flex;
 
-  position:relative;
+  position: relative;
   font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
   color: #292b2c;
-  padding: 8.5vh 10vw;
+  padding: 5vh 10vw;
+  
   a, .product-shipping-button{
     color: $interactive-font;
     font-weight: 700;
@@ -23,7 +28,7 @@
   a:hover {
     text-decoration: underline;
   }
-
+  
   hr {
     height: 0;
     border-top: 1px solid #e5e5e5;
@@ -38,6 +43,23 @@
     justify-content: space-around
   }
 
+  .hidden {
+    display: none !important;
+  }
+
+  .spinner {
+    margin-top: -20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 50rem;
+    height: 100%;
+    background: #fff;
+    z-index: 10;
+  }
+
     /*****************
      ** LEFT COLUMN **
     ******************/
@@ -45,24 +67,44 @@
     width: 66%;
     max-height: 30rem;
     background: #fff;
+    display: block;
+    z-index: 2;
     .jumbo-wrapper {
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #fff;
+      z-index: 1;
+      .hover-wrapper {
+        display: block; 
+        position: absolute;
+        height: 15rem;
+        width: 10rem;
+        transform: scale(1);
+        border: 1px solid #ddd;
+        pointer-events: none;
+        outline: rgba(255,255,255,.59) solid 150rem;
+        z-index: 0;
+      }
       img {
+        cursor: none;
         max-height: 100%;
         max-width: 100%;
       }
     }
     .product-info {
+      align-items: flex-start;
       font-size: 14px;
+      text-align: left;
+      justify-content: flex-start;
       span {
         color: #767676;
       }
     }
     .carousel {
       position: relative;
+      background: #fff;
       width: 100%;
       display: flex;
       align-items: center;
@@ -70,6 +112,7 @@
       padding-top: 1.3rem;
       padding-bottom: 10px;
       overflow: hidden;
+      z-index: 1;
       .row {
         left: -270px;
         overflow-x: scroll;
@@ -79,6 +122,9 @@
       }
       .row::-webkit-scrollbar {
         display:none;
+      }
+      div .active{
+        border-color: #4eaaff;
       }
       .carousel-item{
         display: flex;
@@ -90,6 +136,7 @@
         border-radius: 5px;
         margin: 4px;
         cursor: pointer;
+
         div > * {
           pointer-events: none;
         }
@@ -214,7 +261,7 @@
     }
     .user-selection-row {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: flex-end;
     }
 
@@ -240,27 +287,46 @@
 
     }
     .checkout-quantity {
-      .product-quantity-selector {
-        width: 38px;
-        height: 24px;
+      text-align: center;
+      p{
+        font-size: 14px;
+        margin: 0;
+        color: #292b2c;
+      }
+      .row{
+        align-items: center;
       }
       button{
-        background: #fff;
-        border: none;
-        width: auto;
-        padding: 0;
-      }
-      .quantity-icon {
-        color: #ddd;
-        background: #292b2c;
-        padding: -5px;
-        border: #c5c5c5 solid 1px;
+        -webkit-appearance: none;
+        border: 1px solid #c5c5c5;
         border-radius: 50%;
-        font-size: 1.4rem;
+        height: 1.4rem !important;
+        width: 1.4rem !important;
+        padding: 5px;
+        font-size: 10px;
+        cursor: pointer;
       }
+      input {
+        height: 28px !important;
+        width: 38px;
+        padding: 5px;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 16px;
+        border-radius: 2px;
+        border: 1px solid #c5c5c5;
+        margin: 4px;
+      }
+
     }
 
     .shipping-options {
+      margin-left: 1.2rem;
+      margin-bottom: .5rem;
+      a{
+        font-weight: 400;
+        font-size: 16px;
+      }
 
       // Hides the radio buttons
       .radio {
@@ -308,7 +374,7 @@
           content: '';
         }
         // accessibility
-        .checkbox input[type=radio]:focus + label::before {
+        input[type=radio]:focus + label::before {
           outline: rgb(59, 153, 252) auto 5px;
         }
       }
