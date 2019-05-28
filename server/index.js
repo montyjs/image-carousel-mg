@@ -31,7 +31,6 @@ app.get('/products', (req, res) => {
     }
     // there has got to be a better way of doing this.
     // Could this be destructured/reassigned at the component level?
-    console.log(result);
     const response = {
       productName: result.product_name,
       companyName: result.company_name,
@@ -46,6 +45,9 @@ app.get('/products', (req, res) => {
   });
 });
 
+app.get('/bundle', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/dist/bundle.js'));
+});
 
 app.listen(port, (err) => {
   if (err) {
