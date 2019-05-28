@@ -45,10 +45,6 @@ app.get('/products', (req, res) => {
   });
 });
 
-app.get('/bundle', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/dist/bundle.js'));
-});
-
 app.listen(port, (err) => {
   if (err) {
     return console.log(err);
