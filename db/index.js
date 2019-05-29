@@ -1,18 +1,17 @@
 /* eslint-disable no-console */
 const { Pool } = require('pg');
 
-const user = process.env.NODE_ENV === 'production' ? process.env.DB_USER : process.env.LOCAL_USER;
-const password = process.env.NODE_ENV === 'production' ? process.env.DB_PASSWORD : process.env.LOCAL_PASSWORD;
-const host = process.env.NODE_ENV === 'production' ? process.env.DB_HOST : 'localhost';
-const database = process.env.NODE_ENV === 'production' ? process.env.DB_DATABASE : process.env.LOCAL_DATABASE;
-
-const pool = new Pool({
-  user,
-  host,
-  database,
-  password,
-  port: '5432',
-});
+const pool = process.env.NODE_ENV === 'production'
+  ? new Pool({
+    connectionString: process.env.DB_URI,
+  })
+  : new Pool({
+    user: process.env.LOCAL_USER,
+    host: 'localhost',
+    database: 'product_wrapper',
+    password: process.env.LOCAL_PASSWORD,
+    port: '5432',
+  });
 
 const getAllImages = (cb) => {
   const queryString = 'SELECT * FROM images';
@@ -22,6 +21,7 @@ const getAllImages = (cb) => {
     }
     return cb(null, result.rows);
   });
+  // console.log(pool);
 };
 
 const getRandomProduct = (cb) => {
@@ -31,6 +31,7 @@ const getRandomProduct = (cb) => {
     if (err) {
       return cb(err, null);
     }
+    console.log(result);
     const shoeSizeQueryString = 'SELECT * FROM shoe_size;';
     return pool.query(shoeSizeQueryString, (sizeErr, sizes) => {
       if (sizeErr) {
@@ -40,6 +41,7 @@ const getRandomProduct = (cb) => {
         shoe_sizes: sizes.rows,
         ...result.rows[0],
       };
+      console.log(response);
       return cb(null, response);
     });
   });

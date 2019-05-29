@@ -62,19 +62,20 @@ class App extends React.Component {
     // The set timeout simulates real-world loading times so the spinner can do its things.
     // To get rid of the spinner, change 1500 to 0
     App.fetchImages()
-      .then(data => setTimeout(() => {
-        console.log(data);
-        this.setState({
-          images: data.rows,
-          activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
-        });
-      }, 1500));
+      .then(data => setTimeout(() => this.setState({
+        images: data.rows,
+        activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
+      }, () => {
+        console.log(this.state);
+      }),
+      1200));
 
     App.fetchProducts()
       .then(data => this.setState({ product: data }))
       .then(() => {
         const { product } = this.state;
         document.title = product.productName;
+        console.log(this.state);
       });
   }
 
