@@ -11,7 +11,7 @@
     "build:dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
     "start:dev": "nodemon server/index.js -w server -w database-mysql",
-    "seed": "psql -f schema.sql -U postgres",
+    "seed": "psql -d postgres -U postgres -f schema.sql",
     "test": "jest --config jest-preset.js"
   },
   "dependencies": {

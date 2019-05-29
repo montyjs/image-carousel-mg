@@ -21,8 +21,8 @@
 2. Add a .env file to the root directory
   - in the .env file include the following
   ```
-    PORT=3030
-    user='<YOUR POSTGRES SUPERUSER USERNAME>'
+    PORT=3001
+    USER='<YOUR POSTGRES SUPERUSER USERNAME>'
     DB_PW='<PASSWORD ASSOCIATED WITH THAT SUPERUSER>'
   ```
 3. Seed the DB
@@ -31,7 +31,8 @@
 4. Start webpack
   -run `npm run-script build:dev`
 5. In another terminal, start express
-  -run `npm run-script start:dev`
+  -for development, run `npm run-script start:dev`
+  -for production, run `npm start`
 
 
 
@@ -39,7 +40,7 @@
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
+- Node 8.11.0
 - etc
 
 ## Development
