@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
 const { Pool } = require('pg');
 
+const user = process.env.NODE_ENV === 'production' ? process.env.DB_USER : process.env.LOCAL_USER;
+const password = process.env.NODE_ENV === 'production' ? process.env.DB_PASSWORD : process.env.LOCAL_PASSWORD;
+const host = process.env.NODE_ENV === 'production' ? process.env.DB_HOST : 'localhost';
+const database = process.env.NODE_ENV === 'production' ? process.env.DB_DATABASE : process.env.LOCAL_DATABASE;
+
 const pool = new Pool({
-  user: process.env.USER,
-  host: 'localhost',
-  database: 'product_wrapper',
-  password: process.env.DB_PW,
+  user,
+  host,
+  database,
+  password,
   port: '5432',
 });
 
