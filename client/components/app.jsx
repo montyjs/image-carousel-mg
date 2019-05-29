@@ -5,14 +5,14 @@ import Spinner from './spinner';
 
 class App extends React.Component {
   static fetchImages() {
-    return fetch('/images')
+    return fetch('http://localhost:3001/images')
       .then(res => res.json())
       .then(data => data)
       .catch(err => err);
   }
 
   static fetchProducts() {
-    return fetch('/products')
+    return fetch('http://localhost:3001/products')
       .then(res => res.json())
       .then(data => data.row)
       .catch(err => err);
@@ -63,6 +63,7 @@ class App extends React.Component {
     // To get rid of the spinner, change 1500 to 0
     App.fetchImages()
       .then(data => setTimeout(() => {
+        console.log(data);
         this.setState({
           images: data.rows,
           activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
