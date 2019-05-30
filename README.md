@@ -26,29 +26,29 @@
       - **Note**: Development mode is set up to run with a remote database.
 
 
-## Usage
-1. run `npm install` to install all packages.
+## Developement Usage
+1. In the root directory, run `npm install` to install all packages.
 2. Add a .env file and set it up with the following keys value pairs.
-  - in the .env file include the following
   ```
-PORT=3001 <OR YOUR>
-
-// for development
+PORT=3001
 LOCAL_USER=<YOUR POSTGRES USERNAME>
 LOCAL_PASSWORD=<YOUR POSTGRES PASSWORD>
-
-// for production
-DB_URI=<YOUR CONNECTION STRING>
-
   ```
-3. To seed the local database,
+3. Seed the local database,
   - in package.json, under the seed script, change <YOUR USERNAME HERE> to... your username!
-  - run the the seeding script with `npm run-script seed`
+  - run the the seeding script with `npm run seed`
 4. Start webpack
-  -run `npm run-script build:dev`
-5. In another terminal, start express
-  -for development, run `npm run-script start:dev`
-  -for production, run `npm start`
+  -run `npm run build:dev`
+5. In another terminal, star run `npm start`
+
+## Production Usage
+1. In the root directory, run `npm install` to install all packages.
+2. Add a .env file and set it up with the following keys value pairs.
+  ```
+PORT=3001
+DB_URI=<YOUR CONNECTION STRING>
+  ```
+3. Run `npm start` to start the server
 
 
 ## Requirements
