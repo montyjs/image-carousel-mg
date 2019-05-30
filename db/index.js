@@ -30,7 +30,6 @@ const getRandomProduct = (cb) => {
     if (err) {
       return cb(err, null);
     }
-    console.log(result);
     const shoeSizeQueryString = 'SELECT * FROM shoe_size;';
     return pool.query(shoeSizeQueryString, (sizeErr, sizes) => {
       if (sizeErr) {
