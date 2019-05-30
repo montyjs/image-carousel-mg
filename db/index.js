@@ -21,7 +21,6 @@ const getAllImages = (cb) => {
     }
     return cb(null, result.rows);
   });
-  // console.log(pool);
 };
 
 const getRandomProduct = (cb) => {
@@ -41,7 +40,6 @@ const getRandomProduct = (cb) => {
         shoe_sizes: sizes.rows,
         ...result.rows[0],
       };
-      console.log(response);
       return cb(null, response);
     });
   });
