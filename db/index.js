@@ -13,6 +13,7 @@ const pool = process.env.NODE_ENV === 'production'
     port: '5432',
   });
 
+
 const getAllImages = (cb) => {
   const queryString = 'SELECT * FROM images';
   pool.query(queryString, (err, result) => {
@@ -24,6 +25,8 @@ const getAllImages = (cb) => {
 };
 
 const getRandomProduct = (cb) => {
+  console.log(process.env.NODE_ENV);
+
   // gets one random row from the database
   const queryString = 'SELECT * FROM products ORDER BY RANDOM() LIMIT 1;';
   pool.query(queryString, (err, result) => {
