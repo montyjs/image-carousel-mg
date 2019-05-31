@@ -5,14 +5,14 @@ import Spinner from './spinner';
 
 class App extends React.Component {
   static fetchImages() {
-    return fetch('http://localhost:3001/images')
+    return fetch(`http://${window.location.hostname}:3001/images`)
       .then(res => res.json())
       .then(data => data)
       .catch(err => err);
   }
 
   static fetchProducts() {
-    return fetch('http://localhost:3001/products')
+    return fetch(`http://${window.location.hostname}:3001/products`)
       .then(res => res.json())
       .then(data => data.row)
       .catch(err => err);
