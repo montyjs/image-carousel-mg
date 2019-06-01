@@ -16,8 +16,10 @@ const pool = process.env.NODE_ENV === 'production'
 
 const getAllImages = (cb) => {
   const queryString = 'SELECT * FROM images';
+  console.log(pool.options);
   pool.query(queryString, (err, result) => {
     if (err) {
+      console.log(err);
       return cb(err, null);
     }
     return cb(null, result.rows);
@@ -31,11 +33,13 @@ const getRandomProduct = (cb) => {
   const queryString = 'SELECT * FROM products ORDER BY RANDOM() LIMIT 1;';
   pool.query(queryString, (err, result) => {
     if (err) {
+      console.log(err);
       return cb(err, null);
     }
     const shoeSizeQueryString = 'SELECT * FROM shoe_size;';
     return pool.query(shoeSizeQueryString, (sizeErr, sizes) => {
       if (sizeErr) {
+        console.log(err);
         return cb(sizeErr, null);
       }
       const response = {
