@@ -11,11 +11,35 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+1. [Demo](#Demo)
+1. [Technologies](#Technologies)
+1. [Production vs Development](#Production-vs-Development-Mode)
+1. [Development Usage](#Development-Usage)
+1. [Production Usage](#Production-Usage)
 1. [Requirements](#requirements)
-1. [Development](#development)
 
-## Productions vs Development Mode
+## Demo
+
+This component was deployed to AWS using RDS and Elastic Beanstalk. [Check it out here!](http://mg-product-wrapper-dev.us-west-2.elasticbeanstalk.com/)
+
+To check out the full application with my cohort-mates' components, [click here!](http://mg-proxy-dev.us-west-2.elasticbeanstalk.com/). 
+  - This was served up with a proxy server. To learn more about the proxy server, checkout the [separate proxy repo](https://github.com/montyjs/mg-proxy)
+
+
+## Technologies
+
+- JavaScript
+- React.js
+- Sass
+- Node.js
+- Express
+- PostgreSQL
+- Jest
+- Enzyme
+- AWS Relational Database Service
+- AWS Elastic Beanstalk
+
+## Production vs Development Mode
   If you are running this repo locally, you will likely want to run this in development mode. You will need to set the NODE_ENV environmental variable to 'development'. 
       -To do this on in OSX or Linux, run `export NODE_ENV=development` in terminal/bash. 
       - To do this in Windows, run `SET NODE_ENV=development` in command prompt. 
@@ -26,7 +50,7 @@
       - **Note**: Development mode is set up to run with a remote database.
 
 
-## Developement Usage
+## Development Usage
 1. In the root directory, run `npm install` to install all packages.
 2. Add a .env file and set it up with the following keys value pairs.
   ```
@@ -53,17 +77,5 @@ DB_URI=<YOUR CONNECTION STRING>
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 8.11.0
-- etc
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
-
+- Node ^8.11.0
+- PostgreSQL *11.20
