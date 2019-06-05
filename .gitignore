@@ -12,6 +12,10 @@ node_modules/
 
 # environment set up
 .env
+
+# 1000 images
+images
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

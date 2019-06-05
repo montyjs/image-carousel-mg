@@ -9,7 +9,7 @@ const app = express();
 
 const db = require('../db/index.js');
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

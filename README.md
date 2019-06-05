@@ -1,3 +1,4 @@
+]
 # REI Product Wrapper
 
 > This a clone of the item page on rei.com. This was built with a team during my time at Hack Reactor. We used a SOA and reverse proxy architecture, test driven development, and agile development practices.
