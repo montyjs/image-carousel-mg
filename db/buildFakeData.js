@@ -36,6 +36,15 @@ const randomSelectNArray = function (arr, n) {
   return Array.from({ length: n }, (_, i) => randomSelectArray(arr));
 }
 
+const equallySplitArray = function (arr) {
+  let output = [];
+  let step = 4000;
+  for (let i = 0; i < arr.length; i += step) {
+    output.push(arr.slice(i, i + step))
+  }
+  return output;
+};
+
 // data objects
 //
 const shoeSizes = [(38), (38.5), (39), (39.5), (40), (40.5), (41), (41.5), (42), (42.5), (43), (43.5), (44), (44.5), (45), (45.5), (46), (46.5), (47), (47.5)];
@@ -47,22 +56,20 @@ const allProductOptions = buildAllOptions(products, productTitles);
 const imageTitles = ['size', 'color', 'orientation', 'url'];
 const allImageOptions = buildAllOptions(images, imageTitles);
 allImageOptions.url = urls.urls;
+allImageOptions.orientation = allImageOptions.orientation.filter(x => !(/\s+/).test(x));
 
-// console.log(products.split('\n').map(line => line.split(/[\t]/)));
-// console.log(filterByProp(allImages, imageTitles[0]));
-// console.log(allImageOptions);
-// console.log(urls.urls.length);
-// console.log(allImageOptions);
 
+
+// Build all function
+//
 const buildN = function (n) {
-  return {
-    images: buildNRows(allImageOptions, n),
-    products: buildNRows(allProductOptions, n)
-  }
+  return [
+    {
+      images: equallySplitArray(buildNRows(allImageOptions, n)),
+      products: equallySplitArray(buildNRows(allProductOptions, n)),
+      shoes: equallySplitArray(randomSelectNArray(shoeSizes, n).map(x => { return { size: x } }), n),
+    },
+  ];
 };
 
-console.log(buildN(4));
-
-
-
-module.exports = buildN(1000);
+module.exports = buildN(5000000);
