@@ -1,75 +1,89 @@
-// Raw data files for 100 listings
+// data formatter
 //
-const products = require('./productsText');
-const images = require('./imageText.js');
-const urls = require('./seedingSetup/imageList.json');
+const buildAllRows = (data, titles) => {
+  return data.split('\n')
+    .map(line => Object.fromEntries(line.split(/\t/).slice(1).map((item, i) => [titles[i], item])))
+    .slice(0, 100)
+};
 
-// builder functions
+// data builders
 //
-const filterByProp = (array, prop) => array.map(obj => obj[prop]).filter((item, i, arr) => arr.indexOf(item) === i);
-
-const buildAllRows = (data, titles) => data.split('\n').map(line => Object.fromEntries(line.split(/\t/).slice(1).map((item, i) => [titles[i], item])));
-
-const buildAllOptions = (data, titles) => titles.map(title => Object.fromEntries([[title, filterByProp(buildAllRows(data, titles), title)]])).reduce((acc, cur) => Object.assign(acc, cur), {});
-
-const buildRandomRow = (dataObj) => Object.keys(dataObj).map(k => randomSelectArray(dataObj[k]));
-
-const buildNRows = function buildNRows(dataObj, n) {
-  let titles = Object.keys(dataObj);
+const build4000Images = (images, imageTitles, urls) => {
+  const imageRows = images.split('\n').map(line => line.split(/\t/).slice(1))
   let rows = [];
-  for (let i = 0; i < n; i++) {
-    rows.push(Object.fromEntries(titles.map(title => {
-      let list = dataObj[title];
-      return [[title], list[i % list.length]]
-    })));
+  let k = 0;
+  for (let i = 0; i < 125; i++) {
+    rows = rows.concat(
+      imageRows.map(line => Object.fromEntries(line.map((item, i) => [imageTitles[i], item])))
+        .sort((a, b) => {
+          if (a.color === b.color) {
+            return a.orientation < b.orientation ? -1 : a.orientation > b.orientation ? 1 : 0;
+          }
+          return a.color - b.color;
+        })
+    );
+  }
+  return rows.map((item, i) => {
+    if (i === 0) {
+      item.url = urls[0];
+    } else if (item.orientation === rows[i - 1].orientation) {
+      item.url = urls[k % urls.length];
+    } else {
+      k++;
+      item.url = urls[k % urls.length];
+    }
+    return item;
+  });
+};
+
+const build4000Products = (products, productTitles) => {
+  const productRows = buildAllRows(products, productTitles);
+  let rows = [];
+  for (let i = 0; i < 40; i++) {
+    rows = rows.concat(productRows);
   }
   return rows;
 };
 
-// helper functions
+
+// Raw data files for 100 listings
 //
-const randomSelectArray = function (arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+const products = require('./productsText');
+const images = require('./imageText.js');
+const imageUrls = require('./seedingSetup/imageList.json');
+const shoeSizes = [(38), (38.5), (39), (39.5), (40), (40.5), (41), (41.5), (42), (42.5), (43), (43.5), (44), (44.5), (45), (45.5), (46), (46.5), (47), (47.5)];
 
-const randomSelectNArray = function (arr, n) {
-  return Array.from({ length: n }, (_, i) => randomSelectArray(arr));
-}
+// Variables
+//
+const productTitles = ['product_name', 'company_name', 'item_number', 'color', 'price', 'rating', 'no_ratings'];
+const imageTitles = ['size', 'color', 'orientation', 'url'];
 
-const equallySplitArray = function (arr) {
+const imageRows4000 = build4000Images(images, imageTitles, imageUrls.urls);
+const productRows4000 = build4000Products(products, productTitles);
+
+
+// Build functions
+//
+const repeat5Million = function (item4000) {
   let output = [];
-  let step = 4000;
-  for (let i = 0; i < arr.length; i += step) {
-    output.push(arr.slice(i, i + step))
+  for (let i = 0; i < 1250; i++) {
+    output.push(item4000);
   }
   return output;
 };
 
-// data objects
-//
-const shoeSizes = [(38), (38.5), (39), (39.5), (40), (40.5), (41), (41.5), (42), (42.5), (43), (43.5), (44), (44.5), (45), (45.5), (46), (46.5), (47), (47.5)];
-
-const productTitles = ['product_name', 'company_name', 'item_number', 'color', 'price', 'rating', 'no_ratings'];
-const allProductOptions = buildAllOptions(products, productTitles);
-
-
-const imageTitles = ['size', 'color', 'orientation', 'url'];
-const allImageOptions = buildAllOptions(images, imageTitles);
-allImageOptions.url = urls.urls;
-allImageOptions.orientation = allImageOptions.orientation.filter(x => !(/\s+/).test(x));
-
-
-
-// Build all function
-//
-const buildN = function (n) {
+const build = function () {
   return [
     {
-      images: equallySplitArray(buildNRows(allImageOptions, n)),
-      products: equallySplitArray(buildNRows(allProductOptions, n)),
-      shoes: equallySplitArray(randomSelectNArray(shoeSizes, n).map(x => { return { size: x } }), n),
+      products: repeat5Million(productRows4000),
+      images: repeat5Million(imageRows4000),
+      shoes: shoeSizes.map(x => { return { size: x } }),
     },
   ];
 };
 
-module.exports = buildN(5000000);
+
+// Export 5 million rows of data for images and products respectively
+// We subdivided them because we want to seed 20 million rows between images and products and we don't want a heap out of memory error
+//
+module.exports = build(5000000);

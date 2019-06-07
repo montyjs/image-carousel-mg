@@ -62,13 +62,17 @@ class App extends React.Component {
     // The set timeout simulates real-world loading times so the spinner can do its things.
     // To get rid of the spinner, change 1500 to 0
     App.fetchImages()
+      .then(data => data.rows.map((item, i) => {
+        item.id = i + 1;
+        return item;
+      }))
       .then(data => setTimeout(() => this.setState({
-        images: data.rows,
-        activeImage: data.rows.find(img => img.size === 'full' && img.color === 'flame'),
+        images: data,
+        activeImage: data.find(img => img.size === 'full' && img.color === 'flame'),
       }, () => {
         console.log(this.state);
       }),
-      1200));
+        1200));
 
     App.fetchProducts()
       .then(data => this.setState({ product: data }))
@@ -99,8 +103,11 @@ class App extends React.Component {
     const { dataset } = e.target.tagName === 'DIV' ? e.target.children[0] : e.target;
     const { images } = this.state;
     const fullImg = images.find(img => img.color === dataset.color && img.orientation === dataset.orientation && img.size === 'full');
+    // e.preventDefault();
+    // console.log('url', e.target.url);
+    // const fullImg = images.filter(image => image.url === e.target.url);
     // index is used by the imageInfo component. Example: 'Image {index} of 10'
-    fullImg.index = Number(dataset.index);
+    // fullImg.index = Number(dataset.index);
     return this.setState({ activeImage: fullImg });
   }
 
