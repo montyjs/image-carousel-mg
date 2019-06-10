@@ -1,5 +1,6 @@
-const first5Million = require('./../../buildFakeData.js');
-const second5Million = require('./../../buildFakeData.js');
+// imported in two batches to avoid heap running out of memory
+//
+const fiveMillion = require('./../../../buildFakeData.js').SQL();
 
 console.log('built');
 
@@ -7,7 +8,7 @@ exports.seed = function seed(knex, Promise) {
   return knex('shoe_size').del()
     .then(() => knex('images').del())
     .then(() => knex('products').del())
-    .then(() => Promise.all(first5Million.map(data => {
+    .then(() => Promise.all(fiveMillion.map(data => {
       return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
         console.log('images seeded');
         return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => {
@@ -16,7 +17,7 @@ exports.seed = function seed(knex, Promise) {
         });
       });
     })))
-    .then(() => Promise.all(second5Million.map(data => {
+    .then(() => Promise.all(fiveMillion.map(data => {
       return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
         console.log('images seeded');
         return Promise.all(data.products.map(list => knex('products').insert(list)));

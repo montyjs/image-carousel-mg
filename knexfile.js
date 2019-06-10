@@ -12,10 +12,10 @@ module.exports = {
     useNullAsDefault: true,
     charset: 'utf8',
     migrations: {
-      directory: Path.join(__dirname, '/db/migrations'),
+      directory: Path.join(__dirname, '/db/sql/migrations'),
     },
     seeds: {
-      directory: Path.join(__dirname, '/db/seeds/dev'),
+      directory: Path.join(__dirname, '/db/sql/seeds/dev'),
     },
   },
 
@@ -29,10 +29,10 @@ module.exports = {
     useNullAsDefault: true,
     charset: 'utf8',
     migrations: {
-      directory: Path.join(__dirname, '/db/migrations'),
+      directory: Path.join(__dirname, '/db/sql/migrations'),
     },
     seeds: {
-      directory: Path.join(__dirname, '/db/seeds/dev'),
+      directory: Path.join(__dirname, '/db/sql/seeds/dev'),
     },
   },
 

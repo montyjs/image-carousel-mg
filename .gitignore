@@ -9,6 +9,15 @@ node_modules/
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+# Raw text files
+*.csv
+*.txt
+
+# redis files
+*.rdb
+
+# mongodb data
+data/
 
 # environment set up
 .env

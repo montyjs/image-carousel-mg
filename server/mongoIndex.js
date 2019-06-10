@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -7,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const db = require('../db/dbConfig.js');
+const db = require('../db/mongo/dbConfig.js');
 
 const port = process.env.PORT || 3001;
 app.use(cors());

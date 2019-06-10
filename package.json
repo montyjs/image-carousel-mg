@@ -9,10 +9,13 @@
   },
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "start": "nodemon server/index.js",
+    "sql-seed": "knex migrate:rollback; knex migrate:latest; knex seed:run;",
+    "mongo-seed": "node db/mongo/seedMongoDb.js",
+    "sql-start": "nodemon server/sqlIndex.js",
+    "mongo-start": "nodemon server/mongoIndex.js",
+    "redis-start": "nodemon server/redisIndex.js",
     "start:dev": "nodemon server/index.js -w server -w database-mysql",
     "seed-psql": "psql postgres -U cj -f schema.sql",
-    "seed": "knex migrate:rollback; knex migrate:latest; knex seed:run;",
     "test": "jest --config jest-preset.js"
   },
   "dependencies": {
@@ -21,6 +24,11 @@
     "dotenv": "^8.0.0",
     "express": "^4.15.4",
     "knex": "^0.17.3",
+    "logrocket": "^1.0.0",
+    "moment": "^2.24.0",
+    "mongodb": "^3.2.7",
+    "mongodb-core": "^3.2.7",
+    "mongoose": "^5.5.13",
     "pg": "^7.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",

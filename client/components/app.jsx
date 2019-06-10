@@ -66,13 +66,12 @@ class App extends React.Component {
         item.id = i + 1;
         return item;
       }))
-      .then(data => setTimeout(() => this.setState({
+      .then(data => this.setState({
         images: data,
         activeImage: data.find(img => img.size === 'full' && img.color === 'flame'),
       }, () => {
         console.log(this.state);
-      }),
-        1200));
+      }));
 
     App.fetchProducts()
       .then(data => this.setState({ product: data }))
