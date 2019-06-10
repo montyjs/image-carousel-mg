@@ -11,6 +11,7 @@
     "react-dev": "webpack -d --watch",
     "sql-seed": "knex migrate:rollback; knex migrate:latest; knex seed:run;",
     "mongo-seed": "node db/mongo/seedMongoDb.js",
+    "redis-seed": "./db/redis/redisPipe.sh",
     "sql-start": "nodemon server/sqlIndex.js",
     "mongo-start": "nodemon server/mongoIndex.js",
     "redis-start": "nodemon server/redisIndex.js",

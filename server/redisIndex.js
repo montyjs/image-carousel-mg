@@ -10,12 +10,27 @@ const redis = require('redis');
 // SETUP
 //
 const app = express();
-const client = redis.createClient();
+const host = 'localhost';
+const redisPort = 6379;
+const client = redis.createClient({ port: redisPort, host });
 const port = process.env.PORT || 3001;
+let SHOE_SIZES;
 
-// LOG REDIS CONNECTION
+// LOG REDIS CONNECTION AND FETCH SHOE_SIZES
 //
-client.on('connect', () => console.log('Redis Server Started...'));
+client.on('connect', () => {
+  console.log('Redis Server Started...');
+
+  const multi = client.multi();
+
+  for (let i = 1; i <= 20; i++) {
+    multi.hgetall(`shoesize:${i}`);
+  }
+
+  multi.exec((error, shoe_sizes) => {
+    SHOE_SIZES = shoe_sizes;
+  });
+});
 
 // MIDDLEWARE
 //
@@ -39,18 +54,10 @@ app.get('/images', (req, res) => {
   multi.exec((err, results) => {
     if (err) res.json({ error: err });
 
-    console.log('results', results);
+    results = results.sort((a, b) => a.color - b.color);
 
     return res.json({ rows: results });
   });
-
-  // db('images').select('*').whereBetween('id', [random - 31, random]).then((results) => {
-  //   results = results.map(item => {
-  //     delete item['id'];
-  //     return item;
-  //   }).sort((a, b) => a.color - b.color);
-  //   return res.json({ rows: results });
-  // });
 });
 
 app.get('/products', (req, res) => {
@@ -67,11 +74,12 @@ app.get('/products', (req, res) => {
       price: result.price,
       rating: result.rating,
       noRatings: result.no_ratings,
-      shoeSizes: shoe_sizes.map(x => x.size),
+      shoeSizes: SHOE_SIZES.map(x => x.size).sort(),
     };
     return res.json({ row: response });
   });
 });
+
 
 
 // SERVE
