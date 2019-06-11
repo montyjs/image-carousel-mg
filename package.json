@@ -10,9 +10,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "sql-seed": "knex migrate:rollback; knex migrate:latest; knex seed:run;",
-    "mongo-seed": "node db/mongo/seedMongoDb.js",
-    "redis-seed": "./db/redis/redisPipe.sh",
+    "seed-postgres": "knex migrate:rollback; knex migrate:latest; knex seed:run;",
+    "seed-redis": "./db/redis/seedRedis.sh",
     "start:dev": "nodemon server/index.js -w server -w database-mysql",
     "seed-psql": "psql postgres -U cj -f schema.sql",
     "test": "jest --config jest-preset.js"

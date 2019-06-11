@@ -8,7 +8,7 @@ function buildFile(name, data) {
   let wStream = fs.createWriteStream(`${name}.txt`);
   // console.log(data[name], 'data');
   if (name === 'image' || name === 'product') {
-    for (let i = 0; i < 2500; i++) {
+    for (let i = 0; i < 25; i++) {
       buildResp(name, data, 4000 * i, wStream);
     }
   } else {
