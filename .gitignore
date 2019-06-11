@@ -9,23 +9,14 @@ node_modules/
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
-# Raw text files
-*.csv
-*.txt
-
 # redis files
 *.rdb
-
-# mongodb data
-data/
 
 # environment set up
 .env
 
-# 1000 images
-images
+# 1000 images for S3 bucket
+images/
 
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+# EC2 Files
+*.pem
