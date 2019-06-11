@@ -79,11 +79,12 @@ const repeatData = function (dataArr, iterations) {
 // Export 5 million rows of data for images and products respectively
 // We subdivided them because we want to seed 20 million rows between images and products and we don't want a heap out of memory error
 //
-module.exports.SQL = function () {
+module.exports.SQL = function (n = 50) {
+
   return [
     {
-      products: repeatData(productRows4000, 1250),
-      images: repeatData(imageRows4000, 1250),
+      products: repeatData(productRows4000, 25 * n),
+      images: repeatData(imageRows4000, 25 * n),
       shoes: shoeSizes.map(x => { return { size: x } }),
     },
   ];

@@ -1,21 +1,22 @@
+const start = require('./../start.json').start;
 
 exports.up = function up(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('images', (table) => {
-      table.increments('_id').primary();
+      table.increments('id').primary();
       table.string('size');
       table.string('color');
       table.string('orientation');
       table.text('url');
-      table.index('_id', '_id');
-    }),
+      table.index('id');
+    }).raw(`SELECT setval('images_id_seq', ${start});`),
     knex.schema.createTable('shoe_size', (table) => {
-      table.increments('_id').primary();
+      table.increments('id').primary();
       table.decimal('size');
-      table.index('_id', '_id');
+      table.index('id');
     }),
     knex.schema.createTable('products', (table) => {
-      table.increments('_id').primary();
+      table.increments('id').primary();
       table.string('product_name');
       table.string('company_name');
       table.integer('item_number');
@@ -23,8 +24,8 @@ exports.up = function up(knex, Promise) {
       table.string('price');
       table.string('rating');
       table.integer('no_ratings');
-      table.index('_id', '_id');
-    }),
+      table.index('id');
+    }).raw(`SELECT setval('products_id_seq', ${start});`),
   ]);
 };
 
