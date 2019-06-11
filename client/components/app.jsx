@@ -102,9 +102,6 @@ class App extends React.Component {
     const { dataset } = e.target.tagName === 'DIV' ? e.target.children[0] : e.target;
     const { images } = this.state;
     const fullImg = images.find(img => img.color === dataset.color && img.orientation === dataset.orientation && img.size === 'full');
-    // e.preventDefault();
-    // console.log('url', e.target.url);
-    // const fullImg = images.filter(image => image.url === e.target.url);
     // index is used by the imageInfo component. Example: 'Image {index} of 10'
     // fullImg.index = Number(dataset.index);
     return this.setState({ activeImage: fullImg });

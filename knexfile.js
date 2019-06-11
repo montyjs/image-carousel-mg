@@ -1,12 +1,14 @@
 const Path = require('path');
+require('dotenv').config();
+const process = require('process');
 
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
-      user: 'cj',
-      password: 'student',
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
       database: 'product_wrapper',
     },
     useNullAsDefault: true,
@@ -22,8 +24,8 @@ module.exports = {
   test: {
     client: 'pg',
     connection: {
-      user: 'cj',
-      password: 'student',
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
       database: 'product_wrapper',
     },
     useNullAsDefault: true,
@@ -40,8 +42,8 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'product_wrapper',
-      user: 'cj',
-      password: 'student',
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
     },
     pool: {
       min: 2,
@@ -56,8 +58,8 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'product_wrapper',
-      user: 'cj',
-      password: 'student',
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
     },
     pool: {
       min: 2,
@@ -69,3 +71,4 @@ module.exports = {
   },
 
 };
+

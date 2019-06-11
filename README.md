@@ -32,8 +32,10 @@
 2. Add a .env file and set it up with the following keys value pairs.
   ```
 PORT=3001
-LOCAL_USER=<YOUR POSTGRES USERNAME>
-LOCAL_PASSWORD=<YOUR POSTGRES PASSWORD>
+POSTGRES_USER=<YOUR POSTGRES USERNAME>
+POSTGRES_PASSWORD=<YOUR POSTGRES PASSWORD>
+ROUTES=redis <for redis, or empty for postgres routes in server/index.js>
+REDIS_PORT=6379
   ```
 3. Seed the local database,
   - in package.json, under the seed script, change <YOUR USERNAME HERE> to... your username!

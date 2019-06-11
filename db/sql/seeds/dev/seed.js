@@ -29,3 +29,4 @@ exports.seed = function seed(knex, Promise) {
       });
     })));
 };
+

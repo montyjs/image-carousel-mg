@@ -2,18 +2,20 @@
 exports.up = function up(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('images', (table) => {
-      table.increments('id').primary();
+      table.increments('_id').primary();
       table.string('size');
       table.string('color');
       table.string('orientation');
       table.text('url');
+      table.index('_id');
     }),
     knex.schema.createTable('shoe_size', (table) => {
-      table.increments('id').primary();
+      table.increments('_id').primary();
       table.decimal('size');
+      table.index('_id');
     }),
     knex.schema.createTable('products', (table) => {
-      table.increments('id').primary();
+      table.increments('_id').primary();
       table.string('product_name');
       table.string('company_name');
       table.integer('item_number');
@@ -21,6 +23,7 @@ exports.up = function up(knex, Promise) {
       table.string('price');
       table.string('rating');
       table.integer('no_ratings');
+      table.index('_id');
     }),
   ]);
 };

@@ -1,8 +1,8 @@
 // IMPORTS
 //
 require('dotenv').config();
-const express = require('express');
 const process = require('process');
+const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -39,3 +39,4 @@ app.listen(port, (err) => {
   }
   return console.log(`listening on port ${port}`);
 });
+

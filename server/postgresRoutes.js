@@ -8,7 +8,7 @@ module.exports.images = (req, res) => {
   const random = Math.floor(Math.random() * 312500) * 32;
   db('images').select('*').whereBetween('id', [random - 31, random]).then((results) => {
     results = results.map(item => {
-      delete item['id'];
+      delete item['_id'];
       return item;
     }).sort((a, b) => a.color - b.color);
     return res.json({ rows: results });

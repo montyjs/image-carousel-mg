@@ -29,4 +29,4 @@ module.exports = `1	thumb	kiwi	back	https://s3-us-west-2.amazonaws.com/fec-rei/k
 29	full	flame	outside	https://s3-us-west-2.amazonaws.com/fec-rei/flame/outside_full.jpg
 30	full	flame	top	https://s3-us-west-2.amazonaws.com/fec-rei/flame/top_full.jpg
 31	select	kiwi	 	https://www.rei.com/media/f85ca8b1-5e82-44d6-97c1-cf38c88154b0
-32	select	flame	 	https://rei.com/media/4f72b233-00f4-449b-b3c8-c338b526cb05?size=60`
+32	select	flame	 	https://rei.com/media/4f72b233-00f4-449b-b3c8-c338b526cb05?size=60`;

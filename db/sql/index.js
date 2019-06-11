@@ -6,10 +6,10 @@ const pool = process.env.NODE_ENV === 'production'
     connectionString: process.env.DB_URI,
   })
   : new Pool({
-    user: process.env.LOCAL_USER,
+    user: process.env.POSTGRES_USER,
     host: 'localhost',
     database: 'product_wrapper',
-    password: process.env.LOCAL_PASSWORD,
+    password: process.env.POSTGRES_PASSWORD,
     port: '5432',
   });
 
