@@ -7,12 +7,12 @@ exports.up = function up(knex, Promise) {
       table.string('color');
       table.string('orientation');
       table.text('url');
-      table.index('_id');
+      table.index('_id', '_id');
     }),
     knex.schema.createTable('shoe_size', (table) => {
       table.increments('_id').primary();
       table.decimal('size');
-      table.index('_id');
+      table.index('_id', '_id');
     }),
     knex.schema.createTable('products', (table) => {
       table.increments('_id').primary();
@@ -23,7 +23,7 @@ exports.up = function up(knex, Promise) {
       table.string('price');
       table.string('rating');
       table.integer('no_ratings');
-      table.index('_id');
+      table.index('_id', '_id');
     }),
   ]);
 };
