@@ -2,7 +2,7 @@
   "name": "rei-product-wrapper",
   "version": "0.0.1",
   "description": "",
-  "author": "Morgan Galvin",
+  "author": "Cj DAgostino",
   "license": "MIT",
   "engines": {
     "node": ">=6.13.0"
@@ -10,7 +10,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "seed-postgres": "knex migrate:rollback; knex migrate:latest; knex seed:run;",
+    "seed-postgres": "./db/sql/seedPostgres.sh 0",
     "seed-redis": "./db/redis/seedRedis.sh",
     "start:dev": "nodemon server/index.js -w server -w database-mysql",
     "test": "jest --config jest-preset.js"
@@ -21,16 +21,20 @@
     "dotenv": "^8.0.0",
     "express": "^4.15.4",
     "knex": "^0.17.3",
+    "loadtest": "^3.0.7",
     "logrocket": "^1.0.0",
     "moment": "^2.24.0",
     "mongodb": "^3.2.7",
     "mongodb-core": "^3.2.7",
     "mongoose": "^5.5.13",
+    "newrelic": "^5.10.0",
     "pg": "^7.11.0",
+    "plotly": "^1.0.6",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "underscore": "^1.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

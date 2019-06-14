@@ -4,9 +4,7 @@ const redis = require('redis');
 
 // SETUP
 //
-const host = 'localhost';
-const redisPort = 6379;
-const client = redis.createClient({ port: redisPort, host });
+const client = redis.createClient({ port: process.env.REDIS_PORT, host: process.env.REDIS_HOST });
 let SHOE_SIZES;
 
 // LOG REDIS CONNECTION AND FETCH SHOE_SIZES
@@ -22,18 +20,16 @@ client.on('connect', () => {
 
   multi.exec((error, shoe_sizes) => {
     SHOE_SIZES = shoe_sizes;
-    console.log(SHOE_SIZES);
   });
 });
 
 // ROUTES
 //
 module.exports.images = (req, res) => {
-  const random = Math.floor(Math.random() * 312500) * 32;
-
+  const id = req.body.imagesId;
   const multi = client.multi();
 
-  for (let i = random - 31; i <= random; i++) {
+  for (let i = id - 32; i < id; i++) {
     multi.hgetall(`image:${i}`);
   }
 
@@ -48,9 +44,9 @@ module.exports.images = (req, res) => {
 
 
 module.exports.products = (req, res) => {
-  const random = Math.floor(Math.random() * 10000001);
+  const id = req.body.productsId;
 
-  client.hgetall(`product:${random}`, (err, result) => {
+  client.hgetall(`product:${id}`, (err, result) => {
     if (err) res.json({ error: err });
 
     const response = {

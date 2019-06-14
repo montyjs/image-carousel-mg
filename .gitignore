@@ -23,3 +23,6 @@ unsplashApiKey.js
 
 # EC2 Files
 *.pem
+
+# new relic
+newrelic_agent.log

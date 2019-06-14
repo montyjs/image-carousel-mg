@@ -10,6 +10,7 @@ module.exports = {
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: 'product_wrapper',
+      host: process.env.POSTGRES_HOST_5,
     },
     useNullAsDefault: true,
     charset: 'utf8',
@@ -18,6 +19,10 @@ module.exports = {
     },
     seeds: {
       directory: Path.join(__dirname, '/db/sql/seeds/dev'),
+    },
+    pool: {
+      min: 2,
+      max: 10
     },
   },
 
