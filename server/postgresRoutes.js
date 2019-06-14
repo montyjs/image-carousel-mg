@@ -6,7 +6,7 @@ const db = require('./../db/sql/dbConfig.js');
 //
 module.exports.images = (req, res) => {
   const random = Math.floor(Math.random() * 312500) * 32;
-  db('images').select('*').whereBetween('id', [random - 31, random]).then((results) => {
+  db('images').select('*').whereBetween('id', [random - 32, random]).then((results) => {
     results = results.map(item => {
       delete item['_id'];
       return item;

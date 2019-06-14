@@ -1,7 +1,7 @@
 const moment = require('moment');
 // imported half of the required data to avoid heap running out of memory
 //
-const fiveMillion = require('./../../../buildFakeData.js').SQL();
+const fiveMillion = require('./../../../buildFakeData.js').SQL(10);
 
 console.log('built ', moment().calendar());
 

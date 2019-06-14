@@ -22,7 +22,6 @@ client.on('connect', () => {
 
   multi.exec((error, shoe_sizes) => {
     SHOE_SIZES = shoe_sizes;
-    console.log(SHOE_SIZES);
   });
 });
 
@@ -33,7 +32,7 @@ module.exports.images = (req, res) => {
 
   const multi = client.multi();
 
-  for (let i = random - 31; i <= random; i++) {
+  for (let i = random - 32; i <= random; i++) {
     multi.hgetall(`image:${i}`);
   }
 
