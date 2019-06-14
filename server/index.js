@@ -24,12 +24,23 @@ app.use(express.static(path.join(__dirname, '../public/dist')));
 
 // ROUTES
 //
-const redis = require('./redisRoutes.js');
-const postgres = require('./postgresRoutes.js');
+if (process.env.ROUTES === 'redis') {
 
-app.get('/images', process.env.ROUTES === 'redis' ? redis.images : postgres.images);
+  const redis = require('./redisRoutes.js');
 
-app.get('/products', process.env.ROUTES === 'redis' ? redis.products : postgres.products);
+  app.get('/images', redis.images);
+  app.get('/products', redis.products);
+
+} else if (process.env.ROUTES === 'postgres') {
+
+  const postgres = require('./postgresRoutes.js');
+
+  app.get('/images', postgres.images);
+  app.get('/products', postgres.products);
+
+}
+
+
 
 
 // SERVE
