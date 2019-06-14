@@ -1,6 +1,5 @@
 // IMPORTS
 //
-const process = require('process');
 const plotly = require('plotly')(process.env.PLOTLY_USERNAME, process.env.PLOTLY_API_KEY);
 
 
