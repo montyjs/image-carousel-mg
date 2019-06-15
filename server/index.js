@@ -28,15 +28,15 @@ if (process.env.ROUTES === 'redis') {
 
   const redis = require('./redisRoutes.js');
 
-  app.get('/images', redis.images);
-  app.get('/products', redis.products);
+  app.get('/images/:id', redis.images);
+  app.get('/products/:id', redis.products);
 
 } else if (process.env.ROUTES === 'postgres') {
 
   const postgres = require('./postgresRoutes.js');
 
-  app.get('/images', postgres.images);
-  app.get('/products', postgres.products);
+  app.get('/images/:id', postgres.images);
+  app.get('/products/:id', postgres.products);
 
 }
 

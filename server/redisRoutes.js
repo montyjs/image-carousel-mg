@@ -1,5 +1,6 @@
 // IMPORTS
 //
+require('dotenv').config();
 const redis = require('redis');
 
 // SETUP
@@ -26,10 +27,10 @@ client.on('connect', () => {
 // ROUTES
 //
 module.exports.images = (req, res) => {
-  const id = req.body.imagesId;
+  const id = req.params.id;
   const multi = client.multi();
 
-  for (let i = id - 32; i < id; i++) {
+  for (let i = id - 31; i <= id; i++) {
     multi.hgetall(`image:${i}`);
   }
 
@@ -44,7 +45,7 @@ module.exports.images = (req, res) => {
 
 
 module.exports.products = (req, res) => {
-  const id = req.body.productsId;
+  const id = req.params.id;
 
   client.hgetall(`product:${id}`, (err, result) => {
     if (err) res.json({ error: err });

@@ -1,16 +1,15 @@
 const Path = require('path');
 require('dotenv').config();
-const process = require('process');
 
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
-      user: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
       database: 'product_wrapper',
-      host: process.env.POSTGRES_HOST_5,
+      user: process.env.POSTGRES_USER_LOCAL,
+      password: process.env.POSTGRES_PASSWORD_LOCAL,
+      host: process.env.POSTGRES_HOST_LOCAL,
     },
     useNullAsDefault: true,
     charset: 'utf8',
@@ -20,18 +19,15 @@ module.exports = {
     seeds: {
       directory: Path.join(__dirname, '/db/sql/seeds/dev'),
     },
-    pool: {
-      min: 2,
-      max: 10
-    },
   },
 
   test: {
     client: 'pg',
     connection: {
+      database: 'product_wrapper',
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
-      database: 'product_wrapper',
+      host: process.env.POSTGRES_HOST,
     },
     useNullAsDefault: true,
     charset: 'utf8',
@@ -49,6 +45,7 @@ module.exports = {
       database: 'product_wrapper',
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
+      host: process.env.POSTGRES_HOST,
     },
     pool: {
       min: 2,
@@ -60,11 +57,12 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
       database: 'product_wrapper',
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
+      host: process.env.POSTGRES_HOST,
     },
     pool: {
       min: 2,

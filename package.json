@@ -1,18 +1,19 @@
 {
-  "name": "rei-product-wrapper",
+  "name": "SDC-REI-product-wrapper",
   "version": "0.0.1",
   "description": "",
-  "author": "Cj DAgostino",
+  "author": "Cj DAgostino & Morgan Gavin",
   "license": "MIT",
   "engines": {
-    "node": ">=6.13.0"
+    "node": ">=10.16.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "start-dev": "nodemon server/index.js",
+    "react-build": "webpack -d",
     "react-dev": "webpack -d --watch",
-    "seed-postgres": "./db/sql/seedPostgres.sh 0",
+    "seed-postgres": "./db/sql/seedPostgres.sh",
     "seed-redis": "./db/redis/seedRedis.sh",
-    "start:dev": "nodemon server/index.js -w server -w database-mysql",
     "test": "jest --config jest-preset.js"
   },
   "dependencies": {

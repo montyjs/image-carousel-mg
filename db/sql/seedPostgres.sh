@@ -1,17 +1,14 @@
 #!/bin/bash
 
-cwd=$(pwd)
+start_time="$(date -u +%s)"
 
-node $cwd/db/sql/getStartValue.js $1
-
-wait
-
-knex migrate:rollback; knex migrate:latest; knex seed:run;
+knex migrate:rollback; knex migrate:latest; knex seed:run
 
 wait
 
-rm $cwd/db/sql/start.json
+end_time="$(date -u +%s)"
+elapsed=($end_time-$start_time)
+minutes=$((elapsed/60%60))
+seconds=$((elapsed%60))
 
-wait
-
-echo 'success!'
+echo "success! Total of $minutes minutes and $seconds seconds elapsed for seeding"

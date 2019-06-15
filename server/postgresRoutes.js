@@ -5,8 +5,8 @@ const db = require('./../db/sql/dbConfig.js');
 // ROUTES
 //
 module.exports.images = (req, res) => {
-  const id = req.body.imagesId;
-  db('images').select('*').whereBetween('id', [id - 32, id]).then((results) => {
+  const id = req.params.id;
+  db('images').select('*').whereBetween('id', [id - 31, id]).then((results) => {
     results = results.map(item => {
       delete item['_id'];
       return item;
@@ -16,8 +16,8 @@ module.exports.images = (req, res) => {
 };
 
 module.exports.products = (req, res) => {
-  const id = req.body.productsId;
-  db('products').select('*').where({ 'id': random }).then((result) => {
+  const id = req.params.id;
+  db('products').select('*').where({ 'id': id }).then((result) => {
     result = result[0];
     db('shoe_size').select('*').then(shoe_sizes => {
       const response = {
