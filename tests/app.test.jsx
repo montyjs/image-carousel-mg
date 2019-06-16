@@ -2,7 +2,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import fetch from 'jest-fetch-mock';
-import App from '../client/components/app';
+import App from '../shared/components/app';
 
 global.fetch = fetch;
 const wrapper = shallow(<App />);

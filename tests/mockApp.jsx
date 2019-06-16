@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
-import Checkout from '../client/components/checkout';
+import Checkout from '../shared/components/checkout';
 
 const dummyProduct = {
   productName: 'La Sportiva Tarantulace',

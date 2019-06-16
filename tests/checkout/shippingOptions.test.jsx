@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import ShippingOptions from '../../client/components/checkoutSubComponents/shippingOptions';
+import ShippingOptions from '../../shared/components/checkoutSubComponents/shippingOptions';
 
 const mockFn = jest.fn();
 const wrap = shallow(<ShippingOptions

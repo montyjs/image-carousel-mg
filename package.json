@@ -8,18 +8,19 @@
     "node": ">=10.16.0"
   },
   "scripts": {
-    "start": "node server/index.js",
-    "start-dev": "nodemon server/index.js",
-    "react-build": "webpack -d",
-    "react-dev": "webpack -d --watch",
+    "start": "node ./dist/server",
     "seed-postgres": "./db/sql/seedPostgres.sh",
     "seed-redis": "./db/redis/seedRedis.sh",
-    "test": "jest --config jest-preset.js"
+    "test": "jest --config jest-preset.js",
+    "react-client-build": "webpack -d",
+    "react-client-dev": "webpack -d --watch",
+    "build": "webpack"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
+    "dotenv-webpack": "^1.7.0",
     "express": "^4.15.4",
     "knex": "^0.17.3",
     "loadtest": "^3.0.7",
@@ -58,9 +59,11 @@
     "jest-fetch-mock": "^2.1.2",
     "node-sass": "^4.12.0",
     "nodemon": "^1.18.10",
+    "npm-run-all": "^4.1.5",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.2",
+    "webpack-node-externals": "^1.7.2"
   }
 }

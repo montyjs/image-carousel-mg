@@ -9,7 +9,7 @@ module.exports = {
       database: 'product_wrapper',
       user: process.env.POSTGRES_USER_LOCAL,
       password: process.env.POSTGRES_PASSWORD_LOCAL,
-      host: process.env.POSTGRES_HOST_LOCAL,
+      // host: process.env.POSTGRES_HOST_LOCAL,
     },
     useNullAsDefault: true,
     charset: 'utf8',

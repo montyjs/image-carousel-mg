@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Item from '../../client/components/imageSubComponents/carouselItem';
+import Item from '../../shared/components/imageSubComponents/carouselItem';
 
 const mockImage = {
   color: 'flame',

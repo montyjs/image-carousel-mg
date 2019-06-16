@@ -10,4 +10,4 @@ const Index = () => (
     <App />
   </div>
 );
-ReactDOM.render(<Index />, document.getElementById('product'));
+ReactDOM.hydrate(<Index />, document.getElementById('root'));

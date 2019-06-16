@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import ShoeSizeSelect from '../../client/components/checkoutSubComponents/shoeSizeSelect';
+import ShoeSizeSelect from '../../shared/components/checkoutSubComponents/shoeSizeSelect';
 import MockApp from '../mockApp';
 
 

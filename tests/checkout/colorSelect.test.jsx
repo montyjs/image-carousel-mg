@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import ColorSelect from '../../client/components/checkoutSubComponents/colorSelect';
+import ColorSelect from '../../shared/components/checkoutSubComponents/colorSelect';
 
 const mockImages = [{
   color: 'red',

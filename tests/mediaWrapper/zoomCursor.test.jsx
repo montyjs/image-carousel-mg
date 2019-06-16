@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import ZoomCursor from '../../client/components/imageSubComponents/zoomCursor';
+import ZoomCursor from '../../shared/components/imageSubComponents/zoomCursor';
 
 const url = 'https://coubsecure-s.akamaihd.net/get/b64/p/coub/simple/cw_timeline_pic/8fdc7405645/40f2f0d0a25e05177fecf/big_1471495818_image.jpg';
 const mousePos = {

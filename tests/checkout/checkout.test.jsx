@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Checkout from '../../client/components/checkout';
+import Checkout from '../../shared/components/checkout';
 
 describe('Rendering Tests', () => {
   const wrap = shallow(<Checkout />);

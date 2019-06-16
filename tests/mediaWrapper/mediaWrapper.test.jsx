@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import MediaWrapper from '../../client/components/media-wrapper';
+import MediaWrapper from '../../shared/components/media-wrapper';
 
 const mockImage = {
   color: 'flame',

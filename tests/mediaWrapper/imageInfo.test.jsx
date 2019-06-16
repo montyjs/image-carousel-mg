@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import ImageInfo from '../../client/components/imageSubComponents/imageInfo';
+import ImageInfo from '../../shared/components/imageSubComponents/imageInfo';
 
 const mockImage = {
   color: 'flame',

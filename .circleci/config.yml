@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.2
+      - image: circleci/node-alpine
     steps:
       - checkout
       - run:
@@ -11,3 +11,6 @@ jobs:
       - run:
           name: install packages
           command: npm install
+      - run:
+          name: jest tests
+          command npm run test

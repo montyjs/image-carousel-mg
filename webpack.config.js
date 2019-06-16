@@ -1,11 +1,15 @@
 /* eslint-disable no-path-concat */
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: path.join(__dirname, '/client/index.jsx'),
+  entry: path.join(__dirname, 'server', 'server.js'),
+  target: 'node',
+  externals: [nodeExternals()],
   output: {
-    filename: 'bundle.js',
-    path: path.join(__dirname, 'public', 'dist'),
+    path: path.resolve('build'),
+    filename: 'main.bundle.js'
   },
   module: {
     rules: [
@@ -15,13 +19,13 @@ module.exports = {
       }, {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-        },
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  plugins: [
+    new Dotenv()
+  ],
 };
