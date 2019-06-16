@@ -7,9 +7,9 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'product_wrapper',
-      user: process.env.POSTGRES_USER_LOCAL,
-      password: process.env.POSTGRES_PASSWORD_LOCAL,
-      // host: process.env.POSTGRES_HOST_LOCAL,
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      host: process.env.POSTGRES_HOST_2,
     },
     useNullAsDefault: true,
     charset: 'utf8',
@@ -19,6 +19,10 @@ module.exports = {
     seeds: {
       directory: Path.join(__dirname, '/db/sql/seeds/dev'),
     },
+    pool: {
+      min: 2,
+      max: 10
+    }
   },
 
   test: {

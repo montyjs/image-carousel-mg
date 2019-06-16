@@ -1,3 +1,5 @@
+// const start = require('start.json').start;
+
 exports.up = function up(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('images', (table) => {
