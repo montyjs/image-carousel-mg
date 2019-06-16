@@ -1,5 +1,6 @@
 /* eslint-disable no-path-concat */
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -14,7 +15,19 @@ module.exports = {
     rules: [
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          }, {
+            loader: 'sass-loader'
+          }
+        ],
       }, {
         test: /\.jsx?$/,
         loader: 'babel-loader',
@@ -23,6 +36,13 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.css', '.es6'],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        WEBPACK: JSON.stringify(true),
+      }
+    })
+  ]
 };

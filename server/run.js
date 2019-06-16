@@ -3,7 +3,7 @@ require('dotenv').config();
 
 require('@babel/register')({
   ignore: [/\/(build|node_modules)\//],
-  presets: ['babel-preset-react-app', '@babel/preset-env']
+  presets: ['@babel/preset-env']
 });
 
 require('./server.js');

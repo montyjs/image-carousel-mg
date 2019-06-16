@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Html = ({ body }) => (
+const Html = (props) => (
   <html>
     <head>
       <title>Product Wrapper</title>

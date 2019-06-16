@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
-import style from './main.scss';
-
-
+require('dotenv').config();
 
 const Index = () => (
   <div>
