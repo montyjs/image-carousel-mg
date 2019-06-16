@@ -1,9 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 const process = require('process');
 
-const start = process.argv[2];
+const start = process.argv[2]
 
-fs.writeFile('start.json', JSON.stringify({ start: start }), (err) => {
+fs.writeFile(path.join(__dirname, 'start.json'), JSON.stringify({ start: start }), (err) => {
   if (err) console.log(err);
-  else console.log('start file successfully created');
+  else console.log('success');
 });

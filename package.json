@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node ./server/run.js",
-    "seed-postgres": "./db/sql/seedPostgres.sh",
+    "seed-postgres": "./db/sql/seedPostgres.sh 2000000",
     "seed-redis": "./db/redis/seedRedis.sh",
     "test": "jest --config jest-preset.js",
     "build:prod": "./node_modules/.bin/webpack --mode production",
