@@ -1,4 +1,4 @@
-// const start = require('start.json').start;
+// const start = require('./../start.json').start;
 
 exports.up = function up(knex, Promise) {
   return Promise.all([
@@ -25,7 +25,7 @@ exports.up = function up(knex, Promise) {
       table.string('rating');
       table.integer('no_ratings');
       table.index('id');
-    }),//.raw(`SELECT setval('products_id_seq', ${start});`),
+    })//.raw(`SELECT setval('products_id_seq', ${start});`),
   ]);
 };
 

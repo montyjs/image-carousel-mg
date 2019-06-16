@@ -6,7 +6,9 @@ node $cwd/db/sql/buildStart.js $1
 
 wait
 
-knex migrate:rollback; knex migrate:latest; knex seed:run;
+# knex migrate:rollback;
+knex migrate:latest;
+knex seed:run;
 
 wait
 
