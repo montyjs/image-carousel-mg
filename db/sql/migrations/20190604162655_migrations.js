@@ -1,3 +1,5 @@
+const start = require('./../start.json').start;
+
 exports.up = function up(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('images', (table) => {
@@ -7,7 +9,7 @@ exports.up = function up(knex, Promise) {
       table.string('orientation');
       table.text('url');
       table.index('id');
-    }),//.raw(`SELECT setval('images_id_seq', ${start});`),
+    }).raw(`SELECT setval('images_id_seq', ${start});`),
     knex.schema.createTable('shoe_size', (table) => {
       table.increments('id').primary();
       table.decimal('size');
@@ -23,7 +25,7 @@ exports.up = function up(knex, Promise) {
       table.string('rating');
       table.integer('no_ratings');
       table.index('id');
-    }),//.raw(`SELECT setval('products_id_seq', ${start});`),
+    }).raw(`SELECT setval('products_id_seq', ${start});`),
   ]);
 };
 

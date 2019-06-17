@@ -34,8 +34,8 @@
 PORT=3001
 POSTGRES_USER=<YOUR POSTGRES USERNAME>
 POSTGRES_PASSWORD=<YOUR POSTGRES PASSWORD>
-ROUTES=redis <for redis, or empty for postgres routes in server/index.js>
-REDIS_PORT=6379
+POSTGRES_HOST=<YOUR EC2 POSTGRES DB PUBLIC DNS>
+ROUTES=redis <for redis, or postgres in server/server.js>
   ```
 3. Seed the local database,
   - in package.json, under the seed script, change <YOUR USERNAME HERE> to... your username!

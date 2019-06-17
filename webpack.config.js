@@ -1,31 +1,48 @@
 /* eslint-disable no-path-concat */
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
-const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: path.join(__dirname, 'server', 'server.js'),
-  target: 'node',
-  externals: [nodeExternals()],
-  output: {
-    path: path.resolve('build'),
-    filename: 'main.bundle.js'
+  entry: {
+    main: './client/main.js',
   },
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: '[name].bundle.js'
+  },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          }, {
+            loader: 'sass-loader'
+          }
+        ],
       }, {
         test: /\.jsx?$/,
         loader: 'babel-loader',
+        exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.css', '.es6'],
   },
   plugins: [
-    new Dotenv()
-  ],
+    new webpack.DefinePlugin({
+      'process.env': {
+        WEBPACK: JSON.stringify(true),
+      }
+    })
+  ]
 };

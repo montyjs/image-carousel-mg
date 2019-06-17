@@ -1,12 +1,15 @@
 // SETUP
 //
 const db = require('./../db/sql/dbConfig.js');
-const fs = require('fs');
 
 // ROUTES
 //
 module.exports.images = (req, res) => {
   const id = Math.floor(Math.random() * 312500) * 32;
+  //
+  // comment line 8 and uncomment line 12 for querying from the last 100
+  //
+  // const id = Math.floor(Math.random() * 101) * 32 + 9996800;
   db('images').select('*').whereBetween('id', [id - 31, id]).then((results) => {
     results = results.map(item => {
       delete item['id'];
@@ -18,6 +21,10 @@ module.exports.images = (req, res) => {
 
 module.exports.products = (req, res) => {
   const id = Math.floor(Math.random() * 10000001);
+  //
+  // comment line 23 and uncomment line 27 for querying from the last 100
+  //
+  // const id = Math.floor(Math.random() * 101) + 9999000;
   db('products').select('*').where({ 'id': id }).then((result) => {
     result = result[0];
     db('shoe_size').select('*').then(shoe_sizes => {
