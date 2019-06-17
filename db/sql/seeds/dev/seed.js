@@ -1,7 +1,7 @@
 const moment = require('moment');
 // imported half of the required data to avoid heap running out of memory
 //
-const fiveMillion = require('./../../../buildFakeData.js').SQL(10);
+const oneMillion = require('./../../../buildFakeData.js').SQL(2);
 
 console.log('built ', moment().calendar());
 
@@ -10,7 +10,7 @@ exports.seed = function seed(knex, Promise) {
   //   .then(() => knex('images').del())
   //   .then(() => knex('products').del())
   // .then(() => 
-  return Promise.all(fiveMillion.map(data => {
+  return Promise.all(oneMillion.map(data => {
     return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
       console.log('images seeded', moment().calendar());
       return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => {
@@ -19,11 +19,59 @@ exports.seed = function seed(knex, Promise) {
       });
     });
   }))
-    .then(() => Promise.all(fiveMillion.map(data => {
+    .then(() => Promise.all(oneMillion.map(data => {
       return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
         console.log('images seeded', moment().calendar());
         return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
       });
-    })));
+    })))
+    .then(() => Promise.all(oneMillion.map(data => {
+      return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
+        console.log('images seeded', moment().calendar());
+        return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
+      });
+    })))
+    .then(() => Promise.all(oneMillion.map(data => {
+      return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
+        console.log('images seeded', moment().calendar());
+        return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
+      });
+    })))
+    .then(() => Promise.all(oneMillion.map(data => {
+      return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
+        console.log('images seeded', moment().calendar());
+        return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
+      });
+    })))
+    .then(() => Promise.all(oneMillion.map(data => {
+      return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
+        console.log('images seeded', moment().calendar());
+        return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
+      });
+    })))
+    .then(() => Promise.all(oneMillion.map(data => {
+      return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
+        console.log('images seeded', moment().calendar());
+        return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
+      });
+    })))
+    .then(() => Promise.all(oneMillion.map(data => {
+      return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
+        console.log('images seeded', moment().calendar());
+        return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
+      });
+    })))
+    .then(() => Promise.all(oneMillion.map(data => {
+      return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
+        console.log('images seeded', moment().calendar());
+        return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
+      });
+    })))
+    .then(() => Promise.all(oneMillion.map(data => {
+      return Promise.all(data.images.map(list => knex('images').insert(list))).then(() => {
+        console.log('images seeded', moment().calendar());
+        return Promise.all(data.products.map(list => knex('products').insert(list))).then(() => console.log('seeding complete ', moment().calendar()));
+      });
+    })))
 };
 

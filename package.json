@@ -9,11 +9,12 @@
   },
   "scripts": {
     "start": "node ./server/run.js",
+    "start-dev": "nodemon ./server/run.js",
     "seed-postgres": "./db/sql/seedPostgres.sh 2000000",
     "seed-redis": "./db/redis/seedRedis.sh",
     "test": "jest --config jest-preset.js",
     "build:prod": "./node_modules/.bin/webpack --mode production",
-    "build:dev": "webpack -d --watch --mode development"
+    "build:dev": "./node_modules/.bin/webpack --mode development"
   },
   "dependencies": {
     "babel-preset-env": "^1.7.0",

@@ -1,5 +1,5 @@
-const Path = require('path');
 require('dotenv').config();
+const path = require('path');
 
 module.exports = {
 
@@ -14,14 +14,10 @@ module.exports = {
     useNullAsDefault: true,
     charset: 'utf8',
     migrations: {
-      directory: Path.join(__dirname, '/db/sql/migrations'),
+      directory: path.join(__dirname, '/db/sql/migrations'),
     },
     seeds: {
-      directory: Path.join(__dirname, '/db/sql/seeds/dev'),
-    },
-    pool: {
-      min: 2,
-      max: 10
+      directory: path.join(__dirname, '/db/sql/seeds/dev'),
     }
   },
 
@@ -36,10 +32,10 @@ module.exports = {
     useNullAsDefault: true,
     charset: 'utf8',
     migrations: {
-      directory: Path.join(__dirname, '/db/sql/migrations'),
+      directory: path.join(__dirname, '/db/sql/migrations'),
     },
     seeds: {
-      directory: Path.join(__dirname, '/db/sql/seeds/dev'),
+      directory: path.join(__dirname, '/db/sql/seeds/dev'),
     },
   },
 
