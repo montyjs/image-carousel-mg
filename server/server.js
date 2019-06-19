@@ -5,7 +5,6 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import fs from 'fs';
 import renderPage from '../iso-middleware/render.js';
 
 // SETUP

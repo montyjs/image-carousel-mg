@@ -1,6 +1,11 @@
 /* eslint-disable no-path-concat */
 const path = require('path');
-const webpack = require('webpack');
+// const nodeExternals = require('webpack-node-externals');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
+const compress = require('compression-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -10,7 +15,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js'
   },
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -35,14 +40,23 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      test: /main\.bundle\.js$/
+    })],
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.css', '.es6'],
   },
+  externals: {
+    moment: 'moment',
+    underscore: 'underscore',
+    plotly: 'plotly',
+    loadtest: 'loadtest'
+  },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        WEBPACK: JSON.stringify(true),
-      }
-    })
+    new HtmlWebpackPlugin(),
+    new DynamicCdnWebpackPlugin(),
+    new MinifyPlugin()
   ]
 };

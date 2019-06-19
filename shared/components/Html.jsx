@@ -16,6 +16,9 @@ const Html = (props) => (
         dangerouslySetInnerHTML={{ __html: props.html }}
       ></div>
       <script dangerouslySetInnerHTML={{ __html: `window.__SERIALIZED_STATE__ = JSON.stringify(${props.serverState})` }} />
+      <script type="text/javascript" src="https://unpkg.com/react@16.8.6/umd/react.development.js" />
+      <script type="text/javascript" src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js" />
+      <script type="text/javascript" src="https://unpkg.com/prop-types@15.7.2/prop-types.js" />
       <script type="application/javascript" src="/main.bundle.js" />
     </body>
   </html>

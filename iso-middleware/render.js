@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Html from '../shared/components/Html.jsx';
-import App from '../shared/components/App.jsx';
+import App from '../shared/components/app.jsx';
 
 const renderPage = function (req, res) {
   const app = renderToString(<App />);

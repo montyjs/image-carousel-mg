@@ -7,9 +7,9 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'product_wrapper',
-      user: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      host: process.env.POSTGRES_HOST,
+      user: process.env.POSTGRES_USER_LOCAL,
+      password: process.env.POSTGRES_PASSWORD_LOCAL,
+      // host: process.env.POSTGRES_HOST,
     },
     useNullAsDefault: true,
     charset: 'utf8',

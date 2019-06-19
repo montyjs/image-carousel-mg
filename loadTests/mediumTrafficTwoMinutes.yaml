@@ -1,0 +1,14 @@
+config:
+  target: "http://13.57.215.69"
+  phases:
+    - duration: 30
+      arrivalRate: 25
+    - duration: 30
+      arrivalRate: 25
+      rampTo: 100
+    - duration: 60
+      arrivalRate: 100
+scenarios:
+  - flow:
+    - get:
+       url: "/"

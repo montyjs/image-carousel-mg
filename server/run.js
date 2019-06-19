@@ -1,5 +1,3 @@
-process.env.NODE_ENV = 'development';
-require('dotenv').config();
 
 require('@babel/register')({
   ignore: [/\/(build|node_modules)\//],
@@ -7,4 +5,3 @@ require('@babel/register')({
 });
 
 require('./server.js');
-
