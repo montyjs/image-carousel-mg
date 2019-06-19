@@ -26,6 +26,13 @@ const buildPath = path.join(__dirname, '../', 'build');
 app.use('/', express.static(buildPath));
 app.use(express.static(__dirname));
 
+// LOAD GZIP BUNDLE
+//
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 
 // DATABASE ROUTES
 //
@@ -45,7 +52,10 @@ if (process.env.ROUTES === 'redis') {
 
 }
 
+// LOAD HYDRATED INDEX
+//
 app.get('*', renderPage);
+
 
 // LAUNCH
 //
