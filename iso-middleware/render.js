@@ -5,7 +5,7 @@ import App from '../shared/components/app.jsx';
 
 const renderPage = function (req, res) {
   const app = renderToString(<App />);
-  const html = renderToString(<Html body={app} />);
+  const html = renderToString(<Html html={app} />);
   return res.send(`<!DOCTYPE html>${html}`);
 };
 
