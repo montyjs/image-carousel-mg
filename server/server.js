@@ -1,11 +1,16 @@
 // IMPORTS
 //
 require('dotenv').config();
+require('newrelic');
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import renderPage from '../iso-middleware/render.js';
+import renderPage from './render.js';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import Html from '../shared/components/Html.jsx';
+import App from '../shared/components/app.jsx';
 
 // SETUP
 //
@@ -20,41 +25,33 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// SERVE
-//
-const buildPath = path.join(__dirname, '../', 'build');
-app.use('/', express.static(buildPath));
-app.use(express.static(__dirname));
-
 // LOAD GZIP BUNDLE
 //
-app.get('*.js', function (req, res, next) {
+app.use('*.js', function (req, res, next) {
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
+  res.set('Content-Type', 'text/javascript');
   next();
 });
 
-// DATABASE ROUTES
+
+// SERVE BUNDLE
 //
-if (process.env.ROUTES === 'redis') {
+const buildPath = path.join(__dirname, '../', 'build');
+app.use('/static', express.static(buildPath));
 
-  const redis = require('./redisRoutes.js');
 
-  app.get('/images', redis.images);
-  app.get('/products', redis.products);
-
-} else if (process.env.ROUTES === 'postgres') {
-
-  const postgres = require('./postgresRoutes.js');
-
-  app.get('/images', postgres.images);
-  app.get('/products', postgres.products);
-
-}
-
-// LOAD HYDRATED INDEX
+// INDEX ROUTE
 //
-app.get('*', renderPage);
+app.get('/', (req, res) => {
+  renderPage(({ initialData, style }) => {
+    ReactDOMServer.renderToNodeStream(
+      <Html style={style} initialData={JSON.stringify(initialData)}>
+        <App {...initialData} name="World" />
+      </Html>
+    ).pipe(res);
+  });
+});
 
 
 // LAUNCH
@@ -65,7 +62,3 @@ app.listen(port, (err) => {
   }
   return console.log(`listening on port ${port}`);
 });
-
-
-
-module.exports = app;

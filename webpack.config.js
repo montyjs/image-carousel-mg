@@ -1,13 +1,13 @@
 /* eslint-disable no-path-concat */
 const path = require('path');
-// const nodeExternals = require('webpack-node-externals');
+const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
 const compress = require('compression-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 
-module.exports = {
+const client = {
   entry: {
     main: './client/main.js',
   },
@@ -19,18 +19,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.s?css$/,
+        test: /\.scss$/,
         use: [
           'isomorphic-style-loader',
           {
-            loader: 'style-loader'
-          }, {
             loader: 'css-loader',
             options: {
               importLoaders: 1
             }
-          }, {
-            loader: 'sass-loader'
           }
         ],
       }, {
@@ -57,6 +53,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(),
     new DynamicCdnWebpackPlugin(),
-    new MinifyPlugin()
+    new MinifyPlugin(),
+    new compress(),
   ]
 };
+
+
+module.exports = [client];
