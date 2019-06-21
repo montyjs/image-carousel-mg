@@ -20,6 +20,8 @@
 
 ## Demo
 
+![gif](https://imgur.com/M2q5UJk.gif)
+
 This component was deployed to AWS using RDS and Elastic Beanstalk. [Check it out here!](http://mg-product-wrapper-dev.us-west-2.elasticbeanstalk.com/)
 
 To check out the full application with my cohort-mates' components, [click here!](http://mg-proxy-dev.us-west-2.elasticbeanstalk.com/). 
